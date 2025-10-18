@@ -14,8 +14,8 @@ Desarrollar una aplicación móvil que promueva la transparencia electoral ciuda
 
 | Rol | Nombre | Responsabilidades |
 |-----|--------|-------------------|
-| **Líder Técnico** | [Nombre] | Arquitectura del proyecto, gestión de GitHub, coordinación del equipo |
-| **Diseñador UI/UX** | [Nombre] | Prototipo en Figma, diseño de interfaz, experiencia de usuario |
+| **Líder Técnico** | Yamile Ochoa | Arquitectura del proyecto, gestión de GitHub, coordinación del equipo |
+| **Diseñador UI/UX** | Yamile Ochoa y Sergio Serva  | Prototipo en Figma, diseño de interfaz, experiencia de usuario |
 | **Documentador** | Josep Rivera | Investigación de fuentes, documentación del proyecto, pruebas |
 
 ---
@@ -88,7 +88,7 @@ Desarrollar una aplicación móvil que promueva la transparencia electoral ciuda
 
 ## 🎨 Prototipo de Diseño
 
-**Enlace a Figma:** https://www.figma.com/design/vVHL6YPTLcVYzOJ4ChxqX3/AppElectoral?node-id=0-1&p=f&t=KlLqkNI43SVUAODF-0
+**Enlace a Figma:** https://www.figma.com/design/vVHL6YPTLcVYzOJ4ChxqX3/AppElectoral?node-id=0-1&t=14cjhsqe2e7whMER-1
 
 ### Pantallas Principales
 
