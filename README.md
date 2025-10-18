@@ -128,7 +128,7 @@ Detalle de Denuncia/Proyecto
 ## 📋 Requerimientos Funcionales - Día 1
 
 - **RF01:** ✅ Investigar las fuentes oficiales de información pública (ONPE, Congreso, Poder Judicial, etc.)
-- **RF02:** Prototipo incluye las pantallas principales: Inicio, Búsqueda, Detalle del Candidato y Comparación
+- **RF02:** ✅Prototipo incluye las pantallas principales: Inicio, Búsqueda, Detalle del Candidato y Comparación
 - **RF03:** Prototipo diseñado en Figma con flujo de navegación
 - **RF04:** ✅ Repositorio creado en GitHub con README inicial y enlace al prototipo
 - **RF05:** ✅ Roles de equipo definidos (líder técnico, diseñador UI, documentador)
