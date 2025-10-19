@@ -4,19 +4,15 @@
 
 Aplicación móvil que permite a los ciudadanos peruanos consultar información pública sobre los candidatos al Congreso y la Presidencia del Perú, incluyendo denuncias, proyectos presentados, historial político y enlaces a fuentes oficiales.
 
-## 🎯 Objetivo General
-
-Desarrollar una aplicación móvil que promueva la transparencia electoral ciudadana mediante el acceso fácil y organizado a información pública de candidatos políticos.
-
 ---
 
 ## 👥 Equipo de Desarrollo
 
 | Rol | Nombre | Responsabilidades |
 |-----|--------|-------------------|
-| **Líder Técnico** | Sergio Serva | Arquitectura del proyecto, gestión de GitHub, coordinación del equipo |
-| **Diseñador UI/UX** | Yamile Ochoa | Prototipo en Figma, diseño de interfaz, experiencia de usuario |
-| **Documentador** | Josep Rivera | Investigación de fuentes, documentación del proyecto, pruebas |
+| **Líder Técnico** | Sergio Serva | Arquitectura del proyecto, base de datos (Room), gestión de GitHub, coordinación del equipo |
+| **Diseñadora UI/UX** | Yamile Ochoa | Prototipo en Figma, diseño de interfaz, implementación de pantallas, sistema de navegación |
+| **Documentador/Tester** | Josep Rivera | Investigación de fuentes, documentación del proyecto, pruebas de funcionalidad |
 
 ---
 
@@ -94,43 +90,209 @@ Desarrollar una aplicación móvil que promueva la transparencia electoral ciuda
 
 El prototipo incluye las siguientes pantallas:
 
-1. **Inicio/Búsqueda** - Pantalla principal con buscador y listado de candidatos
-2. **Detalle del Candidato** - Información completa del candidato seleccionado
-3. **Detalle de Documento/Denuncia** - Vista detallada de denuncias o proyectos
-4. **Comparación** - Comparativa entre candidatos (opcional)
+1. **HomeScreen** - Pantalla principal con buscador y listado de candidatos
+2. **DetailScreen** - Información completa del candidato seleccionado
+3. **SearchScreen** - Búsqueda avanzada con filtros
+4. **CompareScreen** - Comparativa entre candidatos
+
+---
+
+## 🏗️ Arquitectura del Proyecto
+
+### Estructura de Paquetes Implementada
+
+```
+app/src/main/java/com/proyecto/app_electoral/
+├── data/                          # Capa de datos
+│   ├── dao/                       # Data Access Objects (Room)
+│   │   └── CandidatoDao.kt       # Interface DAO para operaciones CRUD
+│   ├── db/                        # Base de datos
+│   │   └── AppDataBase.kt        # Configuración de Room Database
+│   ├── model/                     # Modelos de datos (Entities)
+│   │   ├── Candidato.kt          # Modelo de candidato
+│   │   ├── CargoHistorico.kt     # Modelo de historial de cargos
+│   │   ├── Denuncia.kt           # Modelo de denuncias
+│   │   ├── Propuesta.kt          # Modelo de propuestas
+│   │   └── Proyecto.kt           # Modelo de proyectos de ley
+│   └── repository/                # Repositorios
+│       └── CandidatoRepository.kt # Repositorio para lógica de datos
+├── navigation/                    # Sistema de navegación
+│   └── AppNavigation.kt          # Configuración del NavHost
+├── ui/                            # Capa de presentación
+│   ├── screens/                   # Pantallas de la aplicación
+│   │   ├── CompareScreen.kt      # Pantalla de comparación
+│   │   ├── DetailScreen.kt       # Pantalla de detalle del candidato
+│   │   ├── HomeScreen.kt         # Pantalla principal
+│   │   └── SearchScreen.kt       # Pantalla de búsqueda avanzada
+│   └── theme/                     # Tema y estilos Material 3
+└── MainActivity.kt                # Actividad principal
+```
 
 ---
 
 ## 🗺️ Flujo de Navegación
 
+### Estructura de Navegación Implementada
+
 ```
-Inicio/Búsqueda
-    ↓
-Lista de Candidatos
-    ↓
-Detalle del Candidato
-    ↓
-Detalle de Denuncia/Proyecto
+┌──────────────────────────────────────────┐
+│         HomeScreen (Inicio)              │
+│  ┌────────────────────────────────────┐  │
+│  │   Barra de búsqueda rápida         │  │
+│  └────────────────────────────────────┘  │
+│  ┌────────────────────────────────────┐  │
+│  │ Lista de candidatos (LazyColumn)   │  │
+│  │ • Nombre                           │  │
+│  │ • Partido político                 │  │
+│  │ • Cargo al que postula             │  │
+│  │ • Foto                             │  │
+│  └────────────────────────────────────┘  │
+└──────────┬───────────────────┬───────────┘
+           │                   │
+           │ onClick           │ Búsqueda avanzada
+           │                   │
+           ▼                   ▼
+┌──────────────────────┐  ┌──────────────────────┐
+│   DetailScreen       │  │   SearchScreen       │
+│  ┌────────────────┐  │  │  ┌────────────────┐  │
+│  │ Datos          │  │  │  │ Filtros:       │  │
+│  │ personales     │  │  │  │ • Por nombre   │  │
+│  │ y foto         │  │  │  │ • Por partido  │  │
+│  └────────────────┘  │  │  │ • Por región   │  │
+│  ┌────────────────┐  │  │  │ • Por cargo    │  │
+│  │ Historial de   │  │  │  └────────────────┘  │
+│  │ cargos         │  │  └──────────────────────┘
+│  └────────────────┘  │
+│  ┌────────────────┐  │
+│  │ Denuncias y    │  │
+│  │ sentencias     │──┼──► onClick(denuncia)
+│  └────────────────┘  │
+│  ┌────────────────┐  │
+│  │ Propuestas y   │  │
+│  │ proyectos      │  │
+│  └────────────────┘  │
+│  ┌────────────────┐  │
+│  │ Enlaces a      │  │
+│  │ fuentes        │  │
+│  │ oficiales      │  │
+│  └────────────────┘  │
+└──────────────────────┘
+           │
+           │ Comparar
+           ▼
+┌──────────────────────┐
+│   CompareScreen      │
+│  ┌────────────────┐  │
+│  │ Seleccionar 2+ │  │
+│  │ candidatos     │  │
+│  └────────────────┘  │
+│  ┌────────────────┐  │
+│  │ Vista          │  │
+│  │ comparativa    │  │
+│  │ lado a lado    │  │
+│  └────────────────┘  │
+└──────────────────────┘
 ```
+
+### Rutas de Navegación (Navigation Compose)
+- `/home` → Pantalla principal con lista de candidatos
+- `/candidato/{id}` → Detalle completo del candidato
+- `/buscar` → Búsqueda avanzada con filtros
+- `/comparar` → Comparación de múltiples candidatos
 
 ---
 
-## 🛠️ Tecnologías y Herramientas
+## 📝 Registro de Implementaciones por Día
 
-- **Lenguaje:** Kotlin
-- **Framework UI:** Jetpack Compose
-- **IDE:** Android Studio
-- **Control de versiones:** Git/GitHub
-- **Diseño:** Figma
+### ✅ Día 1 - Completado (Planificación y Diseño)
+- [x] **RF01:** Investigación de fuentes oficiales (JNE, ONPE, Congreso, Poder Judicial, Contraloría)
+- [x] **RF02:** Prototipo con 4 pantallas principales: HomeScreen, DetailScreen, SearchScreen, CompareScreen
+- [x] **RF03:** Prototipo diseñado en Figma con flujo de navegación definido
+- [x] **RF04:** Repositorio GitHub creado con README inicial y enlace a Figma
+- [x] **RF05:** Roles asignados: Sergio (Líder Técnico), Yamile (Diseñadora UI/UX), Josep (Documentador)
+
+**Entregables:**
+- ✔️ Prototipo Figma: https://www.figma.com/design/vVHL6YPTLcVYzOJ4ChxqX3/AppElectoral
+- ✔️ Repositorio GitHub inicializado
 
 ---
 
-## 📋 Requerimientos Funcionales - Día 1
+### 🔄 Día 2 - En Progreso (Estructura Base del Proyecto)
 
-- **RF01:** ✅ Investigar las fuentes oficiales de información pública (ONPE, Congreso, Poder Judicial, etc.)
-- **RF02:** ✅Prototipo incluye las pantallas principales: Inicio, Búsqueda, Detalle del Candidato y Comparación
-- **RF03:** Prototipo diseñado en Figma con flujo de navegación
-- **RF04:** ✅ Repositorio creado en GitHub con README inicial y enlace al prototipo
-- **RF05:** ✅ Roles de equipo definidos (líder técnico, diseñador UI, documentador)
+#### ✅ Configuración del Proyecto
+- [x] **RF06:** Proyecto creado en Android Studio con Kotlin + Jetpack Compose
+- [x] **RF07:** Estructura de paquetes implementada:
+  - ✔️ `data/` - Capa de datos (dao, db, model, repository)
+  - ✔️ `navigation/` - Sistema de navegación
+  - ✔️ `ui/` - Capa de presentación (screens, theme)
+- [x] **RF08:** Sistema de navegación implementado con Navigation Compose
+  - ✔️ `AppNavigation.kt` - NavHost configurado
+  - ✔️ Rutas definidas para todas las pantallas
+- [x] **RF09:** Sistema de ramas Git configurado para trabajo colaborativo
+- [x] **RF10:** Documentación de commits en progreso
+
+#### ✅ Pantallas Creadas (Base)
+1. **HomeScreen.kt** - Pantalla principal con lista de candidatos
+2. **DetailScreen.kt** - Perfil completo del candidato
+3. **SearchScreen.kt** - Búsqueda avanzada con filtros
+4. **CompareScreen.kt** - Comparación de candidatos
+
+#### ✅ Modelos de Datos Implementados
+- **Candidato.kt** - Entidad principal con datos del candidato
+- **CargoHistorico.kt** - Historial de cargos públicos
+- **Denuncia.kt** - Denuncias y procesos judiciales
+- **Propuesta.kt** - Propuestas de campaña
+- **Proyecto.kt** - Proyectos de ley (congresistas)
+
+#### ✅ Base de Datos (Room)
+- **AppDataBase.kt** - Configuración de Room Database
+- **CandidatoDao.kt** - Interface con operaciones CRUD:
+  - Insert, Update, Delete
+  - Consultas (getAll, getById, searchByName)
+  - Queries con filtros
+
+#### ✅ Repositorio
+- **CandidatoRepository.kt** - Patrón Repository implementado
+  - Abstracción de la fuente de datos
+
+#### 📦 Dependencias Configuradas
+
+**Rama de Yamile Ochoa (UI/Navigation):**
+```gradle
+// Navigation Compose
+implementation("androidx.navigation:navigation-compose:2.7.7")
+```
+
+**Rama de Sergio Serva (Data/Architecture):**
+```gradle
+// Room Database
+val roomVersion = "2.6.1"
+implementation("androidx.room:room-runtime:$roomVersion")
+kapt("androidx.room:room-compiler:$roomVersion")
+implementation("androidx.room:room-ktx:$roomVersion")
+
+// ViewModel + LiveData / StateFlow
+implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.6")
+
+// Coroutines
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+```
+
+**Entregables:**
+- ✔️ Proyecto base funcional con navegación entre pantallas
+- ✔️ Estructura de paquetes completa y organizada
+- ✔️ Base de datos Room configurada
+- ✔️ Modelos de datos definidos
+- ✔️ Repositorio GitHub actualizado con commits documentados
+
+---
+
+### 📋 Día 3 - Pendiente (Interfaz de Usuario)
+- [ ] **RF11:** Implementar pantalla Inicio con barra de búsqueda funcional
+- [ ] **RF12:** Mostrar lista de candidatos con cards (nombre, partido, foto, cargo)
+- [ ] **RF13:** Crear pantalla Detalle con todos los datos y antecedentes
+- [ ] **RF14:** Aplicar diseño Material 3 con paleta de colores institucional
+- [ ] **RF15:** Conectar navegación lista → detalle con datos reales
 
 ---
