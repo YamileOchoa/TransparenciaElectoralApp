@@ -1,4 +1,4 @@
-package com.proyecto.app_electoral.ui.components.search
+package com.proyecto.app_electoral.ui.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Compare

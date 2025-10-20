@@ -20,6 +20,7 @@ import com.proyecto.app_electoral.R
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun MostSearchedSection() {
@@ -45,15 +46,21 @@ fun MostSearchedSection() {
             }
 
             Spacer(Modifier.width(8.dp))
-            Text("Más Buscados", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+
+            Column {
+                Text(
+                    text = "Más Buscados",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
+                )
+                Text(
+                    text = "Candidatos con mayor interés ciudadano",
+                    color = Color.Gray,
+                    fontSize = 14.sp
+                )
+            }
         }
 
-        Spacer(Modifier.height(4.dp))
-        Text(
-            "Candidatos con mayor interés ciudadano",
-            color = Color.Gray,
-            fontSize = 12.sp
-        )
         Spacer(Modifier.height(12.dp))
 
         LazyRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -61,27 +68,46 @@ fun MostSearchedSection() {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
-                        .width(100.dp)
+                        .width(120.dp)
                         .clip(RoundedCornerShape(12.dp))
                         .background(Color(0xFFF5F6FA))
                         .padding(4.dp)
                 ) {
-                    Image(
-                        painter = painterResource(R.drawable.candidate1),
-                        contentDescription = null,
+                    Box(
                         modifier = Modifier
-                            .size(100.dp)
-                            .clip(RoundedCornerShape(12.dp))
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.candidate1),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(120.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                        )
+                    }
+
+                    Spacer(Modifier.height(6.dp))
+                    Text(
+                        "Nombre Ap.",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
                     )
-                    Spacer(Modifier.height(4.dp))
-                    Text("Nombre Ap.", fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                    Text("Congresista", fontSize = 10.sp, color = Color.Gray)
+                    Text(
+                        "Congresista",
+                        fontSize = 12.sp,
+                        color = Color.Gray,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
             }
         }
-
     }
 }
+
 
 
 

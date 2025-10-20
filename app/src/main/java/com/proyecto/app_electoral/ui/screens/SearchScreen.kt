@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.proyecto.app_electoral.ui.components.search.BottomNavigationBar
+import com.proyecto.app_electoral.ui.components.BottomNavigationBar
 import com.proyecto.app_electoral.ui.components.search.CandidateListSection
 import com.proyecto.app_electoral.ui.components.search.FilterChipsSection
 import com.proyecto.app_electoral.ui.components.search.HeaderSection
@@ -25,13 +25,13 @@ fun SearchScreen(navController: NavHostController, onCandidateClick: (Int) -> Un
     val currentRoute = navBackStackEntry?.destination?.route ?: "busqueda"
 
     Scaffold(
+        containerColor = Color(0xFFFAFAFA),
         bottomBar = { BottomNavigationBar(navController, currentRoute) }
     ) { padding ->
         LazyColumn(
             modifier = Modifier
                 .padding(padding)
-                .fillMaxWidth()
-                .background(Color(0xFFF5F6FA)),
+                .fillMaxWidth(),
             contentPadding = PaddingValues(bottom = 80.dp)
         ) {
             item { HeaderSection() }

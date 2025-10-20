@@ -119,7 +119,6 @@ fun StatCard(
 ) {
     Card(
         modifier = modifier
-            .aspectRatio(1.6f)
             .border(1.dp, Color(0xFFEAEAEA), RoundedCornerShape(14.dp)),
         colors = CardDefaults.cardColors(containerColor = Color(0xFFFEFEFE)),
         shape = RoundedCornerShape(16.dp),
@@ -130,7 +129,7 @@ fun StatCard(
                 .fillMaxSize()
                 .padding(horizontal = 14.dp, vertical = 10.dp),
             horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Top
         ) {
             icon()
             Spacer(Modifier.height(6.dp))
@@ -144,13 +143,15 @@ fun StatCard(
             Spacer(Modifier.height(10.dp))
             Text(
                 text = label,
-                fontSize = 13.sp,
-                color = Color.Gray,
+                fontSize = 14.sp,
+                color = Color(0xB3011041),
                 textAlign = TextAlign.Start
             )
+
         }
     }
 }
+
 
 
 
