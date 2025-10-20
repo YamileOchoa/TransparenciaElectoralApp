@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -46,3 +47,18 @@ fun SearchScreen(navController: NavHostController, onCandidateClick: (Int) -> Un
     }
 }
 
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+    name = "Vista de Búsqueda"
+)
+@Composable
+fun PreviewSearchScreen() {
+    // Crea un NavController temporal para previsualizar
+    val navController = androidx.navigation.compose.rememberNavController()
+
+    SearchScreen(
+        navController = navController,
+        onCandidateClick = {}
+    )
+}
