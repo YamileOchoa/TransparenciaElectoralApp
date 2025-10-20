@@ -20,13 +20,11 @@ fun AppNavigation() {
     ) {
         composable("inicio") { HomeScreen(navController) }
 
-        // 🔹 ESTA ES LA RUTA QUE NECESITAS para que funcione tu botón de búsqueda:
         composable("busqueda") {
             SearchScreen(navController, onCandidateClick = {})
         }
 
-        // 🔹 Puedes dejar las otras pantallas comentadas por ahora
         // composable("detalle") { DetailScreen(navController) }
-        // composable("comparar") { CompareScreen(navController) }
+        composable("comparar") { CompareScreen(navController) }
     }
 }
