@@ -5,9 +5,15 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "denuncias")
 data class Denuncia(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val candidatoId: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    val candidato_id: Int,
     val titulo: String,
     val descripcion: String,
-    val estado: String // Ej: “En investigación”, “Archivada”
+    val expediente: String,
+    val delito: String,
+    val fecha_denuncia: String,
+    val estado: String,
+    val fuente_url: String
 )
+

@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     testImplementation(libs.junit)
+    implementation("com.google.code.gson:gson:2.10.1")
     // --- Room (Base de Datos) ---
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
