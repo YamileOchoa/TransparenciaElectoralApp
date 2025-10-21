@@ -19,7 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.proyecto.app_electoral.ui.components.compare.CandidateSelectionSection
 import com.proyecto.app_electoral.ui.components.compare.ComparisonSection
 import com.proyecto.app_electoral.ui.components.compare.DenunciasSection
-import com.proyecto.app_electoral.ui.components.search.BottomNavigationBar
+import com.proyecto.app_electoral.ui.components.BottomNavigationBar
 import com.proyecto.app_electoral.ui.components.search.HeaderSection
 
 @Composable

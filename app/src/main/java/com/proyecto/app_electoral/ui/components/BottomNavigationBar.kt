@@ -19,7 +19,7 @@ fun BottomNavigationBar(
     NavigationBar {
         NavigationBarItem(
             selected = currentRoute == "inicio",
-            onClick = { navController.navigate("inicio") },
+            onClick = { navController.navigate("busqueda") },
             icon = { Icon(Icons.Filled.Home, contentDescription = "Inicio") },
             label = { Text("Inicio") },
             alwaysShowLabel = true

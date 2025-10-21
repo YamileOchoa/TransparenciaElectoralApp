@@ -19,11 +19,9 @@ fun AppNavigation() {
         startDestination = "inicio"
     ) {
         composable("inicio") { HomeScreen(navController) }
-
         composable("busqueda") {
             SearchScreen(navController, onCandidateClick = {})
         }
-
         // composable("detalle") { DetailScreen(navController) }
         composable("comparar") { CompareScreen(navController) }
     }
