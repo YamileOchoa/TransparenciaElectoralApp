@@ -14,15 +14,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 
 @Composable
 fun CandidateCard(
     name: String,
     party: String,
+    imageUrl: String? = null,
     hasCandidate: Boolean,
     onButtonClick: () -> Unit
 ) {
@@ -42,12 +47,33 @@ fun CandidateCard(
                 ),
             contentAlignment = Alignment.Center
         ) {
-            Icon(
-                imageVector = if (hasCandidate) Icons.Default.Person else Icons.Default.Add,
-                contentDescription = null,
-                modifier = Modifier.size(32.dp),
-                tint = if (hasCandidate) Color(0xFFB0B0B0) else Color(0xFF3b5998)
-            )
+            if (hasCandidate) {
+                if (!imageUrl.isNullOrEmpty()) {
+                    AsyncImage(
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(imageUrl)
+                            .crossfade(true)
+                            .build(),
+                        contentDescription = "Foto de $name",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                } else {
+                    Icon(
+                        imageVector = Icons.Default.Person,
+                        contentDescription = null,
+                        modifier = Modifier.size(32.dp),
+                        tint = Color(0xFFB0B0B0)
+                    )
+                }
+            } else {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = null,
+                    modifier = Modifier.size(32.dp),
+                    tint = Color(0xFF3b5998)
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(8.dp))

@@ -11,9 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.proyecto.app_electoral.data.model.Candidato
 
 @Composable
-fun CandidateSelectionSection() {
+fun CandidateSelectionSection(
+    candidato1: Candidato?,
+    candidato2: Candidato?
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -30,12 +34,22 @@ fun CandidateSelectionSection() {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CandidateCard(
-                name = "Candidato 1",
-                party = "Partido político",
-                hasCandidate = true,
-                onButtonClick = { /* TODO: Cambiar candidato */ }
-            )
+            if (candidato1 != null) {
+                CandidateCard(
+                    name = candidato1.nombre,
+                    party = candidato1.partido,
+                    imageUrl = candidato1.foto_url,
+                    hasCandidate = true,
+                    onButtonClick = { /* TODO: Cambiar candidato */ }
+                )
+            } else {
+                CandidateCard(
+                    name = "Seleccionar",
+                    party = "Candidato",
+                    hasCandidate = false,
+                    onButtonClick = { /* TODO: Seleccionar candidato */ }
+                )
+            }
 
             Box(
                 modifier = Modifier
@@ -51,12 +65,22 @@ fun CandidateSelectionSection() {
                 )
             }
 
-            CandidateCard(
-                name = "Seleccionar",
-                party = "Candidato",
-                hasCandidate = false,
-                onButtonClick = { /* TODO: Seleccionar candidato */ }
-            )
+            if (candidato2 != null) {
+                CandidateCard(
+                    name = candidato2.nombre,
+                    party = candidato2.partido,
+                    imageUrl = candidato2.foto_url,
+                    hasCandidate = true,
+                    onButtonClick = { /* TODO: Cambiar candidato */ }
+                )
+            } else {
+                CandidateCard(
+                    name = "Seleccionar",
+                    party = "Candidato",
+                    hasCandidate = false,
+                    onButtonClick = { /* TODO: Seleccionar candidato */ }
+                )
+            }
         }
     }
 }

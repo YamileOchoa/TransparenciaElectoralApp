@@ -1,9 +1,15 @@
 package com.proyecto.app_electoral.ui.components.search
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccessTime
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.DocumentScanner
+import androidx.compose.material.icons.filled.Link
+import androidx.compose.material.icons.filled.Shield
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -11,22 +17,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.proyecto.app_electoral.R
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccessTime
-import androidx.compose.material.icons.filled.Link
-import androidx.compose.material.icons.filled.DocumentScanner
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material.icons.filled.Shield
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import com.proyecto.app_electoral.data.model.Candidato
 
 @Composable
-fun CandidateListSection(onCandidateClick: (Int) -> Unit) {
+fun CandidateListSection(candidatos: List<Candidato>, onCandidateClick: (Int) -> Unit) {
     Column(Modifier.padding(16.dp)) {
         Text(
             "Todos los Candidatos",
@@ -35,29 +37,22 @@ fun CandidateListSection(onCandidateClick: (Int) -> Unit) {
         )
         Spacer(Modifier.height(12.dp))
 
-        val ids = listOf(1, 2, 3, 4)
-        ids.forEach { id ->
-            CandidateCardFull(
-                name = "Nombre del congresista",
-                party = "Partido político del congresista",
-                position = "Congresista • Lima",
-                experience = "8 años de experiencia",
-                projects = 12,
-                denuncias = if (id % 2 == 0) 2 else 0,
-                onClick = { onCandidateClick(id) }
-            )
+        if (candidatos.isEmpty()) {
+            Text("No se encontraron candidatos.", modifier = Modifier.padding(16.dp))
+        } else {
+            candidatos.forEach { candidato ->
+                CandidateListItem(
+                    candidato = candidato,
+                    onClick = { onCandidateClick(candidato.id) }
+                )
+            }
         }
     }
 }
 
 @Composable
-fun CandidateCardFull(
-    name: String,
-    party: String,
-    position: String,
-    experience: String,
-    projects: Int,
-    denuncias: Int,
+fun CandidateListItem(
+    candidato: Candidato,
     onClick: () -> Unit
 ) {
     Card(
@@ -66,17 +61,20 @@ fun CandidateCardFull(
             .padding(vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        onClick = onClick
     ) {
         Column(Modifier.padding(16.dp)) {
-
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Image(
-                    painter = painterResource(R.drawable.candidate1),
-                    contentDescription = null,
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(candidato.foto_url)
+                        .crossfade(true)
+                        .build(),
+                    contentDescription = "Foto de ${candidato.nombre}",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .size(90.dp)
@@ -90,7 +88,7 @@ fun CandidateCardFull(
                     modifier = Modifier.weight(1f)
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(name, fontWeight = FontWeight.Bold, fontSize = 17.sp)
+                        Text(candidato.nombre, fontWeight = FontWeight.Bold, fontSize = 17.sp)
                         Spacer(Modifier.width(4.dp))
                         Icon(
                             imageVector = Icons.Filled.Shield,
@@ -100,9 +98,9 @@ fun CandidateCardFull(
                         )
                     }
 
-                    Text(party, color = Color(0xFF1976D2), fontSize = 14.sp)
+                    Text(candidato.partido, color = Color(0xFF1976D2), fontSize = 14.sp)
 
-                    Text(position, color = Color.Gray, fontSize = 13.sp)
+                    Text("${candidato.cargo} • ${candidato.region}", color = Color.Gray, fontSize = 13.sp)
 
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
@@ -112,20 +110,20 @@ fun CandidateCardFull(
                             modifier = Modifier.size(12.dp)
                         )
                         Spacer(Modifier.width(4.dp))
-                        Text(experience, color = Color.Gray, fontSize = 12.sp)
+                        Text("${candidato.experiencia} años de experiencia", color = Color.Gray, fontSize = 12.sp)
                     }
 
                     Spacer(Modifier.height(6.dp))
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         BadgeSolid(
-                            text = "$projects proyectos",
+                            text = "${candidato.propuestas.size} propuestas",
                             color = Color(0xFF067B60),
                             icon = Icons.Filled.DocumentScanner
                         )
 
-                        if (denuncias > 0) {
+                        if (candidato.denuncias.isNotEmpty()) {
                             BadgeSolid(
-                                text = "$denuncias Denuncias",
+                                text = "${candidato.denuncias.size} Denuncias",
                                 color = Color(0xFFE53935),
                                 icon = Icons.Filled.Warning
                             )
@@ -183,7 +181,7 @@ fun CandidateCardFull(
 }
 
 @Composable
-fun BadgeSolid(text: String, color: Color, icon: androidx.compose.ui.graphics.vector.ImageVector) {
+fun BadgeSolid(text: String, color: Color, icon: ImageVector) {
     Box(
         modifier = Modifier
             .background(color, shape = RoundedCornerShape(20.dp))
@@ -197,5 +195,3 @@ fun BadgeSolid(text: String, color: Color, icon: androidx.compose.ui.graphics.ve
         }
     }
 }
-
-
