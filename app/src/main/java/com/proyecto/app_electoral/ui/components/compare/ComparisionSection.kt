@@ -1,6 +1,8 @@
 package com.proyecto.app_electoral.ui.components.compare
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,8 +41,12 @@ fun ComparisonSection(
             colors = CardDefaults.cardColors(containerColor = Color.White),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
         ) {
-            Row(modifier = Modifier.fillMaxWidth()) {
-                // Columna para el Candidato 1
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                // Candidato 1
                 CompareItemColumn(
                     modifier = Modifier.weight(1f),
                     items = candidate1Items,
@@ -49,12 +55,12 @@ fun ComparisonSection(
 
                 VerticalDivider(
                     modifier = Modifier
-                        .heightIn(min = 130.dp)
+                        .fillMaxHeight()
                         .width(1.dp),
                     color = Color(0xFFE0E0E0)
                 )
 
-                // Columna para el Candidato 2
+                // Candidato 2
                 if (hasCandidate2) {
                     CompareItemColumn(
                         modifier = Modifier.weight(1f),
@@ -65,8 +71,7 @@ fun ComparisonSection(
                     Box(
                         modifier = Modifier
                             .weight(1f)
-                            .padding(16.dp)
-                            .heightIn(min = 120.dp),
+                            .padding(16.dp),
                         contentAlignment = Alignment.Center
                     ) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -96,28 +101,24 @@ private fun CompareItemColumn(
     items: List<String>,
     buttonText: String
 ) {
-    Column(modifier = modifier.padding(16.dp)) {
-        items.take(3).forEachIndexed { index, item ->
+    Column(
+        modifier = modifier
+            .padding(end = 8.dp)
+    ) {
+        items.forEach { item ->
             Text(
                 text = "• $item",
                 fontSize = 12.sp,
                 color = Color(0xFF666666),
-                maxLines = 1
+                modifier = Modifier.padding(vertical = 4.dp)
             )
-            if (index < items.size - 1) Spacer(modifier = Modifier.height(8.dp))
         }
 
-        Spacer(modifier = Modifier.height(12.dp))
-        OutlinedButton(
-            onClick = { /* TODO */ },
-            modifier = Modifier.fillMaxWidth(),
-            shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
-        ) {
-            Text(
-                buttonText,
-                fontSize = 11.sp,
-                color = Color(0xFF3b5998)
-            )
+        if (buttonText.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(8.dp))
+            TextButton(onClick = { /* Acción del botón */ }) {
+                Text(text = buttonText)
+            }
         }
     }
 }

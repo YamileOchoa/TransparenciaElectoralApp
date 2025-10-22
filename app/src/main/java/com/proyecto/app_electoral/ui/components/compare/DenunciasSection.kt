@@ -127,9 +127,23 @@ private fun DenunciaColumn(modifier: Modifier = Modifier, denuncias: List<Denunc
                 )
             }
             Spacer(modifier = Modifier.height(12.dp))
-            denuncias.take(2).forEach {
-                Text(it.titulo, fontSize = 11.sp, maxLines = 1)
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(max = 200.dp)
+            ) {
+                androidx.compose.foundation.lazy.LazyColumn {
+                    items(denuncias.size) { index ->
+                        Text(
+                            text = denuncias[index].titulo,
+                            fontSize = 11.sp,
+                            modifier = Modifier.padding(vertical = 2.dp)
+                        )
+                    }
+                }
             }
         }
     }
 }
+

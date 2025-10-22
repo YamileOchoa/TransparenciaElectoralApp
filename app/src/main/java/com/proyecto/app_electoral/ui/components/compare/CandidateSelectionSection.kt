@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -15,9 +15,15 @@ import com.proyecto.app_electoral.data.model.Candidato
 
 @Composable
 fun CandidateSelectionSection(
+    candidatos: List<Candidato>,
     candidato1: Candidato?,
-    candidato2: Candidato?
+    candidato2: Candidato?,
+    onSelectCandidato1: (Candidato) -> Unit,
+    onSelectCandidato2: (Candidato) -> Unit
 ) {
+    var showDialog1 by remember { mutableStateOf(false) }
+    var showDialog2 by remember { mutableStateOf(false) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -34,22 +40,14 @@ fun CandidateSelectionSection(
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (candidato1 != null) {
-                CandidateCard(
-                    name = candidato1.nombre,
-                    party = candidato1.partido,
-                    imageUrl = candidato1.foto_url,
-                    hasCandidate = true,
-                    onButtonClick = { /* TODO: Cambiar candidato */ }
-                )
-            } else {
-                CandidateCard(
-                    name = "Seleccionar",
-                    party = "Candidato",
-                    hasCandidate = false,
-                    onButtonClick = { /* TODO: Seleccionar candidato */ }
-                )
-            }
+            // Candidato 1
+            CandidateCard(
+                name = candidato1?.nombre ?: "Seleccionar",
+                party = candidato1?.partido ?: "Candidato",
+                imageUrl = candidato1?.foto_url,
+                hasCandidate = candidato1 != null,
+                onButtonClick = { showDialog1 = true }
+            )
 
             Box(
                 modifier = Modifier
@@ -65,22 +63,38 @@ fun CandidateSelectionSection(
                 )
             }
 
-            if (candidato2 != null) {
-                CandidateCard(
-                    name = candidato2.nombre,
-                    party = candidato2.partido,
-                    imageUrl = candidato2.foto_url,
-                    hasCandidate = true,
-                    onButtonClick = { /* TODO: Cambiar candidato */ }
-                )
-            } else {
-                CandidateCard(
-                    name = "Seleccionar",
-                    party = "Candidato",
-                    hasCandidate = false,
-                    onButtonClick = { /* TODO: Seleccionar candidato */ }
-                )
-            }
+            // Candidato 2
+            CandidateCard(
+                name = candidato2?.nombre ?: "Seleccionar",
+                party = candidato2?.partido ?: "Candidato",
+                imageUrl = candidato2?.foto_url,
+                hasCandidate = candidato2 != null,
+                onButtonClick = { showDialog2 = true }
+            )
         }
+    }
+
+    // Diálogo Candidato 1
+    if (showDialog1) {
+        CandidateSelectionDialog(
+            candidatos = candidatos.distinctBy { it.id },
+            onDismiss = { showDialog1 = false },
+            onSelect = {
+                onSelectCandidato1(it)
+                showDialog1 = false
+            }
+        )
+    }
+
+// Diálogo Candidato 2
+    if (showDialog2) {
+        CandidateSelectionDialog(
+            candidatos = candidatos.distinctBy { it.id },
+            onDismiss = { showDialog2 = false },
+            onSelect = {
+                onSelectCandidato2(it)
+                showDialog2 = false
+            }
+        )
     }
 }

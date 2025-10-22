@@ -2,6 +2,7 @@ package com.proyecto.app_electoral.ui.components.compare
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -41,10 +42,10 @@ fun CandidateCard(
                 .clip(CircleShape)
                 .background(if (hasCandidate) Color(0xFFE8E8E8) else Color.Transparent)
                 .then(
-                    if (!hasCandidate) {
-                        Modifier.border(2.dp, Color(0xFFDDDDDD), CircleShape)
-                    } else Modifier
-                ),
+                    if (!hasCandidate) Modifier.border(2.dp, Color(0xFFDDDDDD), CircleShape)
+                    else Modifier
+                )
+                .clickable { onButtonClick() }, // <-- Aquí
             contentAlignment = Alignment.Center
         ) {
             if (hasCandidate) {
