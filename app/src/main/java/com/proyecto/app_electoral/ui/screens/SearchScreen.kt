@@ -58,7 +58,7 @@ fun SearchScreen(navController: NavHostController, onCandidateClick: (Int) -> Un
                     onQueryChange = viewModel::onSearchQueryChange
                 )
             }
-            item { FilterChipsSection() }
+            item { FilterChipsSection(viewModel = viewModel) }
             item { MostSearchedSection() }
             item {
                 CandidateListSection(

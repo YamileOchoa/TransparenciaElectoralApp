@@ -14,33 +14,37 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.proyecto.app_electoral.ui.viewmodel.CandidatosViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FilterChipsSection() {
+fun FilterChipsSection(
+    viewModel: CandidatosViewModel
+) {
     val filters = listOf("Todos", "Con denuncias", "Por región", "Por partido")
-    var selectedFilter by remember { mutableStateOf(filters.first()) }
+
+    val selectedFilter by viewModel.selectedFilter.collectAsState()
 
     LazyRow(
         modifier = Modifier.padding(vertical = 8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(filters) {
+        items(filters) { filter ->
             FilterChip(
-                selected = it == selectedFilter,
-                onClick = { selectedFilter = it },
-                label = { Text(it) },
-                leadingIcon = if (it == selectedFilter) {
+                selected = filter == selectedFilter,
+                onClick = {
+                    viewModel.onFilterChange(filter)
+                },
+                label = { Text(filter) },
+                leadingIcon = if (filter == selectedFilter) {
                     {
                         Icon(
                             imageVector = Icons.Default.Check,
                             contentDescription = "Selected"
                         )
                     }
-                } else {
-                    null
-                }
+                } else null
             )
         }
     }
