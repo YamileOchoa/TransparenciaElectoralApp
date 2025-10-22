@@ -3,101 +3,136 @@ package com.proyecto.app_electoral.ui.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.proyecto.app_electoral.data.model.*
+import com.proyecto.app_electoral.di.Injector
 import com.proyecto.app_electoral.ui.components.BottomNavigationBar
 import com.proyecto.app_electoral.ui.components.profile.InfoCard
 import com.proyecto.app_electoral.ui.components.profile.ProfileCard
 import com.proyecto.app_electoral.ui.components.profile.ProfileHeader
 import com.proyecto.app_electoral.ui.components.profile.SocialMediaCard
+import com.proyecto.app_electoral.ui.viewmodel.CandidatosViewModel
 
 @Composable
 fun DetailScreen(
-    candidato: Candidato,
     navController: NavHostController,
-    currentRoute: String,
-    onNavigateBack: () -> Unit
+    candidateId: Int
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route ?: "detalle"
+
+    val viewModel: CandidatosViewModel = viewModel(
+        factory = Injector.provideViewModelFactory(context = LocalContext.current)
+    )
+
+    LaunchedEffect(candidateId) {
+        viewModel.getCandidatoById(candidateId)
+    }
+
+    val candidato by viewModel.selectedCandidato.collectAsState()
+
     Scaffold(
-        topBar = { ProfileHeader(title = "Perfil de Candidato", onBack = onNavigateBack) },
+        topBar = { ProfileHeader(title = "Perfil de Candidato", onBack = { navController.popBackStack() }) },
         bottomBar = {
             BottomNavigationBar(navController = navController, currentRoute = currentRoute)
         }
     ) { padding ->
-        LazyColumn(
+        Box(
             modifier = Modifier
                 .padding(padding)
-                .background(Color(0xFFF7FFF7))
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .fillMaxSize()
+                .background(Color(0xFFF7FFF7)),
+            contentAlignment = Alignment.Center
         ) {
-            item { ProfileCard(candidato) }
-
-            item {
-                InfoCard("Biografía", candidato.biografia)
-            }
-
-            if (candidato.propuestas.isNotEmpty()) {
-                item {
-                    InfoCard(
-                        "Propuestas",
-                        candidato.propuestas.joinToString("\n\n") {
-                            "• ${it.titulo}\nCategoría: ${it.categoria}\nPrioridad: ${it.prioridad}\n${it.descripcion}"
-                        }
-                    )
-                }
-            }
-
-            if (candidato.historial.isNotEmpty()) {
-                item {
-                    InfoCard(
-                        "Historial Político",
-                        candidato.historial.joinToString("\n\n") {
-                            "• ${it.cargo} - ${it.institucion}\n(${it.fecha_inicio} - ${it.fecha_fin})\n${it.descripcion}"
-                        }
-                    )
-                }
-            }
-
-            if (candidato.denuncias.isNotEmpty()) {
-                item {
-                    InfoCard(
-                        "Denuncias",
-                        candidato.denuncias.joinToString("\n\n") {
-                            "• ${it.titulo} (${it.estado})\nDelito: ${it.delito}\nFecha: ${it.fecha_denuncia}\n${it.descripcion}\nFuente: ${it.fuente_url}\nExpediente: ${it.expediente}"
-                        }
-                    )
-                }
-            }
-
-            item {
-                InfoCard(
-                    "Datos Personales",
-                    """
-                    DNI: ${candidato.dni}
-                    Nacimiento: ${candidato.nacimiento}
-                    Región: ${candidato.region}
-                    Experiencia: ${candidato.experiencia} años
-                    Estado: ${candidato.estado}
-                    """.trimIndent()
-                )
-            }
-
-            item { SocialMediaCard() }
-
-            item { Spacer(modifier = Modifier.height(16.dp)) }
+            candidato?.let {
+                DetailContent(it)
+            } ?: CircularProgressIndicator()
         }
     }
 }
+
+@Composable
+fun DetailContent(candidato: Candidato) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(bottom = 16.dp, top = 16.dp)
+    ) {
+        item { ProfileCard(candidato) }
+
+        item {
+            InfoCard("Biografía", candidato.biografia)
+        }
+
+        if (candidato.propuestas.isNotEmpty()) {
+            item {
+                InfoCard(
+                    "Propuestas",
+                    candidato.propuestas.joinToString("\n\n") {
+                        "• ${it.titulo}\nCategoría: ${it.categoria}\nPrioridad: ${it.prioridad}\n${it.descripcion}"
+                    }
+                )
+            }
+        }
+
+        if (candidato.historial.isNotEmpty()) {
+            item {
+                InfoCard(
+                    "Historial Político",
+                    candidato.historial.joinToString("\n\n") {
+                        "• ${it.cargo} - ${it.institucion}\n(${it.fecha_inicio} - ${it.fecha_fin})\n${it.descripcion}"
+                    }
+                )
+            }
+        }
+
+        if (candidato.denuncias.isNotEmpty()) {
+            item {
+                InfoCard(
+                    "Denuncias",
+                    candidato.denuncias.joinToString("\n\n") {
+                        "• ${it.titulo} (${it.estado})\nDelito: ${it.delito}\nFecha: ${it.fecha_denuncia}\n${it.descripcion}\nFuente: ${it.fuente_url}\nExpediente: ${it.expediente}"
+                    }
+                )
+            }
+        }
+
+        item {
+            InfoCard(
+                "Datos Personales",
+                """
+                DNI: ${candidato.dni}
+                Nacimiento: ${candidato.nacimiento}
+                Región: ${candidato.region}
+                Experiencia: ${candidato.experiencia} años
+                Estado: ${candidato.estado}
+                """.trimIndent()
+            )
+        }
+
+        item { SocialMediaCard() }
+
+        item { Spacer(modifier = Modifier.height(16.dp)) }
+    }
+}
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
@@ -121,13 +156,6 @@ fun DetailScreenPreview() {
                 fecha_inicio = "2018",
                 fecha_fin = "2022",
                 descripcion = "Participó en proyectos de mejora urbana y transporte sostenible."
-            ),
-            HistorialCargo(
-                cargo = "Coordinador de Programas Sociales",
-                institucion = "Ministerio de Inclusión Social",
-                fecha_inicio = "2014",
-                fecha_fin = "2018",
-                descripcion = "Encargado de coordinar programas de apoyo comunitario."
             )
         ),
         propuestas = listOf(
@@ -136,12 +164,6 @@ fun DetailScreenPreview() {
                 descripcion = "Implementar programas de capacitación docente y acceso a tecnología.",
                 categoria = "Educación",
                 prioridad = "Alta"
-            ),
-            Propuesta(
-                titulo = "Transporte eficiente",
-                descripcion = "Modernizar el sistema de transporte público y reducir la congestión.",
-                categoria = "Infraestructura",
-                prioridad = "Media"
             )
         ),
         denuncias = listOf(
@@ -157,10 +179,21 @@ fun DetailScreenPreview() {
         )
     )
 
-    DetailScreen(
-        candidato = mockCandidato,
-        navController = rememberNavController(),
-        currentRoute = "detalle",
-        onNavigateBack = {}
-    )
+    // For preview purposes, we wrap DetailContent directly
+    Scaffold(
+        topBar = { ProfileHeader(title = "Perfil de Candidato", onBack = { }) },
+        bottomBar = {
+            BottomNavigationBar(navController = rememberNavController(), currentRoute = "detalle")
+        }
+    ) { padding ->
+        Box(
+            modifier = Modifier
+                .padding(padding)
+                .fillMaxSize()
+                .background(Color(0xFFF7FFF7)),
+            contentAlignment = Alignment.Center
+        ) {
+            DetailContent(candidato = mockCandidato)
+        }
+    }
 }

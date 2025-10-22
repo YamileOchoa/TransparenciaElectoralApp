@@ -1,18 +1,19 @@
 package com.proyecto.app_electoral.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.compose.composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.proyecto.app_electoral.ui.screens.CompareScreen
+import com.proyecto.app_electoral.ui.screens.DetailScreen
 import com.proyecto.app_electoral.ui.screens.HomeScreen
 import com.proyecto.app_electoral.ui.screens.SearchScreen
-import com.proyecto.app_electoral.ui.screens.DetailScreen
-import com.proyecto.app_electoral.ui.screens.CompareScreen
 
 @Composable
 fun AppNavigation() {
-    val navController: NavHostController = rememberNavController()
+    val navController = rememberNavController()
 
     NavHost(
         navController = navController,
@@ -21,10 +22,25 @@ fun AppNavigation() {
         composable("inicio") { HomeScreen(navController) }
 
         composable("busqueda") {
-            SearchScreen(navController, onCandidateClick = {})
+            SearchScreen(
+                navController = navController,
+                onCandidateClick = { candidateId ->
+                    navController.navigate("detalle/$candidateId")
+                }
+            )
         }
 
-        // composable("detalle") { DetailScreen(navController) }
+        composable(
+            route = "detalle/{candidateId}",
+            arguments = listOf(navArgument("candidateId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val candidateId = backStackEntry.arguments?.getInt("candidateId") ?: 0
+            DetailScreen(
+                navController = navController,
+                candidateId = candidateId
+            )
+        }
+        
         composable("comparar") { CompareScreen(navController) }
     }
 }

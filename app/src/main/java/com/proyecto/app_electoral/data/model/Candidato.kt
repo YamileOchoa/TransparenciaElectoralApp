@@ -1,7 +1,11 @@
 package com.proyecto.app_electoral.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "candidatos")
 data class Candidato(
-    val id: Int,
+    @PrimaryKey val id: Int,
     val nombre: String,
     val partido: String,
     val cargo: String,
@@ -12,7 +16,6 @@ data class Candidato(
     val biografia: String,
     val experiencia: Int,
     val estado: String,
-    // Relaciones con otras tablas (opcionalmente cargadas)
     val historial: List<HistorialCargo> = emptyList(),
     val propuestas: List<Propuesta> = emptyList(),
     val denuncias: List<Denuncia> = emptyList()
