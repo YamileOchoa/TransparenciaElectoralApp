@@ -18,5 +18,6 @@ data class Candidato(
     val estado: String,
     val historial: List<HistorialCargo> = emptyList(),
     val propuestas: List<Propuesta> = emptyList(),
-    val denuncias: List<Denuncia> = emptyList()
+    val denuncias: List<Denuncia> = emptyList(),
+    val visitas: Int = 0
 )

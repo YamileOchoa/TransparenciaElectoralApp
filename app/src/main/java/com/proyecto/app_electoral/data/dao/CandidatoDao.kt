@@ -18,4 +18,10 @@ interface CandidatoDao {
 
     @Query("SELECT * FROM candidatos WHERE id = :id")
     fun getCandidatoById(id: Int): Flow<Candidato?>
+
+    @Query("SELECT * FROM candidatos ORDER BY visitas DESC LIMIT 5")
+    fun getMasBuscados(): Flow<List<Candidato>>
+
+    @Query("UPDATE candidatos SET visitas = visitas + 1 WHERE id = :id")
+    suspend fun incrementarVisitas(id: Int)
 }

@@ -20,7 +20,10 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextAlign
 
 @Composable
-fun StatsPanel() {
+fun StatsPanel(
+    totalCandidatos: Int,
+    totalPropuestas: Int
+) {
     Card(
         modifier = Modifier
             .padding(horizontal = 16.dp, vertical = 10.dp)
@@ -67,7 +70,7 @@ fun StatsPanel() {
                             )
                         }
                     },
-                    number = "1,234",
+                    number = "%,d".format(totalCandidatos),
                     label = "Candidatos",
                     modifier = Modifier.weight(1f)
                 )
@@ -89,7 +92,7 @@ fun StatsPanel() {
                             )
                         }
                     },
-                    number = "4,567",
+                    number = "%,d".format(totalPropuestas),
                     label = "Propuestas",
                     modifier = Modifier.weight(1f)
                 )

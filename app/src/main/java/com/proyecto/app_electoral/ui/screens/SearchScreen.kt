@@ -33,6 +33,9 @@ fun SearchScreen(navController: NavHostController, onCandidateClick: (Int) -> Un
     val viewModel: CandidatosViewModel = viewModel(
         factory = Injector.provideViewModelFactory(context = LocalContext.current)
     )
+
+    val totalCandidatos by viewModel.totalCandidatos.collectAsState()
+    val totalPropuestas by viewModel.totalPropuestas.collectAsState()
     val filteredCandidatos by viewModel.filteredCandidatos.collectAsState(initial = emptyList())
     val searchQuery by viewModel.searchQuery.collectAsState()
 
@@ -50,8 +53,16 @@ fun SearchScreen(navController: NavHostController, onCandidateClick: (Int) -> Un
         ) {
             item { HeaderSection() }
             item { Spacer(modifier = Modifier.height(16.dp)) }
-            item { StatsPanel() }
+
+            item {
+                StatsPanel(
+                    totalCandidatos = totalCandidatos,
+                    totalPropuestas = totalPropuestas
+                )
+            }
+
             item { Spacer(modifier = Modifier.height(16.dp)) }
+
             item {
                 SearchBarSection(
                     query = searchQuery,
@@ -59,7 +70,7 @@ fun SearchScreen(navController: NavHostController, onCandidateClick: (Int) -> Un
                 )
             }
             item { FilterChipsSection(viewModel = viewModel) }
-            item { MostSearchedSection() }
+            item { MostSearchedSection(viewModel = viewModel) }
             item {
                 CandidateListSection(
                     candidatos = filteredCandidatos,
@@ -69,3 +80,4 @@ fun SearchScreen(navController: NavHostController, onCandidateClick: (Int) -> Un
         }
     }
 }
+

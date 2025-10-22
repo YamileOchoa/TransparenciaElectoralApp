@@ -25,6 +25,16 @@ class CandidatosViewModel(private val repository: CandidatoRepository) : ViewMod
     private val _selectedCandidato = MutableStateFlow<Candidato?>(null)
     val selectedCandidato = _selectedCandidato.asStateFlow()
 
+    // 👇 NUEVOS CAMPOS para los totales
+    private val _totalCandidatos = MutableStateFlow(0)
+    val totalCandidatos = _totalCandidatos.asStateFlow()
+
+    private val _totalPropuestas = MutableStateFlow(0)
+    val totalPropuestas = _totalPropuestas.asStateFlow()
+
+    private val _masBuscados = MutableStateFlow<List<Candidato>>(emptyList())
+    val masBuscados = _masBuscados.asStateFlow()
+
     val filteredCandidatos = combine(
         _searchQuery,
         _selectedFilter,
@@ -36,7 +46,8 @@ class CandidatosViewModel(private val repository: CandidatoRepository) : ViewMod
         if (query.isNotBlank()) {
             resultado = resultado.filter {
                 it.nombre.contains(query, ignoreCase = true) ||
-                        it.partido.contains(query, ignoreCase = true)
+                        it.partido.contains(query, ignoreCase = true) ||
+                        it.region.contains(query, ignoreCase = true) // 👈 ahora también filtra por región
             }
         }
 
@@ -57,8 +68,13 @@ class CandidatosViewModel(private val repository: CandidatoRepository) : ViewMod
             repository.getCandidatos().collect { candidatos ->
                 Log.d(TAG, "Candidatos recibidos del repositorio: ${candidatos.size}")
                 _candidatos.value = candidatos
+
+                _totalCandidatos.value = candidatos.size
+                _totalPropuestas.value = candidatos.sumOf { it.propuestas.size }
             }
         }
+
+        cargarMasBuscados()
     }
 
     fun onSearchQueryChange(query: String) {
@@ -71,9 +87,33 @@ class CandidatosViewModel(private val repository: CandidatoRepository) : ViewMod
 
     fun getCandidatoById(id: Int) {
         viewModelScope.launch {
-            repository.getCandidato(id).collect {
-                _selectedCandidato.value = it
+            repository.getCandidato(id).collect { candidato ->
+                _selectedCandidato.value = candidato
+
+                candidato?.let {
+                    repository.incrementarVisitas(it.id)
+                    Log.d(TAG, "Visita registrada para: ${it.nombre}")
+                    // 👇 Actualizamos la lista de más buscados en tiempo real
+                    cargarMasBuscados()
+                }
             }
+        }
+    }
+
+    fun cargarMasBuscados() {
+        viewModelScope.launch {
+            repository.getMasBuscados().collect { lista ->
+                _masBuscados.value = lista
+                Log.d(TAG, "Más buscados cargados: ${lista.size}")
+            }
+        }
+    }
+
+    fun registrarVisita(id: Int) {
+        viewModelScope.launch {
+            repository.incrementarVisitas(id)
+            Log.d(TAG, "Visita manual registrada para ID: $id")
+            cargarMasBuscados()
         }
     }
 }
