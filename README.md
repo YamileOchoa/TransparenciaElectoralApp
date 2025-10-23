@@ -324,7 +324,7 @@ implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 
 **Requerimientos Funcionales Completados:**
 - RF26: README.md completado con descripción, integrantes, capturas y fuentes
-- RF27: Ejecución verificada en emulador y dispositivo físico
+- RF27: Ejecución verificada en emulador
 - RF28: Versión v1.0 etiquetada en GitHub
 - RF29: Presentación preparada con funcionalidades principales
 - RF30: Aplicación entregada sin errores de compilación
