@@ -5,15 +5,20 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.StarBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.proyecto.app_electoral.di.Injector
@@ -33,6 +38,8 @@ fun DetailScreen(navController: NavController, candidatoId: Int) {
     }
 
     val candidato by viewModel.selectedCandidato.collectAsState()
+    val favoritos by viewModel.favoritos.collectAsState()
+    val isFavorito = candidato?.id in favoritos
 
     Scaffold(
         topBar = {
@@ -41,6 +48,25 @@ fun DetailScreen(navController: NavController, candidatoId: Int) {
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver")
+                    }
+                },
+                actions = {
+                    candidato?.let {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(end = 8.dp)) {
+                            IconButton(onClick = { viewModel.toggleFavorito(it.id) }) {
+                                Icon(
+                                    imageVector = if (isFavorito) Icons.Filled.Star else Icons.Outlined.StarBorder,
+                                    contentDescription = if (isFavorito) "Quitar de favoritos" else "Marcar como favorito",
+                                    tint = if (isFavorito) Color(0xFFFFD700) else Color.White
+                                )
+                            }
+                            Text(
+                                text = if (isFavorito) "Favorito" else "Marcar",
+                                fontSize = 10.sp, 
+                                color = Color.White,
+                                modifier = Modifier.offset(y = (-8).dp)
+                            )
+                        }
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF1a237e), titleContentColor = Color.White, navigationIconContentColor = Color.White)
@@ -56,32 +82,25 @@ fun DetailScreen(navController: NavController, candidatoId: Int) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 item { ProfileCard(candidato = cand) }
-
-                item { 
-                    InfoCard(title = "Biografía", content = cand.biografia)
-                }
-
+                item { InfoCard(title = "Biografía", content = cand.biografia) }
                 item { 
                      InfoCard(
                         title = "Propuestas (${cand.propuestas?.size ?: 0})", 
                         content = cand.propuestas?.joinToString(separator = "\n") { "• ${it.titulo}" } ?: "Sin propuestas registradas."
                     )
                 }
-
                 item { 
                     InfoCard(
                         title = "Historial de Cargos (${cand.historial?.size ?: 0})", 
                         content = cand.historial?.joinToString(separator = "\n") { "• ${it.cargo} (${it.institucion})" } ?: "Sin historial registrado."
                     )
                 }
-
                 item { 
                     InfoCard(
                         title = "Denuncias (${cand.denuncias?.size ?: 0})", 
                         content = cand.denuncias?.joinToString(separator = "\n") { "• ${it.titulo} (${it.delito})" } ?: "Sin denuncias registradas."
                     )
                 }
-                
                 item { Spacer(modifier = Modifier.height(20.dp)) }
             }
         }

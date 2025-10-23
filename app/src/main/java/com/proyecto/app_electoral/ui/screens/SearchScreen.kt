@@ -38,6 +38,7 @@ fun SearchScreen(navController: NavHostController, onCandidateClick: (Int) -> Un
     val totalPropuestas by viewModel.totalPropuestas.collectAsState()
     val filteredCandidatos by viewModel.filteredCandidatos.collectAsState(initial = emptyList())
     val searchQuery by viewModel.searchQuery.collectAsState()
+    val favoritos by viewModel.favoritos.collectAsState()
 
     Log.d(TAG, "Candidatos en la UI: ${filteredCandidatos.size}")
 
@@ -74,7 +75,9 @@ fun SearchScreen(navController: NavHostController, onCandidateClick: (Int) -> Un
             item {
                 CandidateListSection(
                     candidatos = filteredCandidatos,
-                    onCandidateClick = onCandidateClick
+                    onCandidateClick = onCandidateClick,
+                    favoritos = favoritos,
+                    onToggleFavorito = viewModel::toggleFavorito
                 )
             }
         }

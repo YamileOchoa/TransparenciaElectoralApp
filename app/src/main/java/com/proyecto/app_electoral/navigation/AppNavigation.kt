@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.proyecto.app_electoral.ui.screens.CompareScreen
 import com.proyecto.app_electoral.ui.screens.DetailScreen
+import com.proyecto.app_electoral.ui.screens.FavoritosScreen
 import com.proyecto.app_electoral.ui.screens.HomeScreen
 import com.proyecto.app_electoral.ui.screens.SearchScreen
 
@@ -23,6 +24,15 @@ fun AppNavigation() {
 
         composable("busqueda") {
             SearchScreen(
+                navController = navController,
+                onCandidateClick = { candidatoId ->
+                    navController.navigate("detalle/$candidatoId")
+                }
+            )
+        }
+
+        composable("favoritos") {
+            FavoritosScreen(
                 navController = navController,
                 onCandidateClick = { candidatoId ->
                     navController.navigate("detalle/$candidatoId")
