@@ -1,6 +1,5 @@
 package com.proyecto.app_electoral.ui.components.profile
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -9,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -34,24 +34,17 @@ fun ProfileCard(candidato: Candidato) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(24.dp)
         ) {
-            if (candidato.foto_url.isNotEmpty()) {
-                AsyncImage(
-                    model = candidato.foto_url,
-                    contentDescription = "Foto del candidato",
-                    modifier = Modifier
-                        .size(140.dp)
-                        .padding(bottom = 16.dp),
-                    contentScale = ContentScale.Crop
-                )
-            } else {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_profile_placeholder),
-                    contentDescription = "Sin imagen",
-                    modifier = Modifier
-                        .size(140.dp)
-                        .padding(bottom = 16.dp)
-                )
-            }
+            AsyncImage(
+                model = if (candidato.fotoResId != 0) candidato.fotoResId else R.drawable.ic_profile_placeholder,
+                contentDescription = "Foto del candidato",
+                placeholder = painterResource(id = R.drawable.ic_profile_placeholder),
+                error = painterResource(id = R.drawable.ic_profile_placeholder),
+                modifier = Modifier
+                    .size(140.dp)
+                    .padding(bottom = 16.dp)
+                    .clip(RoundedCornerShape(12.dp)),
+                contentScale = ContentScale.Crop
+            )
 
             Text(
                 text = candidato.nombre,

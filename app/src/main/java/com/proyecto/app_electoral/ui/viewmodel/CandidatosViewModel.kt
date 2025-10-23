@@ -25,7 +25,6 @@ class CandidatosViewModel(private val repository: CandidatoRepository) : ViewMod
     private val _selectedCandidato = MutableStateFlow<Candidato?>(null)
     val selectedCandidato = _selectedCandidato.asStateFlow()
 
-    // 👇 NUEVOS CAMPOS para los totales
     private val _totalCandidatos = MutableStateFlow(0)
     val totalCandidatos = _totalCandidatos.asStateFlow()
 
@@ -47,13 +46,13 @@ class CandidatosViewModel(private val repository: CandidatoRepository) : ViewMod
             resultado = resultado.filter {
                 it.nombre.contains(query, ignoreCase = true) ||
                         it.partido.contains(query, ignoreCase = true) ||
-                        it.region.contains(query, ignoreCase = true) // 👈 ahora también filtra por región
+                        it.region.contains(query, ignoreCase = true)
             }
         }
 
         resultado = when (filter) {
-            "Con denuncias" -> resultado.filter { it.denuncias.isNotEmpty() }
-            "Sin denuncias" -> resultado.filter { it.denuncias.isEmpty() }
+            "Con denuncias" -> resultado.filter { (it.denuncias?.size ?: 0) > 0 }
+            "Sin denuncias" -> resultado.filter { (it.denuncias?.size ?: 0) == 0 }
             "Por partido" -> resultado.sortedBy { it.partido }
             "Por región" -> resultado.sortedBy { it.region }
             else -> resultado // "Todos"
@@ -70,7 +69,7 @@ class CandidatosViewModel(private val repository: CandidatoRepository) : ViewMod
                 _candidatos.value = candidatos
 
                 _totalCandidatos.value = candidatos.size
-                _totalPropuestas.value = candidatos.sumOf { it.propuestas.size }
+                _totalPropuestas.value = candidatos.sumOf { it.propuestas?.size ?: 0 }
             }
         }
 
@@ -93,7 +92,6 @@ class CandidatosViewModel(private val repository: CandidatoRepository) : ViewMod
                 candidato?.let {
                     repository.incrementarVisitas(it.id)
                     Log.d(TAG, "Visita registrada para: ${it.nombre}")
-                    // 👇 Actualizamos la lista de más buscados en tiempo real
                     cargarMasBuscados()
                 }
             }

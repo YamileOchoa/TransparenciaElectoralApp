@@ -24,20 +24,20 @@ fun AppNavigation() {
         composable("busqueda") {
             SearchScreen(
                 navController = navController,
-                onCandidateClick = { candidateId ->
-                    navController.navigate("detalle/$candidateId")
+                onCandidateClick = { candidatoId ->
+                    navController.navigate("detalle/$candidatoId")
                 }
             )
         }
 
         composable(
-            route = "detalle/{candidateId}",
-            arguments = listOf(navArgument("candidateId") { type = NavType.IntType })
+            route = "detalle/{candidatoId}",
+            arguments = listOf(navArgument("candidatoId") { type = NavType.IntType })
         ) { backStackEntry ->
-            val candidateId = backStackEntry.arguments?.getInt("candidateId") ?: 0
+            val candidatoId = backStackEntry.arguments?.getInt("candidatoId") ?: 0
             DetailScreen(
                 navController = navController,
-                candidateId = candidateId
+                candidatoId = candidatoId
             )
         }
         

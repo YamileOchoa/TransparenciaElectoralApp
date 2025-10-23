@@ -37,6 +37,16 @@ fun CompareScreen(navController: NavHostController) {
 
     val candidatos by viewModel.filteredCandidatos.collectAsState(initial = emptyList())
 
+    // Inicializar con los dos primeros candidatos si la selección está vacía
+    LaunchedEffect(candidatos) {
+        if (candidato1Selected == null && candidatos.isNotEmpty()) {
+            candidato1Selected = candidatos.getOrNull(0)
+        }
+        if (candidato2Selected == null && candidatos.size > 1) {
+            candidato2Selected = candidatos.getOrNull(1)
+        }
+    }
+
     Scaffold(
         bottomBar = { BottomNavigationBar(navController, currentRoute) }
     ) { padding ->

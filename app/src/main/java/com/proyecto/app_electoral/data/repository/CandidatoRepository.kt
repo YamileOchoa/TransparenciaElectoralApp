@@ -11,30 +11,39 @@ import com.proyecto.app_electoral.data.model.HistorialCargo
 import com.proyecto.app_electoral.data.model.Propuesta
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 
 class CandidatoRepository(private val context: Context, private val db: AppDatabase) {
 
     private val TAG = "CandidatoRepository"
 
-    private val candidatoDao = db.candidatoDao()
-
     fun getCandidatos(): Flow<List<Candidato>> {
-        return candidatoDao.getAllCandidatos()
+        return db.candidatoDao().getAllCandidatos().map { list ->
+            list.onEach { candidato -> // Usamos onEach para modificar el objeto sin cambiar el flujo
+                candidato.fotoResId = context.resources.getIdentifier(candidato.foto_url, "drawable", context.packageName)
+            }
+        }
     }
 
     fun getCandidato(id: Int): Flow<Candidato?> {
-        return candidatoDao.getCandidatoById(id)
+        return db.candidatoDao().getCandidatoById(id).map { candidato ->
+            candidato?.apply { // Apply asigna el valor directamente al objeto
+                fotoResId = context.resources.getIdentifier(foto_url, "drawable", context.packageName)
+            }
+        }
     }
 
-    fun getMasBuscados(): Flow<List<Candidato>> = candidatoDao.getMasBuscados()
+    fun getMasBuscados(): Flow<List<Candidato>> {
+        return db.candidatoDao().getMasBuscados()
+    }
 
     suspend fun incrementarVisitas(id: Int) {
-        candidatoDao.incrementarVisitas(id)
+        db.candidatoDao().incrementarVisitas(id)
     }
 
     suspend fun ensureSeeded() {
         try {
-            if (candidatoDao.getAllCandidatos().first().isEmpty()) {
+            if (db.candidatoDao().getAllCandidatos().first().isEmpty()) {
                 Log.d(TAG, "Base de datos vacía, iniciando siembra desde JSON.")
                 seedDatabase()
             }
@@ -45,18 +54,13 @@ class CandidatoRepository(private val context: Context, private val db: AppDatab
 
     private suspend fun seedDatabase() {
         try {
-            val jsonString = context.assets.open("app-electoral-datos.json")
-                .bufferedReader()
-                .use { it.readText() }
-
+            val jsonString = context.assets.open("app-electoral-datos.json").bufferedReader().use { it.readText() }
             val datosElectorales = Gson().fromJson(jsonString, DatosElectorales::class.java)
 
-            Log.d(
-                TAG, "JSON: ${datosElectorales.candidatos?.size ?: 0} candidatos, " +
-                        "${datosElectorales.propuestas?.size ?: 0} propuestas, " +
-                        "${datosElectorales.denuncias?.size ?: 0} denuncias, " +
-                        "${datosElectorales.historialCargos?.size ?: 0} historial."
-            )
+            Log.d(TAG, "JSON: ${datosElectorales.candidatos?.size ?: 0} candidatos, " +
+                    "${datosElectorales.propuestas?.size ?: 0} propuestas, " +
+                    "${datosElectorales.denuncias?.size ?: 0} denuncias, " +
+                    "${datosElectorales.historialCargos?.size ?: 0} historial.")
 
             val candidatos = (datosElectorales.candidatos ?: emptyList()).map { candidatoDto ->
                 Candidato(
@@ -73,44 +77,18 @@ class CandidatoRepository(private val context: Context, private val db: AppDatab
                     estado = candidatoDto.estado,
                     propuestas = (datosElectorales.propuestas ?: emptyList())
                         .filter { it.candidatoId == candidatoDto.id }
-                        .map {
-                            Propuesta(
-                                it.titulo,
-                                it.descripcion,
-                                it.categoria,
-                                it.prioridad
-                            )
-                        },
+                        .map { Propuesta(it.titulo, it.descripcion, it.categoria, it.prioridad) },
                     denuncias = (datosElectorales.denuncias ?: emptyList())
                         .filter { it.candidatoId == candidatoDto.id }
-                        .map {
-                            Denuncia(
-                                it.titulo,
-                                it.descripcion,
-                                it.expediente,
-                                it.delito,
-                                it.fecha_denuncia,
-                                it.estado,
-                                it.fuente_url
-                            )
-                        },
+                        .map { Denuncia(it.titulo, it.descripcion, it.expediente, it.delito, it.fecha_denuncia, it.estado, it.fuente_url) },
                     historial = (datosElectorales.historialCargos ?: emptyList())
                         .filter { it.candidatoId == candidatoDto.id }
-                        .map {
-                            HistorialCargo(
-                                it.cargo,
-                                it.institucion,
-                                it.fecha_inicio,
-                                it.fecha_fin,
-                                it.descripcion
-                            )
-                        },
-                    visitas = 0
+                        .map { HistorialCargo(it.cargo, it.institucion, it.fecha_inicio, it.fecha_fin, it.descripcion) }
                 )
             }
 
-            candidatoDao.insertAll(candidatos)
-            Log.d(TAG, "✅ Insertados ${candidatos.size} candidatos correctamente.")
+            db.candidatoDao().insertAll(candidatos)
+            Log.d(TAG, "✅ Insertados ${candidatos.size} candidatos")
         } catch (e: Exception) {
             Log.e(TAG, "❌ Error al leer o parsear el JSON", e)
         }
