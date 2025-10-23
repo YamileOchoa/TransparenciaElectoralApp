@@ -4,13 +4,19 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.proyecto.app_electoral.data.model.Candidato
+import com.proyecto.app_electoral.data.model.Favorito
 import com.proyecto.app_electoral.data.repository.CandidatoRepository
+import com.proyecto.app_electoral.data.repository.FavoritoRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class CandidatosViewModel(private val repository: CandidatoRepository) : ViewModel() {
+class CandidatosViewModel(
+    private val candidatoRepository: CandidatoRepository,
+    private val favoritoRepository: FavoritoRepository
+) : ViewModel() {
 
     private val TAG = "CandidatosViewModel"
 
@@ -34,14 +40,13 @@ class CandidatosViewModel(private val repository: CandidatoRepository) : ViewMod
     private val _masBuscados = MutableStateFlow<List<Candidato>>(emptyList())
     val masBuscados = _masBuscados.asStateFlow()
 
+    private val _favoritos = MutableStateFlow<List<Int>>(emptyList())
+    val favoritos = _favoritos.asStateFlow()
+
     val filteredCandidatos = combine(
-        _searchQuery,
-        _selectedFilter,
-        _candidatos
+        _searchQuery, _selectedFilter, _candidatos
     ) { query, filter, candidatos ->
-
         var resultado = candidatos
-
         if (query.isNotBlank()) {
             resultado = resultado.filter {
                 it.nombre.contains(query, ignoreCase = true) ||
@@ -49,68 +54,70 @@ class CandidatosViewModel(private val repository: CandidatoRepository) : ViewMod
                         it.region.contains(query, ignoreCase = true)
             }
         }
-
-        resultado = when (filter) {
+        when (filter) {
             "Con denuncias" -> resultado.filter { (it.denuncias?.size ?: 0) > 0 }
             "Sin denuncias" -> resultado.filter { (it.denuncias?.size ?: 0) == 0 }
             "Por partido" -> resultado.sortedBy { it.partido }
             "Por región" -> resultado.sortedBy { it.region }
-            else -> resultado // "Todos"
+            else -> resultado
         }
+    }
 
-        resultado
+    val candidatosFavoritos = combine(_candidatos, _favoritos) { candidatos, favoritos ->
+        candidatos.filter { it.id in favoritos }
     }
 
     init {
         viewModelScope.launch {
-            repository.ensureSeeded()
-            repository.getCandidatos().collect { candidatos ->
-                Log.d(TAG, "Candidatos recibidos del repositorio: ${candidatos.size}")
+            candidatoRepository.ensureSeeded()
+            candidatoRepository.getCandidatos().collect { candidatos ->
                 _candidatos.value = candidatos
-
                 _totalCandidatos.value = candidatos.size
                 _totalPropuestas.value = candidatos.sumOf { it.propuestas?.size ?: 0 }
             }
         }
-
+        viewModelScope.launch {
+            favoritoRepository.obtenerFavoritos().map { list -> list.map { it.candidatoId } }.collect {
+                _favoritos.value = it
+            }
+        }
         cargarMasBuscados()
     }
 
-    fun onSearchQueryChange(query: String) {
-        _searchQuery.value = query
-    }
-
-    fun onFilterChange(filter: String) {
-        _selectedFilter.value = filter
-    }
+    fun onSearchQueryChange(query: String) { _searchQuery.value = query }
+    fun onFilterChange(filter: String) { _selectedFilter.value = filter }
 
     fun getCandidatoById(id: Int) {
         viewModelScope.launch {
-            repository.getCandidato(id).collect { candidato ->
+            candidatoRepository.getCandidato(id).collect { candidato ->
                 _selectedCandidato.value = candidato
-
-                candidato?.let {
-                    repository.incrementarVisitas(it.id)
-                    Log.d(TAG, "Visita registrada para: ${it.nombre}")
+                candidato?.let { 
+                    candidatoRepository.incrementarVisitas(it.id)
                     cargarMasBuscados()
                 }
             }
         }
     }
 
+    fun toggleFavorito(candidatoId: Int) {
+        viewModelScope.launch {
+            if (candidatoId in _favoritos.value) {
+                favoritoRepository.eliminarFavorito(Favorito(candidatoId))
+            } else {
+                favoritoRepository.agregarFavorito(Favorito(candidatoId))
+            }
+        }
+    }
+
     fun cargarMasBuscados() {
         viewModelScope.launch {
-            repository.getMasBuscados().collect { lista ->
-                _masBuscados.value = lista
-                Log.d(TAG, "Más buscados cargados: ${lista.size}")
-            }
+            candidatoRepository.getMasBuscados().collect { _masBuscados.value = it }
         }
     }
 
     fun registrarVisita(id: Int) {
         viewModelScope.launch {
-            repository.incrementarVisitas(id)
-            Log.d(TAG, "Visita manual registrada para ID: $id")
+            candidatoRepository.incrementarVisitas(id)
             cargarMasBuscados()
         }
     }

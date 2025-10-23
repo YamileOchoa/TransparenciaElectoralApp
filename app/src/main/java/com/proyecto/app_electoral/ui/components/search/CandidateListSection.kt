@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.StarBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,8 +24,13 @@ import com.proyecto.app_electoral.R
 import com.proyecto.app_electoral.data.model.Candidato
 
 @Composable
-fun CandidateListSection(candidatos: List<Candidato>, onCandidateClick: (Int) -> Unit) {
-    Column(Modifier.padding(16.dp)) {
+fun CandidateListSection(
+    candidatos: List<Candidato>,
+    onCandidateClick: (Int) -> Unit,
+    favoritos: List<Int>,
+    onToggleFavorito: (Int) -> Unit
+) {
+    Column(Modifier.padding(horizontal = 16.dp)) {
         Text(
             "Todos los Candidatos",
             fontWeight = FontWeight.Bold,
@@ -38,17 +44,22 @@ fun CandidateListSection(candidatos: List<Candidato>, onCandidateClick: (Int) ->
             candidatos.forEach { candidato ->
                 CandidateListItem(
                     candidato = candidato,
-                    onClick = { onCandidateClick(candidato.id) }
+                    onClick = { onCandidateClick(candidato.id) },
+                    isFavorito = candidato.id in favoritos,
+                    onToggleFavorito = { onToggleFavorito(candidato.id) }
                 )
             }
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CandidateListItem(
     candidato: Candidato,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    isFavorito: Boolean,
+    onToggleFavorito: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -59,116 +70,106 @@ fun CandidateListItem(
         colors = CardDefaults.cardColors(containerColor = Color.White),
         onClick = onClick
     ) {
-        Column(Modifier.padding(16.dp)) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                AsyncImage(
-                    model = if (candidato.fotoResId != 0) candidato.fotoResId else R.drawable.ic_profile_placeholder,
-                    contentDescription = "Foto de ${candidato.nombre}",
-                    placeholder = painterResource(id = R.drawable.ic_profile_placeholder),
-                    error = painterResource(id = R.drawable.ic_profile_placeholder),
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .size(90.dp)
-                        .clip(RoundedCornerShape(14.dp))
-                )
-
-                Spacer(Modifier.width(16.dp))
-
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(4.dp),
-                    modifier = Modifier.weight(1f)
+        Box { // Usamos un Box para superponer el icono de favorito
+            Column(Modifier.padding(16.dp)) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(candidato.nombre, fontWeight = FontWeight.Bold, fontSize = 17.sp)
-                        Spacer(Modifier.width(4.dp))
-                        Icon(
-                            imageVector = Icons.Filled.Shield,
-                            contentDescription = null,
-                            tint = Color(0xFF1FBF50),
-                            modifier = Modifier.size(14.dp)
-                        )
-                    }
+                    AsyncImage(
+                        model = if (candidato.fotoResId != 0) candidato.fotoResId else R.drawable.ic_profile_placeholder,
+                        contentDescription = "Foto de ${candidato.nombre}",
+                        placeholder = painterResource(id = R.drawable.ic_profile_placeholder),
+                        error = painterResource(id = R.drawable.ic_profile_placeholder),
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .size(90.dp)
+                            .clip(RoundedCornerShape(14.dp))
+                    )
 
-                    Text(candidato.partido, color = Color(0xFF1976D2), fontSize = 14.sp)
+                    Spacer(Modifier.width(16.dp))
 
-                    Text("${candidato.cargo} • ${candidato.region}", color = Color.Gray, fontSize = 13.sp)
-
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            imageVector = Icons.Filled.AccessTime,
-                            contentDescription = "Experiencia",
-                            tint = Color.Gray,
-                            modifier = Modifier.size(12.dp)
-                        )
-                        Spacer(Modifier.width(4.dp))
-                        Text("${candidato.experiencia} años de experiencia", color = Color.Gray, fontSize = 12.sp)
-                    }
-
-                    Spacer(Modifier.height(6.dp))
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        BadgeSolid(
-                            text = "${candidato.propuestas?.size ?: 0} propuestas",
-                            color = Color(0xFF067B60),
-                            icon = Icons.Filled.DocumentScanner
-                        )
-
-                        if (candidato.denuncias?.isNotEmpty() == true) {
-                            BadgeSolid(
-                                text = "${candidato.denuncias?.size ?: 0} Denuncias",
-                                color = Color(0xFFE53935),
-                                icon = Icons.Filled.Warning
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(candidato.nombre, fontWeight = FontWeight.Bold, fontSize = 17.sp, modifier = Modifier.weight(1f, fill = false))
+                            Spacer(Modifier.width(4.dp))
+                            Icon(
+                                imageVector = Icons.Filled.Shield,
+                                contentDescription = null,
+                                tint = Color(0xFF1FBF50),
+                                modifier = Modifier.size(14.dp)
                             )
-                        } else {
-                            BadgeSolid(
-                                text = "Sin denuncias",
-                                color = Color(0xFF1976D2),
-                                icon = Icons.Filled.CheckCircle
-                            )
+                        }
+
+                        Text(candidato.partido, color = Color(0xFF1976D2), fontSize = 14.sp)
+                        Text("${candidato.cargo} • ${candidato.region}", color = Color.Gray, fontSize = 13.sp)
+
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Filled.AccessTime, "Experiencia", tint = Color.Gray, modifier = Modifier.size(12.dp))
+                            Spacer(Modifier.width(4.dp))
+                            Text("${candidato.experiencia} años de experiencia", color = Color.Gray, fontSize = 12.sp)
+                        }
+
+                        Spacer(Modifier.height(6.dp))
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            BadgeSolid("${candidato.propuestas?.size ?: 0} propuestas", Color(0xFF067B60), Icons.Filled.DocumentScanner)
+                            if (candidato.denuncias?.isNotEmpty() == true) {
+                                BadgeSolid("${candidato.denuncias?.size ?: 0} Denuncias", Color(0xFFE53935), Icons.Filled.Warning)
+                            } else {
+                                BadgeSolid("Sin denuncias", Color(0xFF1976D2), Icons.Filled.CheckCircle)
+                            }
+                        }
+                    }
+                }
+
+                Spacer(Modifier.height(12.dp))
+                HorizontalDivider(color = Color(0xFFE0E0E0))
+                Spacer(Modifier.height(8.dp))
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Filled.Link, "Fuentes", tint = Color(0xFF003DFF), modifier = Modifier.size(14.dp))
+                    Spacer(Modifier.width(4.dp))
+                    Text("Fuentes: JNE • ONPE • Congreso", color = Color(0xFF003DFF), fontSize = 11.sp)
+                    Spacer(Modifier.weight(1f))
+                    Button(
+                        onClick = onClick,
+                        contentPadding = PaddingValues(0.dp),
+                        shape = RoundedCornerShape(50),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .background(brush = Brush.horizontalGradient(colors = listOf(Color(0xFF007FF6), Color(0xFF074693))), shape = RoundedCornerShape(50))
+                                .padding(horizontal = 16.dp, vertical = 8.dp)
+                        ) {
+                            Text("Ver perfil →", fontSize = 13.sp, color = Color.White)
                         }
                     }
                 }
             }
-
-            Spacer(Modifier.height(12.dp))
-            Divider(color = Color(0xFFE0E0E0))
-            Spacer(Modifier.height(8.dp))
-
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    imageVector = Icons.Filled.Link,
-                    contentDescription = "Fuentes",
-                    tint = Color(0xFF003DFF),
-                    modifier = Modifier.size(14.dp)
-                )
-                Spacer(Modifier.width(4.dp))
-                Text(
-                    "Fuentes: JNE • ONPE • Congreso",
-                    color = Color(0xFF003DFF),
-                    fontSize = 11.sp
-                )
-                Spacer(Modifier.weight(1f))
-                Button(
-                    onClick = onClick,
-                    contentPadding = PaddingValues(0.dp),
-                    shape = RoundedCornerShape(50),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .background(
-                                brush = Brush.horizontalGradient(
-                                    colors = listOf(Color(0xFF007FF6), Color(0xFF074693))
-                                ),
-                                shape = RoundedCornerShape(50)
-                            )
-                            .padding(horizontal = 16.dp, vertical = 8.dp)
-                    ) {
-                        Text("Ver perfil →", fontSize = 13.sp, color = Color.White)
-                    }
+            // Icono de Favorito superpuesto
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(top = 4.dp, end = 4.dp)
+            ) {
+                IconButton(onClick = onToggleFavorito, modifier = Modifier.size(36.dp)) {
+                     Icon(
+                        imageVector = if (isFavorito) Icons.Filled.Star else Icons.Outlined.StarBorder,
+                        contentDescription = if (isFavorito) "Quitar de favoritos" else "Marcar como favorito",
+                        tint = if (isFavorito) Color(0xFFFFD700) else Color.Gray
+                    )
                 }
+                Text(
+                    text = if (isFavorito) "Favorito" else "Marcar",
+                    fontSize = 9.sp,
+                    color = if (isFavorito) Color(0xFFFFD700) else Color.Gray,
+                    modifier = Modifier.offset(y = (-6).dp)
+                )
             }
         }
     }

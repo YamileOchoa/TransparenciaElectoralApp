@@ -6,13 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.proyecto.app_electoral.data.dao.CandidatoDao
+import com.proyecto.app_electoral.data.dao.FavoritoDao
 import com.proyecto.app_electoral.data.model.Candidato
+import com.proyecto.app_electoral.data.model.Favorito
 
-@Database(entities = [Candidato::class], version = 2, exportSchema = false)
+// 1. Añadimos la nueva entidad y subimos la versión de la DB a 4
+@Database(entities = [Candidato::class, Favorito::class], version = 4, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun candidatoDao(): CandidatoDao
+    // 2. Exponemos el nuevo DAO
+    abstract fun favoritoDao(): FavoritoDao
 
     companion object {
         @Volatile
@@ -25,8 +30,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "app_electoral.db"
                 )
-                    // 2. Eliminamos la migración manual para evitar conflictos de hash
-                    // 3. Dejamos que fallbackToDestructiveMigration sea la única estrategia
+                    // fallbackToDestructiveMigration se encargará de recrear la DB
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance

@@ -1,31 +1,29 @@
 package com.proyecto.app_electoral.di
 
 import android.content.Context
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.proyecto.app_electoral.data.db.AppDatabase
 import com.proyecto.app_electoral.data.repository.CandidatoRepository
-import com.proyecto.app_electoral.ui.viewmodel.CandidatosViewModel
+import com.proyecto.app_electoral.data.repository.FavoritoRepository
+import com.proyecto.app_electoral.ui.viewmodel.ViewModelFactory
 
 object Injector {
 
-    private fun provideCandidatoRepository(context: Context): CandidatoRepository {
-        val database = AppDatabase.getInstance(context.applicationContext)
-        // El repositorio ahora necesita el contexto para leer el JSON
-        return CandidatoRepository(context.applicationContext, database)
+    private fun provideDatabase(context: Context): AppDatabase {
+        return AppDatabase.getInstance(context.applicationContext)
     }
 
-    fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {
-        return object : ViewModelProvider.Factory {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return when {
-                    modelClass.isAssignableFrom(CandidatosViewModel::class.java) -> {
-                        CandidatosViewModel(provideCandidatoRepository(context)) as T
-                    }
-                    else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
-                }
-            }
-        }
+    private fun provideCandidatoRepository(context: Context): CandidatoRepository {
+        return CandidatoRepository(context, provideDatabase(context))
+    }
+    
+    private fun provideFavoritoRepository(context: Context): FavoritoRepository {
+        return FavoritoRepository(provideDatabase(context).favoritoDao())
+    }
+
+    fun provideViewModelFactory(context: Context): ViewModelFactory {
+        return ViewModelFactory(
+            candidatoRepository = provideCandidatoRepository(context),
+            favoritoRepository = provideFavoritoRepository(context)
+        )
     }
 }
