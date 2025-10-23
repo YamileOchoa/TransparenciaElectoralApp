@@ -4,12 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccessTime
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.DocumentScanner
-import androidx.compose.material.icons.filled.Link
-import androidx.compose.material.icons.filled.Shield
-import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,12 +14,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.request.ImageRequest
+import com.proyecto.app_electoral.R
 import com.proyecto.app_electoral.data.model.Candidato
 
 @Composable
@@ -70,11 +65,10 @@ fun CandidateListItem(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(candidato.foto_url)
-                        .crossfade(true)
-                        .build(),
+                    model = if (candidato.fotoResId != 0) candidato.fotoResId else R.drawable.ic_profile_placeholder,
                     contentDescription = "Foto de ${candidato.nombre}",
+                    placeholder = painterResource(id = R.drawable.ic_profile_placeholder),
+                    error = painterResource(id = R.drawable.ic_profile_placeholder),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .size(90.dp)
@@ -116,14 +110,14 @@ fun CandidateListItem(
                     Spacer(Modifier.height(6.dp))
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         BadgeSolid(
-                            text = "${candidato.propuestas.size} propuestas",
+                            text = "${candidato.propuestas?.size ?: 0} propuestas",
                             color = Color(0xFF067B60),
                             icon = Icons.Filled.DocumentScanner
                         )
 
-                        if (candidato.denuncias.isNotEmpty()) {
+                        if (candidato.denuncias?.isNotEmpty() == true) {
                             BadgeSolid(
-                                text = "${candidato.denuncias.size} Denuncias",
+                                text = "${candidato.denuncias?.size ?: 0} Denuncias",
                                 color = Color(0xFFE53935),
                                 icon = Icons.Filled.Warning
                             )

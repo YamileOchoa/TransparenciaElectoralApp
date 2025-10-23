@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.proyecto.app_electoral.data.model.Candidato
 
@@ -21,8 +22,8 @@ fun CandidateSelectionSection(
     onSelectCandidato1: (Candidato) -> Unit,
     onSelectCandidato2: (Candidato) -> Unit
 ) {
-    var showDialog1 by remember { mutableStateOf(false) }
-    var showDialog2 by remember { mutableStateOf(false) }
+    var expanded1 by remember { mutableStateOf(false) }
+    var expanded2 by remember { mutableStateOf(false) }
 
     Card(
         modifier = Modifier
@@ -40,14 +41,27 @@ fun CandidateSelectionSection(
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Candidato 1
-            CandidateCard(
-                name = candidato1?.nombre ?: "Seleccionar",
-                party = candidato1?.partido ?: "Candidato",
-                imageUrl = candidato1?.foto_url,
-                hasCandidate = candidato1 != null,
-                onButtonClick = { showDialog1 = true }
-            )
+            // Candidato 1 Dropdown
+            Box {
+                CandidateCard(
+                    name = candidato1?.nombre ?: "Seleccionar",
+                    party = candidato1?.partido ?: "Candidato",
+                    fotoResId = candidato1?.fotoResId ?: 0,
+                    hasCandidate = candidato1 != null,
+                    onButtonClick = { expanded1 = true }
+                )
+                DropdownMenu(expanded = expanded1, onDismissRequest = { expanded1 = false }) {
+                    candidatos.forEach { candidato ->
+                        DropdownMenuItem(
+                            text = { Text(candidato.nombre) },
+                            onClick = { 
+                                onSelectCandidato1(candidato)
+                                expanded1 = false
+                            }
+                        )
+                    }
+                }
+            }
 
             Box(
                 modifier = Modifier
@@ -56,45 +70,30 @@ fun CandidateSelectionSection(
                     .background(Color(0xFF3b5998)),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    "VS",
-                    color = Color.White,
-                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                Text("VS", color = Color.White, fontWeight = FontWeight.Bold)
+            }
+
+            // Candidato 2 Dropdown
+            Box {
+                CandidateCard(
+                    name = candidato2?.nombre ?: "Seleccionar",
+                    party = candidato2?.partido ?: "Candidato",
+                    fotoResId = candidato2?.fotoResId ?: 0,
+                    hasCandidate = candidato2 != null,
+                    onButtonClick = { expanded2 = true }
                 )
+                DropdownMenu(expanded = expanded2, onDismissRequest = { expanded2 = false }) {
+                    candidatos.forEach { candidato ->
+                        DropdownMenuItem(
+                            text = { Text(candidato.nombre) },
+                            onClick = { 
+                                onSelectCandidato2(candidato)
+                                expanded2 = false
+                            }
+                        )
+                    }
+                }
             }
-
-            // Candidato 2
-            CandidateCard(
-                name = candidato2?.nombre ?: "Seleccionar",
-                party = candidato2?.partido ?: "Candidato",
-                imageUrl = candidato2?.foto_url,
-                hasCandidate = candidato2 != null,
-                onButtonClick = { showDialog2 = true }
-            )
         }
-    }
-
-    // Diálogo Candidato 1
-    if (showDialog1) {
-        CandidateSelectionDialog(
-            candidatos = candidatos.distinctBy { it.id },
-            onDismiss = { showDialog1 = false },
-            onSelect = {
-                onSelectCandidato1(it)
-                showDialog1 = false
-            }
-        )
-    }
-
-// Diálogo Candidato 2
-    if (showDialog2) {
-        CandidateSelectionDialog(
-            candidatos = candidatos.distinctBy { it.id },
-            onDismiss = { showDialog2 = false },
-            onSelect = {
-                onSelectCandidato2(it)
-                showDialog2 = false
-            }
-        )
     }
 }

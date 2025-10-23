@@ -1,6 +1,7 @@
 package com.proyecto.app_electoral.data.model
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "candidatos")
@@ -16,8 +17,11 @@ data class Candidato(
     val biografia: String,
     val experiencia: Int,
     val estado: String,
-    val historial: List<HistorialCargo> = emptyList(),
-    val propuestas: List<Propuesta> = emptyList(),
-    val denuncias: List<Denuncia> = emptyList(),
-    val visitas: Int = 0
-)
+    val visitas: Int = 0,
+    val historial: List<HistorialCargo>? = emptyList(),
+    val propuestas: List<Propuesta>? = emptyList(),
+    val denuncias: List<Denuncia>? = emptyList()
+) {
+    @Ignore
+    var fotoResId: Int = 0
+}
