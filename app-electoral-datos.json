@@ -1,0 +1,2339 @@
+{
+  "Candidatos": [
+    {
+      "id": 1,
+      "nombre": "Rafael López Aliaga",
+      "partido": "Renovación Popular",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 9876543,
+      "nacimiento": "11/02/1961",
+      "biografia": "Empresario, ex alcalde de Lima (2023-2024), líder de Renovación Popular",
+      "experiencia": 30,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 2,
+      "nombre": "Keiko Sofía Fujimori Higuchi",
+      "partido": "Fuerza Popular",
+      "cargo": "Precandidata Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 7605254,
+      "nacimiento": "25/05/1975",
+      "biografia": "Lideresa de Fuerza Popular, tres veces candidata presidencial (2011, 2016, 2021), congresista",
+      "experiencia": 24,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 3,
+      "nombre": "César Acuña Peralta",
+      "partido": "Alianza para el Progreso",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "La Libertad",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 23456789,
+      "nacimiento": "11/11/1952",
+      "biografia": "Fundador de APP, ex gobernador regional de La Libertad, empresario educativo",
+      "experiencia": 30,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 4,
+      "nombre": "Carlos Álvarez Aguilar",
+      "partido": "País para Todos",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 20123456,
+      "nacimiento": "28/05/1964",
+      "biografia": "Humorista, actor y líder político, fundador de País para Todos",
+      "experiencia": 15,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 5,
+      "nombre": "Hernando de Soto Polar",
+      "partido": "Progresemos",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 40123456,
+      "nacimiento": "02/06/1941",
+      "biografia": "Economista reconocido internacionalmente, candidato presidencial 2021 (segunda vuelta)",
+      "experiencia": 45,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 6,
+      "nombre": "Alfonso López Chau",
+      "partido": "Ahora Nación",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 23567890,
+      "nacimiento": "10/07/1955",
+      "biografia": "Ex rector de la Universidad Nacional de Ingeniería (UNI) (2015-2025)",
+      "experiencia": 35,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 7,
+      "nombre": "Guillermo Bermejo Rojas",
+      "partido": "Venceremos (Voces del Pueblo)",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Junín",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 29876543,
+      "nacimiento": "15/03/1984",
+      "biografia": "Congresista actual (2021-2026), abogado, líder de izquierda",
+      "experiencia": 7,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 8,
+      "nombre": "Vicente Alanoca Arocutipa",
+      "partido": "Venceremos (Nuevo Perú)",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Puno",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 9123456,
+      "nacimiento": "22/08/1975",
+      "biografia": "Antropólogo, activista social en Puno",
+      "experiencia": 12,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 9,
+      "nombre": "Marisol Pérez Tello",
+      "partido": "Primero la Gente",
+      "cargo": "Precandidata Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 43210987,
+      "nacimiento": "28/11/1965",
+      "biografia": "Ex ministra de Justicia (2016-2017), abogada",
+      "experiencia": 20,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 10,
+      "nombre": "George Forsyth Sommer",
+      "partido": "Somos Perú",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 21345678,
+      "nacimiento": "15/05/1984",
+      "biografia": "Ex alcalde de La Victoria (2019-2022), ex portero profesional",
+      "experiencia": 8,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 11,
+      "nombre": "Yonhy Lescano Ancieta",
+      "partido": "Acción Popular",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Puno",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 15678234,
+      "nacimiento": "19/01/1952",
+      "biografia": "Ex congresista, abogado, candidato presidencial 2021",
+      "experiencia": 28,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 12,
+      "nombre": "Roberto Chiabra León",
+      "partido": "Unidad Nacional (PPC)",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 45678901,
+      "nacimiento": "15/08/1963",
+      "biografia": "Congresista actual, ex Comandante General del Ejército Peruano (2018-2019)",
+      "experiencia": 22,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 13,
+      "nombre": "Phillip Butters",
+      "partido": "Avanza País",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 18234567,
+      "nacimiento": "15/11/1965",
+      "biografia": "Periodista, conductor de radio y televisión",
+      "experiencia": 25,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 14,
+      "nombre": "Patricia Juárez Gallegos",
+      "partido": "Fuerza Popular",
+      "cargo": "Primera Vicepresidenta del Congreso",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 9876541,
+      "nacimiento": "10/03/1975",
+      "biografia": "Abogada, Primera Vicepresidenta del Congreso 2024-2025",
+      "experiencia": 16,
+      "estado": "Activo"
+    },
+    {
+      "id": 15,
+      "nombre": "Eduardo Salhuana Cavides",
+      "partido": "Alianza para el Progreso",
+      "cargo": "Presidente del Congreso 2024-2025",
+      "region": "Madre de Dios",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 23456788,
+      "nacimiento": "15/08/1963",
+      "biografia": "Abogado, Presidente del Congreso 2024-2025",
+      "experiencia": 28,
+      "estado": "Activo"
+    },
+    {
+      "id": 16,
+      "nombre": "Waldemar Cerrón Rojas",
+      "partido": "Perú Libre",
+      "cargo": "Segundo Vicepresidente del Congreso",
+      "region": "Junín",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 20123455,
+      "nacimiento": "20/11/1970",
+      "biografia": "Hermano de Vladimir Cerrón, docente universitario",
+      "experiencia": 8,
+      "estado": "Activo"
+    },
+    {
+      "id": 17,
+      "nombre": "Alejandro Cavero Alva",
+      "partido": "Avanza País",
+      "cargo": "Tercer Vicepresidente del Congreso",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 45678900,
+      "nacimiento": "09/10/1992",
+      "biografia": "Abogado constitucionalista, vocero anticorrupción",
+      "experiencia": 5,
+      "estado": "Activo"
+    },
+    {
+      "id": 18,
+      "nombre": "Martha Moyano Delgado",
+      "partido": "Fuerza Popular",
+      "cargo": "Congresista",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 8765431,
+      "nacimiento": "18/06/1972",
+      "biografia": "Hermana de Keiko Fujimori, presidenta de Comisión de Constitución",
+      "experiencia": 14,
+      "estado": "Activo"
+    },
+    {
+      "id": 19,
+      "nombre": "Guido Bellido Ugarte",
+      "partido": "Podemos Perú",
+      "cargo": "Congresista",
+      "region": "Cusco",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 23567889,
+      "nacimiento": "01/12/1966",
+      "biografia": "Ingeniero, ex primer ministro de Pedro Castillo (2021)",
+      "experiencia": 6,
+      "estado": "Activo"
+    },
+    {
+      "id": 20,
+      "nombre": "Ruth Luque Ibarra",
+      "partido": "Cambio Democrático",
+      "cargo": "Congresista",
+      "region": "Puno",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 40123455,
+      "nacimiento": "14/07/1982",
+      "biografia": "Abogada defensora de DDHH, activista social",
+      "experiencia": 5,
+      "estado": "Activo"
+    },
+    {
+      "id": 21,
+      "nombre": "Susel Paredes Piqué",
+      "partido": "Cambio Democrático",
+      "cargo": "Congresista",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 9123456,
+      "nacimiento": "30/09/1962",
+      "biografia": "Activista LGBTIQ+, ex regidora de Lima",
+      "experiencia": 18,
+      "estado": "Activo"
+    },
+    {
+      "id": 22,
+      "nombre": "José Elías Ávalos",
+      "partido": "Podemos Perú",
+      "cargo": "Congresista",
+      "region": "Ica",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 21345677,
+      "nacimiento": "12/05/1975",
+      "biografia": "Abogado, cuestionado por viajes al extranjero",
+      "experiencia": 7,
+      "estado": "Activo"
+    },
+    {
+      "id": 23,
+      "nombre": "Rosangella Barbarán Reyes",
+      "partido": "Fuerza Popular",
+      "cargo": "Congresista",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 43210986,
+      "nacimiento": "17/02/1988",
+      "biografia": "Comunicadora social, vocera parlamentaria",
+      "experiencia": 4,
+      "estado": "Activo"
+    },
+    {
+      "id": 24,
+      "nombre": "Arturo Alegría García",
+      "partido": "Fuerza Popular",
+      "cargo": "Congresista",
+      "region": "La Libertad",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 15678233,
+      "nacimiento": "05/11/1968",
+      "biografia": "Abogado, presidente de Comisión de Constitución",
+      "experiencia": 16,
+      "estado": "Activo"
+    },
+    {
+      "id": 25,
+      "nombre": "María del Carmen Alva Prieto",
+      "partido": "Acción Popular",
+      "cargo": "Congresista",
+      "region": "Lambayeque",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 16789234,
+      "nacimiento": "20/04/1962",
+      "biografia": "Ex presidenta del Congreso 2021-2022",
+      "experiencia": 20,
+      "estado": "Activo"
+    },
+    {
+      "id": 26,
+      "nombre": "Flor Pablo Medina",
+      "partido": "Somos Perú",
+      "cargo": "Congresista",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 35678901,
+      "nacimiento": "12/08/1967",
+      "biografia": "Ex ministra de Educación (2018-2019), pedagoga",
+      "experiencia": 18,
+      "estado": "Activo"
+    },
+    {
+      "id": 27,
+      "nombre": "Diana González Delgadillo",
+      "partido": "Renovación Popular",
+      "cargo": "Congresista",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 36789456,
+      "nacimiento": "17/11/1990",
+      "biografia": "Administradora, empresaria",
+      "experiencia": 3,
+      "estado": "Activo"
+    },
+    {
+      "id": 28,
+      "nombre": "Adriana Tudela Gutiérrez",
+      "partido": "Avanza País",
+      "cargo": "Congresista",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 46123789,
+      "nacimiento": "29/05/1988",
+      "biografia": "Comunicadora, analista política",
+      "experiencia": 4,
+      "estado": "Activo"
+    },
+    {
+      "id": 29,
+      "nombre": "José Cueto Aservi",
+      "partido": "Renovación Popular",
+      "cargo": "Congresista",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 11234567,
+      "nacimiento": "15/03/1960",
+      "biografia": "Empresario, defensor de mercado libre",
+      "experiencia": 25,
+      "estado": "Activo"
+    },
+    {
+      "id": 30,
+      "nombre": "Hamlet Echeverría Rodríguez",
+      "partido": "Alianza para el Progreso",
+      "cargo": "Congresista",
+      "region": "Tacna",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 28456123,
+      "nacimiento": "08/10/1974",
+      "biografia": "Ingeniero civil, ex alcalde",
+      "experiencia": 11,
+      "estado": "Activo"
+    },
+    {
+      "id": 31,
+      "nombre": "Fiorella Molinelli Aristondo",
+      "partido": "Fuerza Moderna (Alianza Fuerza y Libertad)",
+      "cargo": "Precandidata Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 9234567,
+      "nacimiento": "15/08/1970",
+      "biografia": "Economista, ex ministra de Desarrollo e Inclusión Social (2017), ex presidenta de EsSalud (2018)",
+      "experiencia": 22,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 32,
+      "nombre": "Mariano González Fernández",
+      "partido": "Salvemos al Perú (Alianza Ahora Nación)",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 10234567,
+      "nacimiento": "20/03/1965",
+      "biografia": "Ex ministro del Interior (2023-2024), ex ministro de Defensa (2022-2023)",
+      "experiencia": 20,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 33,
+      "nombre": "Javier Velásquez Quesquén",
+      "partido": "Partido Aprista Peruano",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lambayeque",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 25678901,
+      "nacimiento": "12/03/1960",
+      "biografia": "Ex primer ministro (2009-2010), ex presidente del Congreso (2008-2009), abogado constitucionalista",
+      "experiencia": 30,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 34,
+      "nombre": "Jorge del Castillo Gálvez",
+      "partido": "Partido Aprista Peruano",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 6789012,
+      "nacimiento": "02/11/1950",
+      "biografia": "Ex primer ministro (2007-2008), ex ministro de varias carteras, histórico dirigente aprista",
+      "experiencia": 45,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 35,
+      "nombre": "Hernán Garrido Lecca Montañez",
+      "partido": "Partido Aprista Peruano",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 8901234,
+      "nacimiento": "25/06/1954",
+      "biografia": "Ex ministro de Vivienda y Salud durante gobierno de Alan García, arquitecto",
+      "experiencia": 35,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 36,
+      "nombre": "Zósimo Cárdenas Pillaca",
+      "partido": "Batalla Perú (Alianza Fuerza y Libertad)",
+      "cargo": "Gobernador Regional de Junín",
+      "region": "Junín",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 20456789,
+      "nacimiento": "18/09/1968",
+      "biografia": "Gobernador regional de Junín (2023-2026), ingeniero civil",
+      "experiencia": 15,
+      "estado": "Activo"
+    },
+    {
+      "id": 37,
+      "nombre": "Carlos Añaños Jara",
+      "partido": "Perú Moderno",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Ayacucho",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 30123456,
+      "nacimiento": "10/12/1962",
+      "biografia": "Empresario del grupo Kola Real/Ajegroup, fundador de Perú Moderno",
+      "experiencia": 40,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 38,
+      "nombre": "Mesías Guevara Amasifuen",
+      "partido": "Partido Morado",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Cajamarca",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 26789012,
+      "nacimiento": "05/04/1969",
+      "biografia": "Ex gobernador regional de Cajamarca (2019-2022), economista",
+      "experiencia": 18,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 39,
+      "nombre": "Vladimir Cerrón Rojas",
+      "partido": "Perú Libre",
+      "cargo": "Fundador de Perú Libre",
+      "region": "Junín",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 20567890,
+      "nacimiento": "19/04/1965",
+      "biografia": "Ex gobernador regional de Junín (2011-2014), fundador de Perú Libre, médico neurocirujano",
+      "experiencia": 25,
+      "estado": "Investigado (prófugo)"
+    },
+    {
+      "id": 40,
+      "nombre": "Carlos Espá Marín",
+      "partido": "Sí Creo",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 42345678,
+      "nacimiento": "28/07/1975",
+      "biografia": "Periodista y conductor de radio, fundador de Sí Creo",
+      "experiencia": 20,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 41,
+      "nombre": "Rafael Belaúnde Llosa",
+      "partido": "Libertad Popular",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 19234567,
+      "nacimiento": "14/11/1968",
+      "biografia": "Ex ministro de Energía y Minas (2018-2020), economista",
+      "experiencia": 25,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 42,
+      "nombre": "Víctor Andrés García Belaúnde",
+      "partido": "Acción Popular",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 7123456,
+      "nacimiento": "15/03/1946",
+      "biografia": "Ex congresista, abogado constitucionalista, hijo de Víctor Andrés Belaúnde",
+      "experiencia": 50,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 43,
+      "nombre": "Fernando Olivera Vega",
+      "partido": "Frente de la Esperanza 2021",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 9345678,
+      "nacimiento": "25/10/1956",
+      "biografia": "Ex ministro de Justicia (2001-2002), ex congresista, abogado",
+      "experiencia": 35,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 44,
+      "nombre": "Ricardo Belmont Cassinelli",
+      "partido": "Partido Cívico Obras",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 6543210,
+      "nacimiento": "18/02/1945",
+      "biografia": "Ex alcalde de Lima (1990-1995), presentador de televisión, empresario",
+      "experiencia": 45,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 45,
+      "nombre": "Antauro Humala Tasso",
+      "partido": "Partido Peruano de Liberación",
+      "cargo": "Fundador del partido",
+      "region": "Ayacucho",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 29876541,
+      "nacimiento": "29/06/1963",
+      "biografia": "Ex militar, líder del Andahuaylazo (2005), hermano de Ollanta Humala",
+      "experiencia": 25,
+      "estado": "Con impedimento legal"
+    },
+    {
+      "id": 46,
+      "nombre": "Verónika Mendoza Frisch",
+      "partido": "Nuevo Perú por el Buen Vivir",
+      "cargo": "Fundadora del partido",
+      "region": "Cusco",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 43567890,
+      "nacimiento": "09/12/1980",
+      "biografia": "Candidata presidencial 2016 y 2021, ex congresista, psicóloga social",
+      "experiencia": 16,
+      "estado": "Activo"
+    },
+    {
+      "id": 47,
+      "nombre": "José Luis Luna Gálvez",
+      "partido": "Podemos Perú",
+      "cargo": "Fundador del partido",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 8765432,
+      "nacimiento": "20/01/1954",
+      "biografia": "Empresario educativo, fundador de la Universidad Telesup, congresista",
+      "experiencia": 30,
+      "estado": "Activo"
+    },
+    {
+      "id": 48,
+      "nombre": "Enrique Valderrama Heredia",
+      "partido": "Partido Aprista Peruano",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 41234567,
+      "nacimiento": "22/08/1985",
+      "biografia": "Abogado, dirigente juvenil aprista, representante de nueva generación",
+      "experiencia": 8,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 49,
+      "nombre": "Carla García Pérez",
+      "partido": "Partido Aprista Peruano",
+      "cargo": "Precandidata Vice Presidencial 2026",
+      "region": "Lima",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 47890123,
+      "nacimiento": "15/11/1989",
+      "biografia": "Hija del expresidente Alan García, nueva figura aprista, comunicadora",
+      "experiencia": 4,
+      "estado": "Precandidato"
+    },
+    {
+      "id": 50,
+      "nombre": "Mario Vizcarra Zamora",
+      "partido": "Perú Primero",
+      "cargo": "Precandidato Presidencial 2026",
+      "region": "Moquegua",
+      "foto_url": "https://placehold.co/400x400",
+      "dni": 29567890,
+      "nacimiento": "08/05/1968",
+      "biografia": "Hermano del expresidente Martín Vizcarra, empresario, militante de Perú Primero",
+      "experiencia": 15,
+      "estado": "Precandidato"
+    }
+  ],
+  "Historial Cargos": [
+    {
+      "id": 1,
+      "candidato_id": 1,
+      "cargo": "Alcalde de Lima",
+      "institucion": "Municipalidad Metropolitana de Lima",
+      "fecha_inicio": "01/01/2023",
+      "fecha_fin": "13/10/2024",
+      "descripcion": "Renunció para postular a presidencia 2026"
+    },
+    {
+      "id": 2,
+      "candidato_id": 1,
+      "cargo": "Candidato Presidencial",
+      "institucion": "Elecciones Generales",
+      "fecha_inicio": "11/04/2021",
+      "fecha_fin": "11/04/2021",
+      "descripcion": "Primera vuelta 2021, quedó en 8vo lugar"
+    },
+    {
+      "id": 3,
+      "candidato_id": 2,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2006",
+      "fecha_fin": "27/07/2011",
+      "descripcion": "Periodo 2006-2011"
+    },
+    {
+      "id": 4,
+      "candidato_id": 2,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2011",
+      "fecha_fin": "27/07/2016",
+      "descripcion": "Periodo 2011-2016"
+    },
+    {
+      "id": 5,
+      "candidato_id": 2,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026"
+    },
+    {
+      "id": 6,
+      "candidato_id": 2,
+      "cargo": "Candidata Presidencial",
+      "institucion": "Elecciones Generales",
+      "fecha_inicio": "05/06/2011",
+      "fecha_fin": "05/06/2011",
+      "descripcion": "Perdió segunda vuelta ante Ollanta Humala"
+    },
+    {
+      "id": 7,
+      "candidato_id": 2,
+      "cargo": "Candidata Presidencial",
+      "institucion": "Elecciones Generales",
+      "fecha_inicio": "05/06/2016",
+      "fecha_fin": "05/06/2016",
+      "descripcion": "Perdió segunda vuelta ante PPK"
+    },
+    {
+      "id": 8,
+      "candidato_id": 2,
+      "cargo": "Candidata Presidencial",
+      "institucion": "Elecciones Generales",
+      "fecha_inicio": "06/06/2021",
+      "fecha_fin": "06/06/2021",
+      "descripcion": "Perdió segunda vuelta ante Pedro Castillo"
+    },
+    {
+      "id": 9,
+      "candidato_id": 3,
+      "cargo": "Gobernador Regional de La Libertad",
+      "institucion": "Gobierno Regional La Libertad",
+      "fecha_inicio": "01/01/2023",
+      "fecha_fin": "13/10/2024",
+      "descripcion": "Renunció para postular a presidencia 2026"
+    },
+    {
+      "id": 10,
+      "candidato_id": 3,
+      "cargo": "Candidato Presidencial",
+      "institucion": "Elecciones Generales",
+      "fecha_inicio": "10/04/2016",
+      "fecha_fin": "10/04/2016",
+      "descripcion": "Primera vuelta 2016"
+    },
+    {
+      "id": 11,
+      "candidato_id": 3,
+      "cargo": "Candidato Presidencial",
+      "institucion": "Elecciones Generales",
+      "fecha_inicio": "10/04/2011",
+      "fecha_fin": "10/04/2011",
+      "descripcion": "Primera vuelta 2011"
+    },
+    {
+      "id": 12,
+      "candidato_id": 4,
+      "cargo": "Conductor de TV",
+      "institucion": "Medios de comunicación",
+      "fecha_inicio": "01/01/1988",
+      "fecha_fin": "31/12/2023",
+      "descripcion": "Carrera como humorista y actor"
+    },
+    {
+      "id": 13,
+      "candidato_id": 5,
+      "cargo": "Candidato Presidencial",
+      "institucion": "Elecciones Generales",
+      "fecha_inicio": "11/04/2021",
+      "fecha_fin": "06/06/2021",
+      "descripcion": "Segunda vuelta 2021, perdió ante Castillo"
+    },
+    {
+      "id": 14,
+      "candidato_id": 6,
+      "cargo": "Rector de la UNI",
+      "institucion": "Universidad Nacional de Ingeniería",
+      "fecha_inicio": "01/01/2015",
+      "fecha_fin": "01/09/2025",
+      "descripcion": "Renunció para postular 2026"
+    },
+    {
+      "id": 15,
+      "candidato_id": 7,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026, Voces del Pueblo"
+    },
+    {
+      "id": 16,
+      "candidato_id": 8,
+      "cargo": "Activista Social",
+      "institucion": "Movimientos sociales",
+      "fecha_inicio": "01/01/2000",
+      "fecha_fin": "01/10/2025",
+      "descripcion": "Movimientos sociales en Puno"
+    },
+    {
+      "id": 17,
+      "candidato_id": 9,
+      "cargo": "Ministra de Justicia",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "28/07/2016",
+      "fecha_fin": "18/05/2017",
+      "descripcion": "Gobierno de PPK"
+    },
+    {
+      "id": 18,
+      "candidato_id": 10,
+      "cargo": "Alcalde de La Victoria",
+      "institucion": "Municipalidad de La Victoria",
+      "fecha_inicio": "01/01/2019",
+      "fecha_fin": "31/12/2022",
+      "descripcion": "Gestión 2019-2022"
+    },
+    {
+      "id": 19,
+      "candidato_id": 10,
+      "cargo": "Portero Profesional",
+      "institucion": "Club Alianza Lima",
+      "fecha_inicio": "01/01/2005",
+      "fecha_fin": "31/12/2014",
+      "descripcion": "Carrera futbolística"
+    },
+    {
+      "id": 20,
+      "candidato_id": 11,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "16/01/2020",
+      "fecha_fin": "27/07/2021",
+      "descripcion": "Periodo 2020-2021"
+    },
+    {
+      "id": 21,
+      "candidato_id": 11,
+      "cargo": "Candidato Presidencial",
+      "institucion": "Elecciones Generales",
+      "fecha_inicio": "11/04/2021",
+      "fecha_fin": "11/04/2021",
+      "descripcion": "Primera vuelta 2021"
+    },
+    {
+      "id": 22,
+      "candidato_id": 12,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026"
+    },
+    {
+      "id": 23,
+      "candidato_id": 12,
+      "cargo": "Comandante General del Ejército",
+      "institucion": "Fuerzas Armadas del Perú",
+      "fecha_inicio": "01/01/2018",
+      "fecha_fin": "31/12/2019",
+      "descripcion": "Máximo cargo militar"
+    },
+    {
+      "id": 24,
+      "candidato_id": 14,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026"
+    },
+    {
+      "id": 25,
+      "candidato_id": 15,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026"
+    },
+    {
+      "id": 26,
+      "candidato_id": 16,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026, Perú Libre"
+    },
+    {
+      "id": 27,
+      "candidato_id": 19,
+      "cargo": "Primer Ministro",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "29/07/2021",
+      "fecha_fin": "06/10/2021",
+      "descripcion": "Gobierno de Pedro Castillo"
+    },
+    {
+      "id": 28,
+      "candidato_id": 21,
+      "cargo": "Regidora",
+      "institucion": "Municipalidad de Lima",
+      "fecha_inicio": "01/01/2007",
+      "fecha_fin": "31/12/2010",
+      "descripcion": "Gestión Luis Castañeda"
+    },
+    {
+      "id": 29,
+      "candidato_id": 25,
+      "cargo": "Presidenta del Congreso",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "27/07/2022",
+      "descripcion": "Mesa Directiva 2021-2022"
+    },
+    {
+      "id": 30,
+      "candidato_id": 26,
+      "cargo": "Ministra de Educación",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "02/04/2018",
+      "fecha_fin": "30/09/2019",
+      "descripcion": "Gobierno de Martín Vizcarra"
+    },
+    {
+      "id": 31,
+      "candidato_id": 17,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026"
+    },
+    {
+      "id": 32,
+      "candidato_id": 18,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026"
+    },
+    {
+      "id": 33,
+      "candidato_id": 20,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026"
+    },
+    {
+      "id": 34,
+      "candidato_id": 23,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026"
+    },
+    {
+      "id": 35,
+      "candidato_id": 24,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2021",
+      "fecha_fin": "26/07/2026",
+      "descripcion": "Periodo 2021-2026"
+    },
+    {
+      "id": 36,
+      "candidato_id": 31,
+      "cargo": "Presidenta de EsSalud",
+      "institucion": "Seguro Social de Salud",
+      "fecha_inicio": "01/04/2018",
+      "fecha_fin": "31/12/2018",
+      "descripcion": "Gestión PPK/Vizcarra"
+    },
+    {
+      "id": 37,
+      "candidato_id": 31,
+      "cargo": "Ministra de Desarrollo e Inclusión Social",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "23/12/2016",
+      "fecha_fin": "05/04/2018",
+      "descripcion": "Gobierno de PPK"
+    },
+    {
+      "id": 38,
+      "candidato_id": 32,
+      "cargo": "Ministro del Interior",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "25/11/2023",
+      "fecha_fin": "05/05/2024",
+      "descripcion": "Gobierno de Dina Boluarte"
+    },
+    {
+      "id": 39,
+      "candidato_id": 32,
+      "cargo": "Ministro de Defensa",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "10/12/2022",
+      "fecha_fin": "25/11/2023",
+      "descripcion": "Gobierno de Dina Boluarte"
+    },
+    {
+      "id": 40,
+      "candidato_id": 33,
+      "cargo": "Primer Ministro",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "11/07/2009",
+      "fecha_fin": "13/09/2010",
+      "descripcion": "Gobierno de Alan García"
+    },
+    {
+      "id": 41,
+      "candidato_id": 33,
+      "cargo": "Presidente del Congreso",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "26/07/2008",
+      "fecha_fin": "26/07/2009",
+      "descripcion": "Periodo 2008-2009"
+    },
+    {
+      "id": 42,
+      "candidato_id": 34,
+      "cargo": "Primer Ministro",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "28/08/2007",
+      "fecha_fin": "11/07/2009",
+      "descripcion": "Gobierno de Alan García"
+    },
+    {
+      "id": 43,
+      "candidato_id": 34,
+      "cargo": "Ministro del Interior",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "28/07/2006",
+      "fecha_fin": "28/08/2007",
+      "descripcion": "Gobierno de Alan García"
+    },
+    {
+      "id": 44,
+      "candidato_id": 35,
+      "cargo": "Ministro de Vivienda",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "28/07/2006",
+      "fecha_fin": "11/07/2008",
+      "descripcion": "Gobierno de Alan García"
+    },
+    {
+      "id": 45,
+      "candidato_id": 35,
+      "cargo": "Ministro de Salud",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "11/07/2008",
+      "fecha_fin": "11/07/2009",
+      "descripcion": "Gobierno de Alan García"
+    },
+    {
+      "id": 46,
+      "candidato_id": 36,
+      "cargo": "Gobernador Regional de Junín",
+      "institucion": "Gobierno Regional Junín",
+      "fecha_inicio": "01/01/2023",
+      "fecha_fin": "31/12/2026",
+      "descripcion": "Gestión actual"
+    },
+    {
+      "id": 47,
+      "candidato_id": 38,
+      "cargo": "Gobernador Regional de Cajamarca",
+      "institucion": "Gobierno Regional Cajamarca",
+      "fecha_inicio": "01/01/2019",
+      "fecha_fin": "31/12/2022",
+      "descripcion": "Periodo 2019-2022"
+    },
+    {
+      "id": 48,
+      "candidato_id": 39,
+      "cargo": "Gobernador Regional de Junín",
+      "institucion": "Gobierno Regional Junín",
+      "fecha_inicio": "01/01/2011",
+      "fecha_fin": "31/12/2014",
+      "descripcion": "Primer gobierno regional"
+    },
+    {
+      "id": 49,
+      "candidato_id": 41,
+      "cargo": "Ministro de Energía y Minas",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "03/10/2018",
+      "fecha_fin": "30/09/2019",
+      "descripcion": "Gobierno de Martín Vizcarra"
+    },
+    {
+      "id": 50,
+      "candidato_id": 42,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "26/07/2000",
+      "fecha_fin": "26/07/2006",
+      "descripcion": "Periodo 2000-2006"
+    },
+    {
+      "id": 51,
+      "candidato_id": 43,
+      "cargo": "Ministro de Justicia",
+      "institucion": "Poder Ejecutivo",
+      "fecha_inicio": "28/07/2001",
+      "fecha_fin": "11/07/2002",
+      "descripcion": "Gobierno de Alejandro Toledo"
+    },
+    {
+      "id": 52,
+      "candidato_id": 44,
+      "cargo": "Alcalde de Lima",
+      "institucion": "Municipalidad Metropolitana de Lima",
+      "fecha_inicio": "01/01/1990",
+      "fecha_fin": "31/12/1995",
+      "descripcion": "Gestión 1990-1995"
+    },
+    {
+      "id": 53,
+      "candidato_id": 46,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2011",
+      "fecha_fin": "27/07/2016",
+      "descripcion": "Periodo 2011-2016"
+    },
+    {
+      "id": 54,
+      "candidato_id": 46,
+      "cargo": "Candidata Presidencial",
+      "institucion": "Elecciones Generales",
+      "fecha_inicio": "10/04/2016",
+      "fecha_fin": "10/04/2016",
+      "descripcion": "Primera vuelta 2016, tercer lugar"
+    },
+    {
+      "id": 55,
+      "candidato_id": 47,
+      "cargo": "Congresista",
+      "institucion": "Congreso de la República",
+      "fecha_inicio": "28/07/2020",
+      "fecha_fin": "26/07/2021",
+      "descripcion": "Periodo 2020-2021"
+    }
+  ],
+  "Denuncias": [
+    {
+      "id": 1,
+      "candidato_id": 2,
+      "titulo": "Caso Cócteles - Lavado de activos",
+      "descripcion": "Aportes irregulares de Odebrecht a campaña presidencial 2011",
+      "expediente": "00012-2018-PJ",
+      "delito": "Lavado de activos",
+      "fecha_denuncia": "15/03/2018",
+      "estado": "En proceso",
+      "fuente_url": "https://cej.pj.gob.pe"
+    },
+    {
+      "id": 2,
+      "candidato_id": 2,
+      "titulo": "Organización criminal",
+      "descripcion": "Presunta estructura criminal en Fuerza Popular para financiamiento ilegal",
+      "expediente": "00045-2020-MP",
+      "delito": "Organización criminal",
+      "fecha_denuncia": "10/08/2020",
+      "estado": "En investigación",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    },
+    {
+      "id": 3,
+      "candidato_id": 2,
+      "titulo": "Obstrucción a la justicia",
+      "descripcion": "Presunta manipulación de testigos protegidos en caso Odebrecht",
+      "expediente": "00089-2021-MP",
+      "delito": "Obstrucción a la justicia",
+      "fecha_denuncia": "20/05/2021",
+      "estado": "En proceso",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    },
+    {
+      "id": 4,
+      "candidato_id": 2,
+      "titulo": "Extinción de dominio",
+      "descripcion": "Bienes inmuebles sin justificación de origen lícito",
+      "expediente": "00234-2023-PJ",
+      "delito": "Extinción de dominio",
+      "fecha_denuncia": "12/06/2023",
+      "estado": "Bajo reserva",
+      "fuente_url": "https://cej.pj.gob.pe"
+    },
+    {
+      "id": 5,
+      "candidato_id": 16,
+      "titulo": "Organización criminal",
+      "descripcion": "Presuntos actos ilícitos en directiva de Perú Libre",
+      "expediente": "00567-2023-MP",
+      "delito": "Organización criminal",
+      "fecha_denuncia": "15/09/2023",
+      "estado": "En investigación",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    },
+    {
+      "id": 6,
+      "candidato_id": 19,
+      "titulo": "Apología al terrorismo",
+      "descripcion": "Declaraciones polémicas sobre Sendero Luminoso",
+      "expediente": "00891-2021-MP",
+      "delito": "Apología",
+      "fecha_denuncia": "15/09/2021",
+      "estado": "Archivado",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    },
+    {
+      "id": 7,
+      "candidato_id": 19,
+      "titulo": "Nepotismo",
+      "descripcion": "Presunta contratación de familiares en PCM durante su gestión",
+      "expediente": "01234-2021-CG",
+      "delito": "Nepotismo",
+      "fecha_denuncia": "05/10/2021",
+      "estado": "Archivado",
+      "fuente_url": "https://www.contraloria.gob.pe"
+    },
+    {
+      "id": 8,
+      "candidato_id": 22,
+      "titulo": "Enriquecimiento ilícito",
+      "descripcion": "Viajes no justificados y gastos sin sustento",
+      "expediente": "02345-2023-MP",
+      "delito": "Enriquecimiento ilícito",
+      "fecha_denuncia": "20/11/2023",
+      "estado": "En investigación",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    },
+    {
+      "id": 9,
+      "candidato_id": 3,
+      "titulo": "Plagio de tesis doctoral",
+      "descripcion": "Acusación de plagio en su tesis doctoral de la Universidad Complutense",
+      "expediente": "03456-2015-SUNEDU",
+      "delito": "Plagio académico",
+      "fecha_denuncia": "18/05/2015",
+      "estado": "Investigación cerrada",
+      "fuente_url": "https://www.sunedu.gob.pe"
+    },
+    {
+      "id": 10,
+      "candidato_id": 1,
+      "titulo": "Conflicto de interés empresarial",
+      "descripcion": "Posibles conflictos entre empresas privadas y gestión municipal",
+      "expediente": "04567-2024-CG",
+      "delito": "Conflicto de interés",
+      "fecha_denuncia": "22/03/2024",
+      "estado": "En evaluación",
+      "fuente_url": "https://www.contraloria.gob.pe"
+    },
+    {
+      "id": 11,
+      "candidato_id": 14,
+      "titulo": "Difamación y calumnia",
+      "descripcion": "Denuncia por declaraciones en medios de comunicación",
+      "expediente": "05678-2022-PJ",
+      "delito": "Difamación",
+      "fecha_denuncia": "10/07/2022",
+      "estado": "En proceso",
+      "fuente_url": "https://cej.pj.gob.pe"
+    },
+    {
+      "id": 12,
+      "candidato_id": 18,
+      "titulo": "Voto electrónico irregular",
+      "descripcion": "Cuestionamiento sobre votación en Comisión de Constitución",
+      "expediente": "06789-2024-MP",
+      "delito": "Irregularidades",
+      "fecha_denuncia": "15/01/2024",
+      "estado": "En investigación preliminar",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    },
+    {
+      "id": 13,
+      "candidato_id": 24,
+      "titulo": "Favorecimiento político",
+      "descripcion": "Presunto favorecimiento a empresas en comisiones",
+      "expediente": "07890-2023-CG",
+      "delito": "Tráfico de influencias",
+      "fecha_denuncia": "30/06/2023",
+      "estado": "En investigación",
+      "fuente_url": "https://www.contraloria.gob.pe"
+    },
+    {
+      "id": 14,
+      "candidato_id": 7,
+      "titulo": "Incitación a la violencia",
+      "descripcion": "Declaraciones controversiales en protestas sociales",
+      "expediente": "08901-2023-MP",
+      "delito": "Incitación",
+      "fecha_denuncia": "20/01/2023",
+      "estado": "Archivado",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    },
+    {
+      "id": 15,
+      "candidato_id": 10,
+      "titulo": "Uso indebido de recursos",
+      "descripcion": "Cuestionamiento por uso de recursos municipales en campaña",
+      "expediente": "09012-2022-CG",
+      "delito": "Uso indebido",
+      "fecha_denuncia": "05/11/2022",
+      "estado": "Archivado",
+      "fuente_url": "https://www.contraloria.gob.pe"
+    },
+    {
+      "id": 16,
+      "candidato_id": 39,
+      "titulo": "Corrupción en Gobierno Regional",
+      "descripcion": "Irregularidades durante gestión como gobernador de Junín",
+      "expediente": "00123-2014-MP",
+      "delito": "Corrupción de funcionarios",
+      "fecha_denuncia": "15/03/2014",
+      "estado": "Sentenciado",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    },
+    {
+      "id": 17,
+      "candidato_id": 39,
+      "titulo": "Fuga de la justicia",
+      "descripcion": "Orden de captura vigente por evadir proceso judicial",
+      "expediente": "01234-2023-PJ",
+      "delito": "Fuga",
+      "fecha_denuncia": "15/08/2023",
+      "estado": "Requisitoriado (prófugo)",
+      "fuente_url": "https://cej.pj.gob.pe"
+    },
+    {
+      "id": 18,
+      "candidato_id": 39,
+      "titulo": "Organización criminal",
+      "descripcion": "Presunta red criminal en Perú Libre",
+      "expediente": "02345-2022-MP",
+      "delito": "Organización criminal",
+      "fecha_denuncia": "20/11/2022",
+      "estado": "En investigación",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    },
+    {
+      "id": 19,
+      "candidato_id": 45,
+      "titulo": "Rebelión militar (Andahuaylazo)",
+      "descripcion": "Levantamiento armado en Andahuaylas en 2005",
+      "expediente": "00456-2005-PJ",
+      "delito": "Rebelión, secuestro, homicidio",
+      "fecha_denuncia": "03/01/2005",
+      "estado": "Cumplió condena (liberado 2022)",
+      "fuente_url": "https://cej.pj.gob.pe"
+    },
+    {
+      "id": 20,
+      "candidato_id": 46,
+      "titulo": "Financiamiento irregular de campaña",
+      "descripcion": "Investigación por aportes no declarados en campaña 2021",
+      "expediente": "03456-2021-MP",
+      "delito": "Financiamiento ilegal",
+      "fecha_denuncia": "15/08/2021",
+      "estado": "Archivado",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    },
+    {
+      "id": 21,
+      "candidato_id": 47,
+      "titulo": "Irregularidades en Universidad Telesup",
+      "descripcion": "Cuestionamientos por calidad educativa y licenciamiento",
+      "expediente": "04567-2018-SUNEDU",
+      "delito": "Infracciones administrativas",
+      "fecha_denuncia": "10/05/2018",
+      "estado": "Sancionado",
+      "fuente_url": "https://www.sunedu.gob.pe"
+    },
+    {
+      "id": 22,
+      "candidato_id": 47,
+      "titulo": "Tráfico de influencias",
+      "descripcion": "Presuntas gestiones irregulares para su universidad",
+      "expediente": "05678-2020-MP",
+      "delito": "Tráfico de influencias",
+      "fecha_denuncia": "20/09/2020",
+      "estado": "En investigación",
+      "fuente_url": "https://www.mpfn.gob.pe"
+    }
+  ],
+  "Proyectos": [
+    {
+      "id": 1,
+      "candidato_id": 2,
+      "numero_proyecto": "07123/2024-CR",
+      "titulo": "Ley de interpretación auténtica",
+      "descripcion": "Interpretación de normas sobre colaboración eficaz",
+      "fecha_presentacion": "05/09/2024",
+      "estado": "Aprobado como Ley 32054",
+      "tema": "Justicia",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 2,
+      "candidato_id": 2,
+      "numero_proyecto": "08234/2024-CR",
+      "titulo": "Reforma del sistema previsional",
+      "descripcion": "Modificaciones al sistema de pensiones AFP",
+      "fecha_presentacion": "15/06/2024",
+      "estado": "Aprobado como Ley 32123",
+      "tema": "Economía",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 3,
+      "candidato_id": 14,
+      "numero_proyecto": "07890/2024-CR",
+      "titulo": "Reforma de pensiones",
+      "descripcion": "Modificación del sistema de AFP",
+      "fecha_presentacion": "20/08/2024",
+      "estado": "Aprobado como Ley 32123",
+      "tema": "Economía",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 4,
+      "candidato_id": 14,
+      "numero_proyecto": "06345/2024-CR",
+      "titulo": "Ley de exclusión de partidos",
+      "descripcion": "Exclusión de responsabilidad penal de partidos políticos",
+      "fecha_presentacion": "10/05/2024",
+      "estado": "Aprobado como Ley 32054",
+      "tema": "Política",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 5,
+      "candidato_id": 15,
+      "numero_proyecto": "05678/2023-CR",
+      "titulo": "Ley de fortalecimiento del Congreso",
+      "descripcion": "Ampliación de facultades del Poder Legislativo",
+      "fecha_presentacion": "12/11/2023",
+      "estado": "Aprobado",
+      "tema": "Institucional",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 6,
+      "candidato_id": 15,
+      "numero_proyecto": "06234/2024-CR",
+      "titulo": "Reforma del Poder Judicial",
+      "descripcion": "Modificaciones a elección de magistrados supremos",
+      "fecha_presentacion": "18/03/2024",
+      "estado": "En debate",
+      "tema": "Justicia",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 7,
+      "candidato_id": 17,
+      "numero_proyecto": "07456/2024-CR",
+      "titulo": "Ley anticorrupción",
+      "descripcion": "Fortalecimiento de fiscalización parlamentaria",
+      "fecha_presentacion": "22/07/2024",
+      "estado": "En comisión",
+      "tema": "Transparencia",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 8,
+      "candidato_id": 17,
+      "numero_proyecto": "07567/2024-CR",
+      "titulo": "Ley de protección de denunciantes",
+      "descripcion": "Protección a whistleblowers anticorrupción",
+      "fecha_presentacion": "15/08/2024",
+      "estado": "En comisión",
+      "tema": "Transparencia",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 9,
+      "candidato_id": 20,
+      "numero_proyecto": "06345/2024-CR",
+      "titulo": "Ley de derechos humanos",
+      "descripcion": "Protección de defensores de DDHH",
+      "fecha_presentacion": "10/04/2024",
+      "estado": "En comisión",
+      "tema": "Derechos Humanos",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 10,
+      "candidato_id": 20,
+      "numero_proyecto": "06456/2024-CR",
+      "titulo": "Ley de igualdad de género",
+      "descripcion": "Paridad efectiva en cargos públicos",
+      "fecha_presentacion": "25/05/2024",
+      "estado": "En debate",
+      "tema": "Género",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 11,
+      "candidato_id": 21,
+      "numero_proyecto": "06678/2024-CR",
+      "titulo": "Ley de matrimonio igualitario",
+      "descripcion": "Reconocimiento legal de uniones del mismo sexo",
+      "fecha_presentacion": "28/06/2024",
+      "estado": "En comisión",
+      "tema": "Derechos LGBTIQ+",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 12,
+      "candidato_id": 21,
+      "numero_proyecto": "06789/2024-CR",
+      "titulo": "Ley de identidad de género",
+      "descripcion": "Derecho al cambio de identidad en documentos",
+      "fecha_presentacion": "10/07/2024",
+      "estado": "En comisión",
+      "tema": "Derechos LGBTIQ+",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 13,
+      "candidato_id": 18,
+      "numero_proyecto": "3577/2022-CR",
+      "titulo": "Modificación de ley de extinción de dominio",
+      "descripcion": "Cambios al Decreto Legislativo 1373",
+      "fecha_presentacion": "15/12/2022",
+      "estado": "Aprobado en primera votación",
+      "tema": "Justicia",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 14,
+      "candidato_id": 24,
+      "numero_proyecto": "07890/2024-CR",
+      "titulo": "Reforma electoral",
+      "descripcion": "Modificaciones al sistema electoral y JNE",
+      "fecha_presentacion": "18/09/2024",
+      "estado": "En comisión",
+      "tema": "Electoral",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 15,
+      "candidato_id": 26,
+      "numero_proyecto": "06456/2024-CR",
+      "titulo": "Ley de educación digital",
+      "descripcion": "Tecnología y conectividad en escuelas públicas",
+      "fecha_presentacion": "08/05/2024",
+      "estado": "En debate",
+      "tema": "Educación",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 16,
+      "candidato_id": 7,
+      "numero_proyecto": "07234/2024-CR",
+      "titulo": "Ley de reforma tributaria",
+      "descripcion": "Impuestos progresivos para grandes fortunas",
+      "fecha_presentacion": "12/04/2024",
+      "estado": "En comisión",
+      "tema": "Economía",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 17,
+      "candidato_id": 16,
+      "numero_proyecto": "06890/2023-CR",
+      "titulo": "Ley de descentralización",
+      "descripcion": "Transferencia de competencias a gobiernos regionales",
+      "fecha_presentacion": "20/10/2023",
+      "estado": "En debate",
+      "tema": "Descentralización",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 18,
+      "candidato_id": 19,
+      "numero_proyecto": "07345/2023-CR",
+      "titulo": "Ley de consulta previa",
+      "descripcion": "Fortalecimiento de consulta a pueblos indígenas",
+      "fecha_presentacion": "15/11/2023",
+      "estado": "En comisión",
+      "tema": "Pueblos Indígenas",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 19,
+      "candidato_id": 25,
+      "numero_proyecto": "06567/2024-CR",
+      "titulo": "Ley de transparencia legislativa",
+      "descripcion": "Publicación obligatoria de agendas y reuniones",
+      "fecha_presentacion": "22/03/2024",
+      "estado": "En debate",
+      "tema": "Transparencia",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    },
+    {
+      "id": 20,
+      "candidato_id": 28,
+      "numero_proyecto": "07678/2024-CR",
+      "titulo": "Ley de protección ambiental",
+      "descripcion": "Sanciones por daño ambiental empresarial",
+      "fecha_presentacion": "30/08/2024",
+      "estado": "En comisión",
+      "tema": "Medio Ambiente",
+      "fuente_url": "https://plataformaelectoral.jne.gob.pe/bandeja/filtros"
+    }
+  ],
+  "Propuestas": [
+    {
+      "id": 1,
+      "candidato_id": 1,
+      "titulo": "Seguridad ciudadana con mano dura",
+      "descripcion": "Incrementar presencia policial y endurecer penas contra delincuencia",
+      "categoria": "Seguridad",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 2,
+      "candidato_id": 1,
+      "titulo": "Reducción del Estado",
+      "descripcion": "Eliminar ministerios innecesarios y reducir burocracia estatal",
+      "categoria": "Economía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 3,
+      "candidato_id": 1,
+      "titulo": "Economía de mercado libre",
+      "descripcion": "Eliminar regulaciones que traban inversión privada",
+      "categoria": "Economía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 4,
+      "candidato_id": 1,
+      "titulo": "Obras de infraestructura vial",
+      "descripcion": "Construcción de vías expresas y túneles en Lima",
+      "categoria": "Infraestructura",
+      "prioridad": "Media"
+    },
+    {
+      "id": 5,
+      "candidato_id": 2,
+      "titulo": "Defensa de la familia tradicional",
+      "descripcion": "Políticas de protección de valores conservadores",
+      "categoria": "Social",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 6,
+      "candidato_id": 2,
+      "titulo": "Lucha contra la corrupción",
+      "descripcion": "Reforma del sistema judicial y fiscalía anticorrupción",
+      "categoria": "Transparencia",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 7,
+      "candidato_id": 2,
+      "titulo": "Reactivación económica",
+      "descripcion": "Apoyo a MYPES y emprendedores peruanos",
+      "categoria": "Economía",
+      "prioridad": "Media"
+    },
+    {
+      "id": 8,
+      "candidato_id": 3,
+      "titulo": "Desarrollo regional descentralizado",
+      "descripcion": "Transferir recursos y poder de decisión a regiones",
+      "categoria": "Descentralización",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 9,
+      "candidato_id": 3,
+      "titulo": "Infraestructura nacional",
+      "descripcion": "Grandes proyectos de carreteras, hospitales y colegios",
+      "categoria": "Infraestructura",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 10,
+      "candidato_id": 3,
+      "titulo": "Educación superior accesible",
+      "descripcion": "Expandir sistema universitario con calidad",
+      "categoria": "Educación",
+      "prioridad": "Media"
+    },
+    {
+      "id": 11,
+      "candidato_id": 3,
+      "titulo": "Tecnología e innovación",
+      "descripcion": "Promover startups y empresas tecnológicas peruanas",
+      "categoria": "Tecnología",
+      "prioridad": "Media"
+    },
+    {
+      "id": 12,
+      "candidato_id": 4,
+      "titulo": "Lucha contra la corrupción",
+      "descripcion": "Reforma integral del Poder Judicial y Ministerio Público",
+      "categoria": "Transparencia",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 13,
+      "candidato_id": 4,
+      "titulo": "Empleo digno",
+      "descripcion": "Protección efectiva de derechos laborales",
+      "categoria": "Trabajo",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 14,
+      "candidato_id": 4,
+      "titulo": "Salud universal gratuita",
+      "descripcion": "Sistema de salud público de calidad para todos",
+      "categoria": "Salud",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 15,
+      "candidato_id": 5,
+      "titulo": "Economía de mercado social",
+      "descripcion": "Libertad económica con redistribución progresiva",
+      "categoria": "Economía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 16,
+      "candidato_id": 5,
+      "titulo": "Formalización de la economía",
+      "descripcion": "Reducir informalidad laboral y empresarial",
+      "categoria": "Economía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 17,
+      "candidato_id": 5,
+      "titulo": "Seguridad ciudadana",
+      "descripcion": "Profesionalización policial y prevención del delito",
+      "categoria": "Seguridad",
+      "prioridad": "Media"
+    },
+    {
+      "id": 18,
+      "candidato_id": 6,
+      "titulo": "Industrialización nacional",
+      "descripcion": "Promover industria peruana y transferencia tecnológica",
+      "categoria": "Economía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 19,
+      "candidato_id": 6,
+      "titulo": "Reforma educativa integral",
+      "descripcion": "Educación técnica y científica de calidad",
+      "categoria": "Educación",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 20,
+      "candidato_id": 6,
+      "titulo": "Ciencia y tecnología",
+      "descripcion": "Inversión en investigación y desarrollo nacional",
+      "categoria": "Ciencia",
+      "prioridad": "Media"
+    },
+    {
+      "id": 21,
+      "candidato_id": 7,
+      "titulo": "Nueva Constitución",
+      "descripcion": "Asamblea Constituyente para nueva carta magna",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 22,
+      "candidato_id": 7,
+      "titulo": "Nacionalización de recursos",
+      "descripcion": "Control estatal de recursos naturales estratégicos",
+      "categoria": "Economía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 23,
+      "candidato_id": 7,
+      "titulo": "Justicia social",
+      "descripcion": "Redistribución de la riqueza y reducción de desigualdad",
+      "categoria": "Social",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 24,
+      "candidato_id": 8,
+      "titulo": "Derechos de pueblos indígenas",
+      "descripcion": "Protección territorial y cultural de comunidades",
+      "categoria": "Pueblos Indígenas",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 25,
+      "candidato_id": 8,
+      "titulo": "Reforma agraria",
+      "descripcion": "Redistribución de tierras y apoyo al agro",
+      "categoria": "Agricultura",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 26,
+      "candidato_id": 9,
+      "titulo": "Reforma del sistema de salud",
+      "descripcion": "Modernizar EsSalud y sistema público integrado",
+      "categoria": "Salud",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 27,
+      "candidato_id": 9,
+      "titulo": "Gestión eficiente del Estado",
+      "descripcion": "Aplicar gestión empresarial moderna al sector público",
+      "categoria": "Administración",
+      "prioridad": "Media"
+    },
+    {
+      "id": 28,
+      "candidato_id": 9,
+      "titulo": "Lucha contra la violencia de género",
+      "descripcion": "Políticas integrales contra feminicidios",
+      "categoria": "Género",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 29,
+      "candidato_id": 10,
+      "titulo": "Seguridad con prevención",
+      "descripcion": "Combinar mano dura con programas sociales",
+      "categoria": "Seguridad",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 30,
+      "candidato_id": 10,
+      "titulo": "Deporte y juventud",
+      "descripcion": "Masificación del deporte como política de Estado",
+      "categoria": "Deporte",
+      "prioridad": "Media"
+    },
+    {
+      "id": 31,
+      "candidato_id": 31,
+      "titulo": "Modernización del sistema de salud",
+      "descripcion": "Reforma integral de EsSalud y sistema público de salud",
+      "categoria": "Salud",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 32,
+      "candidato_id": 31,
+      "titulo": "Descentralización efectiva",
+      "descripcion": "Transferencia real de recursos y decisiones a regiones",
+      "categoria": "Descentralización",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 33,
+      "candidato_id": 31,
+      "titulo": "Reforma minera responsable",
+      "descripcion": "Formalización minera artesanal con comisión autónoma",
+      "categoria": "Minería",
+      "prioridad": "Media"
+    },
+    {
+      "id": 34,
+      "candidato_id": 32,
+      "titulo": "Seguridad ciudadana integral",
+      "descripcion": "Reforma policial y atención a causas de inseguridad",
+      "categoria": "Seguridad",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 35,
+      "candidato_id": 32,
+      "titulo": "Reforma del sector salud",
+      "descripcion": "Fortalecer atención primaria y regular sector privado",
+      "categoria": "Salud",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 36,
+      "candidato_id": 32,
+      "titulo": "Relación Ejecutivo-MEF",
+      "descripcion": "Reformar relación entre gobierno y Ministerio de Economía",
+      "categoria": "Economía",
+      "prioridad": "Media"
+    },
+    {
+      "id": 37,
+      "candidato_id": 33,
+      "titulo": "Recambio generacional aprista",
+      "descripcion": "Renovación sin abandonar experiencia histórica del partido",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 38,
+      "candidato_id": 33,
+      "titulo": "Justicia y verdad",
+      "descripcion": "Investigación de muertes en protestas de Puno y Ayacucho",
+      "categoria": "Derechos Humanos",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 39,
+      "candidato_id": 33,
+      "titulo": "Reforma del Ministerio Público",
+      "descripcion": "Despolitizar fiscalía y fortalecer autonomía",
+      "categoria": "Justicia",
+      "prioridad": "Media"
+    },
+    {
+      "id": 40,
+      "candidato_id": 34,
+      "titulo": "Unidad aprista",
+      "descripcion": "Consolidar bases del APRA con experiencia política",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 41,
+      "candidato_id": 34,
+      "titulo": "Lucha anticorrupción",
+      "descripcion": "Fortalecer institucionalidad y transparencia estatal",
+      "categoria": "Transparencia",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 42,
+      "candidato_id": 34,
+      "titulo": "Reactivación económica post-pandemia",
+      "descripcion": "Impulsar inversión y empleo digno",
+      "categoria": "Economía",
+      "prioridad": "Media"
+    },
+    {
+      "id": 43,
+      "candidato_id": 35,
+      "titulo": "Vivienda social",
+      "descripcion": "Programa masivo de vivienda popular",
+      "categoria": "Vivienda",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 44,
+      "candidato_id": 35,
+      "titulo": "Sistema de salud universal",
+      "descripcion": "Salud pública de calidad para todos los peruanos",
+      "categoria": "Salud",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 45,
+      "candidato_id": 35,
+      "titulo": "Ordenamiento territorial",
+      "descripcion": "Planificación urbana y desarrollo sostenible",
+      "categoria": "Urbanismo",
+      "prioridad": "Media"
+    },
+    {
+      "id": 46,
+      "candidato_id": 36,
+      "titulo": "Desarrollo regional de Junín",
+      "descripcion": "Proyecto de desarrollo integral para la región central",
+      "categoria": "Descentralización",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 47,
+      "candidato_id": 36,
+      "titulo": "Infraestructura vial",
+      "descripcion": "Mejora de carreteras y conectividad regional",
+      "categoria": "Infraestructura",
+      "prioridad": "Media"
+    },
+    {
+      "id": 48,
+      "candidato_id": 36,
+      "titulo": "Apoyo al agro",
+      "descripcion": "Financiamiento y tecnificación agrícola",
+      "categoria": "Agricultura",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 49,
+      "candidato_id": 37,
+      "titulo": "Inversión privada",
+      "descripcion": "Facilitar y promover inversión empresarial nacional",
+      "categoria": "Economía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 50,
+      "candidato_id": 37,
+      "titulo": "Emprendimiento peruano",
+      "descripcion": "Apoyo a empresarios y MYPES nacionales",
+      "categoria": "Economía",
+      "prioridad": "Media"
+    },
+    {
+      "id": 51,
+      "candidato_id": 37,
+      "titulo": "Desarrollo agroindustrial",
+      "descripcion": "Impulsar agroindustria y exportación",
+      "categoria": "Agricultura",
+      "prioridad": "Media"
+    },
+    {
+      "id": 52,
+      "candidato_id": 38,
+      "titulo": "Gestión regional eficiente",
+      "descripcion": "Modernizar gobiernos regionales y locales",
+      "categoria": "Descentralización",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 53,
+      "candidato_id": 38,
+      "titulo": "Desarrollo sostenible",
+      "descripcion": "Crecimiento económico con cuidado ambiental",
+      "categoria": "Medio Ambiente",
+      "prioridad": "Media"
+    },
+    {
+      "id": 54,
+      "candidato_id": 38,
+      "titulo": "Educación técnica",
+      "descripcion": "Fortalecer educación técnica y productiva",
+      "categoria": "Educación",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 55,
+      "candidato_id": 39,
+      "titulo": "Socialismo democrático",
+      "descripcion": "Modelo socialista adaptado a realidad peruana",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 56,
+      "candidato_id": 39,
+      "titulo": "Nacionalización de recursos",
+      "descripcion": "Control estatal de recursos estratégicos",
+      "categoria": "Economía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 57,
+      "candidato_id": 39,
+      "titulo": "Nueva Constitución",
+      "descripcion": "Asamblea Constituyente popular",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 58,
+      "candidato_id": 40,
+      "titulo": "Reforma tributaria",
+      "descripcion": "Simplificación de sistema tributario",
+      "categoria": "Economía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 59,
+      "candidato_id": 40,
+      "titulo": "Libertad de expresión",
+      "descripcion": "Defender libertad de prensa y opinión",
+      "categoria": "Derechos",
+      "prioridad": "Media"
+    },
+    {
+      "id": 60,
+      "candidato_id": 40,
+      "titulo": "Transparencia mediática",
+      "descripcion": "Regular publicidad estatal en medios",
+      "categoria": "Transparencia",
+      "prioridad": "Media"
+    },
+    {
+      "id": 61,
+      "candidato_id": 41,
+      "titulo": "Desarrollo energético",
+      "descripcion": "Promover energías renovables y matriz diversificada",
+      "categoria": "Energía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 62,
+      "candidato_id": 41,
+      "titulo": "Minería responsable",
+      "descripcion": "Equilibrio entre desarrollo minero y cuidado ambiental",
+      "categoria": "Minería",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 63,
+      "candidato_id": 41,
+      "titulo": "Inversión extranjera",
+      "descripcion": "Atraer inversión con reglas claras y estables",
+      "categoria": "Economía",
+      "prioridad": "Media"
+    },
+    {
+      "id": 64,
+      "candidato_id": 42,
+      "titulo": "Reforma constitucional",
+      "descripcion": "Actualización de la Constitución desde el Congreso",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 65,
+      "candidato_id": 42,
+      "titulo": "Fortalecimiento institucional",
+      "descripcion": "Defender autonomía de instituciones democráticas",
+      "categoria": "Institucional",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 66,
+      "candidato_id": 42,
+      "titulo": "Justicia independiente",
+      "descripcion": "Reforma del Poder Judicial sin interferencias",
+      "categoria": "Justicia",
+      "prioridad": "Media"
+    },
+    {
+      "id": 67,
+      "candidato_id": 43,
+      "titulo": "Reforma judicial integral",
+      "descripcion": "Cambio profundo del sistema de justicia",
+      "categoria": "Justicia",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 68,
+      "candidato_id": 43,
+      "titulo": "Lucha anticorrupción",
+      "descripcion": "Persecución efectiva de delitos de corrupción",
+      "categoria": "Transparencia",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 69,
+      "candidato_id": 43,
+      "titulo": "Dignidad humana",
+      "descripcion": "Políticas centradas en persona y derechos fundamentales",
+      "categoria": "Derechos Humanos",
+      "prioridad": "Media"
+    },
+    {
+      "id": 70,
+      "candidato_id": 44,
+      "titulo": "Obras públicas masivas",
+      "descripcion": "Gran programa de infraestructura nacional",
+      "categoria": "Infraestructura",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 71,
+      "candidato_id": 44,
+      "titulo": "Empleo digno",
+      "descripcion": "Generación de empleo mediante obras públicas",
+      "categoria": "Trabajo",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 72,
+      "candidato_id": 44,
+      "titulo": "Lima moderna",
+      "descripcion": "Recuperar modelo de gestión eficiente en Lima",
+      "categoria": "Urbanismo",
+      "prioridad": "Media"
+    },
+    {
+      "id": 73,
+      "candidato_id": 45,
+      "titulo": "Gobierno nacionalista",
+      "descripcion": "Soberanía nacional y defensa de recursos",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 74,
+      "candidato_id": 45,
+      "titulo": "Justicia militar",
+      "descripcion": "Reformar sistema de justicia con participación militar",
+      "categoria": "Defensa",
+      "prioridad": "Media"
+    },
+    {
+      "id": 75,
+      "candidato_id": 45,
+      "titulo": "Etnocacerismo",
+      "descripcion": "Ideología nacionalista basada en Andrés Avelino Cáceres",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 76,
+      "candidato_id": 46,
+      "titulo": "Transformación democrática",
+      "descripcion": "Cambio profundo con participación ciudadana",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 77,
+      "candidato_id": 46,
+      "titulo": "Derechos de la mujer",
+      "descripcion": "Políticas de igualdad de género efectivas",
+      "categoria": "Género",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 78,
+      "candidato_id": 46,
+      "titulo": "Economía para el pueblo",
+      "descripcion": "Redistribución de riqueza y justicia económica",
+      "categoria": "Economía",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 79,
+      "candidato_id": 47,
+      "titulo": "Educación superior accesible",
+      "descripcion": "Ampliar acceso a educación universitaria",
+      "categoria": "Educación",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 80,
+      "candidato_id": 47,
+      "titulo": "Tecnología educativa",
+      "descripcion": "Incorporar tecnología en todos los niveles educativos",
+      "categoria": "Educación",
+      "prioridad": "Media"
+    },
+    {
+      "id": 81,
+      "candidato_id": 47,
+      "titulo": "Fortalecimiento regional",
+      "descripcion": "Descentralización efectiva de recursos",
+      "categoria": "Descentralización",
+      "prioridad": "Media"
+    },
+    {
+      "id": 82,
+      "candidato_id": 48,
+      "titulo": "Renovación aprista juvenil",
+      "descripcion": "Nueva generación en liderazgo del APRA",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 83,
+      "candidato_id": 48,
+      "titulo": "Tecnología y juventud",
+      "descripcion": "Políticas digitales para jóvenes peruanos",
+      "categoria": "Tecnología",
+      "prioridad": "Media"
+    },
+    {
+      "id": 84,
+      "candidato_id": 48,
+      "titulo": "Justicia generacional",
+      "descripcion": "Oportunidades para nuevas generaciones",
+      "categoria": "Social",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 85,
+      "candidato_id": 49,
+      "titulo": "Legado de Alan García",
+      "descripcion": "Reivindicar obra del expresidente Alan García",
+      "categoria": "Política",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 86,
+      "candidato_id": 49,
+      "titulo": "Justicia y verdad",
+      "descripcion": "Investigar casos de persecución política",
+      "categoria": "Justicia",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 87,
+      "candidato_id": 49,
+      "titulo": "Reconciliación nacional",
+      "descripcion": "Unir al país superando divisiones políticas",
+      "categoria": "Social",
+      "prioridad": "Media"
+    },
+    {
+      "id": 88,
+      "candidato_id": 50,
+      "titulo": "Desarrollo de Moquegua",
+      "descripcion": "Impulsar desarrollo del sur del país",
+      "categoria": "Descentralización",
+      "prioridad": "Alta"
+    },
+    {
+      "id": 89,
+      "candidato_id": 50,
+      "titulo": "Infraestructura regional",
+      "descripcion": "Conectividad y desarrollo en regiones del sur",
+      "categoria": "Infraestructura",
+      "prioridad": "Media"
+    },
+    {
+      "id": 90,
+      "candidato_id": 50,
+      "titulo": "Minería con responsabilidad",
+      "descripcion": "Aprovechar recursos mineros con beneficio regional",
+      "categoria": "Minería",
+      "prioridad": "Alta"
+    }
+  ]
+}
