@@ -34,7 +34,11 @@ class CandidatoRepository(private val context: Context, private val db: AppDatab
     }
 
     fun getMasBuscados(): Flow<List<Candidato>> {
-        return db.candidatoDao().getMasBuscados()
+        return db.candidatoDao().getMasBuscados().map { list ->
+            list.onEach { candidato ->
+                candidato.fotoResId = context.resources.getIdentifier(candidato.foto_url, "drawable", context.packageName)
+            }
+        }
     }
 
     suspend fun incrementarVisitas(id: Int) {
