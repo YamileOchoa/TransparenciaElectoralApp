@@ -63,23 +63,5 @@ fun HeaderSection() {
                 )
             }
         }
-
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                imageVector = Icons.Outlined.Notifications,
-                contentDescription = "Notificaciones",
-                tint = Color(0xFFF59E0B),
-                modifier = Modifier.size(24.dp)
-            )
-            Icon(
-                imageVector = Icons.Outlined.Person,
-                contentDescription = "Perfil de usuario",
-                tint = Color(0xFF4ECDC4),
-                modifier = Modifier.size(24.dp)
-            )
-        }
     }
 }

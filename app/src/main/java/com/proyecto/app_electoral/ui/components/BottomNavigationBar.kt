@@ -15,7 +15,6 @@ data class BottomNavItem(val label: String, val icon: androidx.compose.ui.graphi
 @Composable
 fun BottomNavigationBar(navController: NavController, currentRoute: String?) {
     val items = listOf(
-        BottomNavItem("Inicio", Icons.Default.Home, "inicio"),
         BottomNavItem("Búsqueda", Icons.Default.Search, "busqueda"),
         BottomNavItem("Favoritos", Icons.Default.Star, "favoritos"),
         BottomNavItem("Comparar", Icons.Default.CompareArrows, "comparar")
