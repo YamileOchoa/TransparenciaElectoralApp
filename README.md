@@ -409,9 +409,9 @@ La base de datos Room se inicializa automáticamente en el primer arranque con l
 ## 📸 Capturas de Pantalla
 
 <p align="center">
-  <img src="screenshots/busqueda_1.png" alt="Búsqueda" width="280"/>
-  <img src="screenshots/comparar.png" alt="Comparación" width="280"/>
-  <img src="screenshots/favoritos.png" alt="Favoritos" width="280"/>
+  <img src="screenshots/busqueda.jpeg" alt="Búsqueda" width="280"/>
+  <img src="screenshots/comparacion.jpg" alt="Comparación" width="280"/>
+  <img src="screenshots/favoritos.jpeg" alt="Favoritos" width="280"/>
 </p>
 
 <p align="center">
