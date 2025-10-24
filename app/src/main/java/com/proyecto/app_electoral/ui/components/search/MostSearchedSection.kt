@@ -1,5 +1,6 @@
 package com.proyecto.app_electoral.ui.components.search
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -20,12 +21,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.proyecto.app_electoral.R
 import com.proyecto.app_electoral.ui.viewmodel.CandidatosViewModel
 
@@ -99,8 +102,17 @@ fun MostSearchedSection(viewModel: CandidatosViewModel) {
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier.padding(8.dp)
                         ) {
+                            val fotoResId = if (candidato.fotoResId != 0) candidato.fotoResId else R.drawable.ic_profile_placeholder
+                            Log.d("ImageCheck", "Cargando imagen para (Más Buscados): ${candidato.foto_url} → id=$fotoResId")
+
+                            val imageRequest = ImageRequest.Builder(LocalContext.current)
+                                .data(fotoResId)
+                                .size(512) // Optimización: redimensionar la imagen
+                                .crossfade(true)
+                                .build()
+
                             AsyncImage(
-                                model = if (candidato.fotoResId != 0) candidato.fotoResId else R.drawable.ic_profile_placeholder,
+                                model = imageRequest,
                                 contentDescription = "Foto de ${candidato.nombre}",
                                 placeholder = painterResource(id = R.drawable.ic_profile_placeholder),
                                 error = painterResource(id = R.drawable.ic_profile_placeholder),
@@ -132,4 +144,3 @@ fun MostSearchedSection(viewModel: CandidatosViewModel) {
         }
     }
 }
-
