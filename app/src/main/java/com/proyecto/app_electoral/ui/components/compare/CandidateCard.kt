@@ -1,5 +1,6 @@
 package com.proyecto.app_electoral.ui.components.compare
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -14,12 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.proyecto.app_electoral.R
 
 @Composable
@@ -47,8 +50,17 @@ fun CandidateCard(
             contentAlignment = Alignment.Center
         ) {
             if (hasCandidate) {
+                val id = if (fotoResId != 0) fotoResId else R.drawable.ic_profile_placeholder
+                Log.d("ImageCheck", "Cargando imagen para (Comparar): $name → id=$id")
+
+                val imageRequest = ImageRequest.Builder(LocalContext.current)
+                    .data(id)
+                    .size(512) // Optimización: redimensionar la imagen
+                    .crossfade(true)
+                    .build()
+
                 AsyncImage(
-                    model = if (fotoResId != 0) fotoResId else R.drawable.ic_profile_placeholder,
+                    model = imageRequest,
                     contentDescription = "Foto de $name",
                     placeholder = painterResource(id = R.drawable.ic_profile_placeholder),
                     error = painterResource(id = R.drawable.ic_profile_placeholder),

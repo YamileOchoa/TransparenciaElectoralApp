@@ -7,11 +7,13 @@ import com.proyecto.app_electoral.data.model.Candidato
 import com.proyecto.app_electoral.data.model.Favorito
 import com.proyecto.app_electoral.data.repository.CandidatoRepository
 import com.proyecto.app_electoral.data.repository.FavoritoRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CandidatosViewModel(
     private val candidatoRepository: CandidatoRepository,
@@ -69,19 +71,28 @@ class CandidatosViewModel(
 
     init {
         viewModelScope.launch {
-            candidatoRepository.ensureSeeded()
-            candidatoRepository.getCandidatos().collect { candidatos ->
-                _candidatos.value = candidatos
-                _totalCandidatos.value = candidatos.size
-                _totalPropuestas.value = candidatos.sumOf { it.propuestas?.size ?: 0 }
+            // 1. Ejecutar y esperar a que la siembra termine en un hilo de IO.
+            withContext(Dispatchers.IO) {
+                candidatoRepository.ensureSeeded()
             }
-        }
-        viewModelScope.launch {
-            favoritoRepository.obtenerFavoritos().map { list -> list.map { it.candidatoId } }.collect {
-                _favoritos.value = it
+
+            // 2. Una vez terminada la siembra, lanzar la recolección de datos.
+            launch {
+                candidatoRepository.getCandidatos().collect { candidatos ->
+                    _candidatos.value = candidatos
+                    _totalCandidatos.value = candidatos.size
+                    _totalPropuestas.value = candidatos.sumOf { it.propuestas?.size ?: 0 }
+                }
             }
+
+            launch {
+                favoritoRepository.obtenerFavoritos().map { list -> list.map { it.candidatoId } }.collect {
+                    _favoritos.value = it
+                }
+            }
+
+            cargarMasBuscados()
         }
-        cargarMasBuscados()
     }
 
     fun onSearchQueryChange(query: String) { _searchQuery.value = query }
@@ -91,7 +102,7 @@ class CandidatosViewModel(
         viewModelScope.launch {
             candidatoRepository.getCandidato(id).collect { candidato ->
                 _selectedCandidato.value = candidato
-                candidato?.let { 
+                candidato?.let {
                     candidatoRepository.incrementarVisitas(it.id)
                     cargarMasBuscados()
                 }
