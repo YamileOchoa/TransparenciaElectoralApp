@@ -21,7 +21,7 @@ import com.proyecto.app_electoral.ui.viewmodel.CandidatosViewModel
 fun FilterChipsSection(
     viewModel: CandidatosViewModel
 ) {
-    val filters = listOf("Todos", "Con denuncias", "Por región", "Por partido")
+    val filters = listOf("Todos", "Sin denuncias", "Por región", "Por partido")
 
     val selectedFilter by viewModel.selectedFilter.collectAsState()
 

@@ -15,10 +15,18 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
+    val navigate = remember { mutableStateOf(false) }
+
     LaunchedEffect(Unit) {
         delay(1500L)
-        navController.navigate("busqueda") {
-            popUpTo("home") { inclusive = true }
+        navigate.value = true
+    }
+
+    if (navigate.value) {
+        LaunchedEffect(Unit) {
+            navController.navigate("busqueda") {
+                popUpTo("home") { inclusive = true }
+            }
         }
     }
 
@@ -31,8 +39,7 @@ fun HomeScreen(navController: NavHostController) {
         Image(
             painter = painterResource(R.drawable.ic_logo),
             contentDescription = "Logo",
-            modifier = Modifier
-                .size(350.dp)
+            modifier = Modifier.size(350.dp)
         )
     }
 }
