@@ -364,17 +364,14 @@ La base de datos Room se inicializa automáticamente en el primer arranque con l
 
 ## 📸 Capturas de Pantalla
 
-### Pantalla Principal
-![Pantalla Principal](screenshots/home_screen.png)
-
-### Pantalla de Detalle
-![Pantalla de Detalle](screenshots/detail_screen.png)
-
 ### Pantalla de Búsqueda
-![Pantalla de Búsqueda](screenshots/search_screen.png)
+![Pantalla Principal](screenshots/busqueda_1.png)
 
 ### Pantalla de Comparación
-![Pantalla de Comparación](screenshots/compare_screen.png)
+![Pantalla de Detalle](screenshots/comparar.png)
+
+### Pantalla de Favoritos
+![Pantalla de Búsqueda](screenshots/favoritos.png)
 
 ---
 
