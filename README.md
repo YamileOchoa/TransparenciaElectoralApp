@@ -259,11 +259,11 @@ app/src/main/res/
 
 | Ruta | Descripción | Parámetros |
 |------|-------------|------------|
-| `/home` | Pantalla principal con lista de candidatos | - |
-| `/candidato/{id}` | Detalle completo del candidato | `id: Int` |
-| `/buscar` | Búsqueda avanzada con filtros | - |
-| `/comparar` | Comparación de múltiples candidatos | `ids: String` (comma-separated) |
-| `/favoritos` | Lista de candidatos guardados como favoritos | - |
+| `inicio` | Pantalla principal con lista de candidatos | - |
+| `busqueda` | Búsqueda avanzada con filtros | - |
+| `favoritos` | Lista de candidatos guardados como favoritos | - |
+| `detalle/{candidatoId}` | Detalle completo del candidato | `candidatoId: Int` |
+| `comparar` | Comparación de múltiples candidatos | - |
 
 ---
 
