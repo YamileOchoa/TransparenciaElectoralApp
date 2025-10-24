@@ -676,56 +676,20 @@
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
       "fecha_inicio": "28/07/2006",
-      "fecha_fin": "27/07/2011",
-      "descripcion": "Periodo 2006-2011"
+      "fecha_fin": "27/07/2016",
+      "descripcion": "Periodo 2006-2011 | Periodo 2011-2016 | Periodo 2021-2026"
     },
     {
       "id": 4,
       "candidato_id": 2,
-      "cargo": "Congresista",
-      "institucion": "Congreso de la República",
-      "fecha_inicio": "28/07/2011",
-      "fecha_fin": "27/07/2016",
-      "descripcion": "Periodo 2011-2016"
-    },
-    {
-      "id": 5,
-      "candidato_id": 2,
-      "cargo": "Congresista",
-      "institucion": "Congreso de la República",
-      "fecha_inicio": "28/07/2021",
-      "fecha_fin": "26/07/2026",
-      "descripcion": "Periodo 2021-2026"
-    },
-    {
-      "id": 6,
-      "candidato_id": 2,
       "cargo": "Candidata Presidencial",
       "institucion": "Elecciones Generales",
       "fecha_inicio": "05/06/2011",
-      "fecha_fin": "05/06/2011",
-      "descripcion": "Perdió segunda vuelta ante Ollanta Humala"
-    },
-    {
-      "id": 7,
-      "candidato_id": 2,
-      "cargo": "Candidata Presidencial",
-      "institucion": "Elecciones Generales",
-      "fecha_inicio": "05/06/2016",
-      "fecha_fin": "05/06/2016",
-      "descripcion": "Perdió segunda vuelta ante PPK"
-    },
-    {
-      "id": 8,
-      "candidato_id": 2,
-      "cargo": "Candidata Presidencial",
-      "institucion": "Elecciones Generales",
-      "fecha_inicio": "06/06/2021",
       "fecha_fin": "06/06/2021",
-      "descripcion": "Perdió segunda vuelta ante Pedro Castillo"
+      "descripcion": "Perdió segunda vuelta ante Ollanta Humala | Perdió segunda vuelta ante PPK | Perdió segunda vuelta ante Pedro Castillo"
     },
     {
-      "id": 9,
+      "id": 5,
       "candidato_id": 3,
       "cargo": "Gobernador Regional de La Libertad",
       "institucion": "Gobierno Regional La Libertad",
@@ -734,25 +698,16 @@
       "descripcion": "Renunció para postular a presidencia 2026"
     },
     {
-      "id": 10,
-      "candidato_id": 3,
-      "cargo": "Candidato Presidencial",
-      "institucion": "Elecciones Generales",
-      "fecha_inicio": "10/04/2016",
-      "fecha_fin": "10/04/2016",
-      "descripcion": "Primera vuelta 2016"
-    },
-    {
-      "id": 11,
+      "id": 6,
       "candidato_id": 3,
       "cargo": "Candidato Presidencial",
       "institucion": "Elecciones Generales",
       "fecha_inicio": "10/04/2011",
-      "fecha_fin": "10/04/2011",
-      "descripcion": "Primera vuelta 2011"
+      "fecha_fin": "10/04/2016",
+      "descripcion": "Primera vuelta 2016 | Primera vuelta 2011"
     },
     {
-      "id": 12,
+      "id": 7,
       "candidato_id": 4,
       "cargo": "Conductor de TV",
       "institucion": "Medios de comunicación",
@@ -761,7 +716,7 @@
       "descripcion": "Carrera como humorista y actor"
     },
     {
-      "id": 13,
+      "id": 8,
       "candidato_id": 5,
       "cargo": "Candidato Presidencial",
       "institucion": "Elecciones Generales",
@@ -770,7 +725,7 @@
       "descripcion": "Segunda vuelta 2021, perdió ante Castillo"
     },
     {
-      "id": 14,
+      "id": 9,
       "candidato_id": 6,
       "cargo": "Rector de la UNI",
       "institucion": "Universidad Nacional de Ingeniería",
@@ -779,7 +734,7 @@
       "descripcion": "Renunció para postular 2026"
     },
     {
-      "id": 15,
+      "id": 10,
       "candidato_id": 7,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -788,7 +743,7 @@
       "descripcion": "Periodo 2021-2026, Voces del Pueblo"
     },
     {
-      "id": 16,
+      "id": 11,
       "candidato_id": 8,
       "cargo": "Activista Social",
       "institucion": "Movimientos sociales",
@@ -797,7 +752,7 @@
       "descripcion": "Movimientos sociales en Puno"
     },
     {
-      "id": 17,
+      "id": 12,
       "candidato_id": 9,
       "cargo": "Ministra de Justicia",
       "institucion": "Poder Ejecutivo",
@@ -806,7 +761,7 @@
       "descripcion": "Gobierno de PPK"
     },
     {
-      "id": 18,
+      "id": 13,
       "candidato_id": 10,
       "cargo": "Alcalde de La Victoria",
       "institucion": "Municipalidad de La Victoria",
@@ -815,7 +770,7 @@
       "descripcion": "Gestión 2019-2022"
     },
     {
-      "id": 19,
+      "id": 14,
       "candidato_id": 10,
       "cargo": "Portero Profesional",
       "institucion": "Club Alianza Lima",
@@ -824,7 +779,7 @@
       "descripcion": "Carrera futbolística"
     },
     {
-      "id": 20,
+      "id": 15,
       "candidato_id": 11,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -833,7 +788,7 @@
       "descripcion": "Periodo 2020-2021"
     },
     {
-      "id": 21,
+      "id": 16,
       "candidato_id": 11,
       "cargo": "Candidato Presidencial",
       "institucion": "Elecciones Generales",
@@ -842,7 +797,7 @@
       "descripcion": "Primera vuelta 2021"
     },
     {
-      "id": 22,
+      "id": 17,
       "candidato_id": 12,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -851,7 +806,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 23,
+      "id": 18,
       "candidato_id": 12,
       "cargo": "Comandante General del Ejército",
       "institucion": "Fuerzas Armadas del Perú",
@@ -860,7 +815,7 @@
       "descripcion": "Máximo cargo militar"
     },
     {
-      "id": 24,
+      "id": 19,
       "candidato_id": 14,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -869,7 +824,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 25,
+      "id": 20,
       "candidato_id": 15,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -878,7 +833,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 26,
+      "id": 21,
       "candidato_id": 16,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -887,7 +842,7 @@
       "descripcion": "Periodo 2021-2026, Perú Libre"
     },
     {
-      "id": 27,
+      "id": 22,
       "candidato_id": 19,
       "cargo": "Primer Ministro",
       "institucion": "Poder Ejecutivo",
@@ -896,7 +851,7 @@
       "descripcion": "Gobierno de Pedro Castillo"
     },
     {
-      "id": 28,
+      "id": 23,
       "candidato_id": 21,
       "cargo": "Regidora",
       "institucion": "Municipalidad de Lima",
@@ -905,7 +860,7 @@
       "descripcion": "Gestión Luis Castañeda"
     },
     {
-      "id": 29,
+      "id": 24,
       "candidato_id": 25,
       "cargo": "Presidenta del Congreso",
       "institucion": "Congreso de la República",
@@ -914,7 +869,7 @@
       "descripcion": "Mesa Directiva 2021-2022"
     },
     {
-      "id": 30,
+      "id": 25,
       "candidato_id": 26,
       "cargo": "Ministra de Educación",
       "institucion": "Poder Ejecutivo",
@@ -923,7 +878,7 @@
       "descripcion": "Gobierno de Martín Vizcarra"
     },
     {
-      "id": 31,
+      "id": 26,
       "candidato_id": 17,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -932,7 +887,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 32,
+      "id": 27,
       "candidato_id": 18,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -941,7 +896,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 33,
+      "id": 28,
       "candidato_id": 20,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -950,7 +905,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 34,
+      "id": 29,
       "candidato_id": 23,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -959,7 +914,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 35,
+      "id": 30,
       "candidato_id": 24,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -968,7 +923,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 36,
+      "id": 31,
       "candidato_id": 31,
       "cargo": "Presidenta de EsSalud",
       "institucion": "Seguro Social de Salud",
@@ -977,7 +932,7 @@
       "descripcion": "Gestión PPK/Vizcarra"
     },
     {
-      "id": 37,
+      "id": 32,
       "candidato_id": 31,
       "cargo": "Ministra de Desarrollo e Inclusión Social",
       "institucion": "Poder Ejecutivo",
@@ -986,7 +941,7 @@
       "descripcion": "Gobierno de PPK"
     },
     {
-      "id": 38,
+      "id": 33,
       "candidato_id": 32,
       "cargo": "Ministro del Interior",
       "institucion": "Poder Ejecutivo",
@@ -995,7 +950,7 @@
       "descripcion": "Gobierno de Dina Boluarte"
     },
     {
-      "id": 39,
+      "id": 34,
       "candidato_id": 32,
       "cargo": "Ministro de Defensa",
       "institucion": "Poder Ejecutivo",
@@ -1004,7 +959,7 @@
       "descripcion": "Gobierno de Dina Boluarte"
     },
     {
-      "id": 40,
+      "id": 35,
       "candidato_id": 33,
       "cargo": "Primer Ministro",
       "institucion": "Poder Ejecutivo",
@@ -1013,7 +968,7 @@
       "descripcion": "Gobierno de Alan García"
     },
     {
-      "id": 41,
+      "id": 36,
       "candidato_id": 33,
       "cargo": "Presidente del Congreso",
       "institucion": "Congreso de la República",
@@ -1022,7 +977,7 @@
       "descripcion": "Periodo 2008-2009"
     },
     {
-      "id": 42,
+      "id": 37,
       "candidato_id": 34,
       "cargo": "Primer Ministro",
       "institucion": "Poder Ejecutivo",
@@ -1031,7 +986,7 @@
       "descripcion": "Gobierno de Alan García"
     },
     {
-      "id": 43,
+      "id": 38,
       "candidato_id": 34,
       "cargo": "Ministro del Interior",
       "institucion": "Poder Ejecutivo",
@@ -1040,7 +995,7 @@
       "descripcion": "Gobierno de Alan García"
     },
     {
-      "id": 44,
+      "id": 39,
       "candidato_id": 35,
       "cargo": "Ministro de Vivienda",
       "institucion": "Poder Ejecutivo",
@@ -1049,7 +1004,7 @@
       "descripcion": "Gobierno de Alan García"
     },
     {
-      "id": 45,
+      "id": 40,
       "candidato_id": 35,
       "cargo": "Ministro de Salud",
       "institucion": "Poder Ejecutivo",
@@ -1058,7 +1013,7 @@
       "descripcion": "Gobierno de Alan García"
     },
     {
-      "id": 46,
+      "id": 41,
       "candidato_id": 36,
       "cargo": "Gobernador Regional de Junín",
       "institucion": "Gobierno Regional Junín",
@@ -1067,7 +1022,7 @@
       "descripcion": "Gestión actual"
     },
     {
-      "id": 47,
+      "id": 42,
       "candidato_id": 38,
       "cargo": "Gobernador Regional de Cajamarca",
       "institucion": "Gobierno Regional Cajamarca",
@@ -1076,7 +1031,7 @@
       "descripcion": "Periodo 2019-2022"
     },
     {
-      "id": 48,
+      "id": 43,
       "candidato_id": 39,
       "cargo": "Gobernador Regional de Junín",
       "institucion": "Gobierno Regional Junín",
@@ -1085,7 +1040,7 @@
       "descripcion": "Primer gobierno regional"
     },
     {
-      "id": 49,
+      "id": 44,
       "candidato_id": 41,
       "cargo": "Ministro de Energía y Minas",
       "institucion": "Poder Ejecutivo",
@@ -1094,7 +1049,7 @@
       "descripcion": "Gobierno de Martín Vizcarra"
     },
     {
-      "id": 50,
+      "id": 45,
       "candidato_id": 42,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -1103,7 +1058,7 @@
       "descripcion": "Periodo 2000-2006"
     },
     {
-      "id": 51,
+      "id": 46,
       "candidato_id": 43,
       "cargo": "Ministro de Justicia",
       "institucion": "Poder Ejecutivo",
@@ -1112,7 +1067,7 @@
       "descripcion": "Gobierno de Alejandro Toledo"
     },
     {
-      "id": 52,
+      "id": 47,
       "candidato_id": 44,
       "cargo": "Alcalde de Lima",
       "institucion": "Municipalidad Metropolitana de Lima",
@@ -1121,7 +1076,7 @@
       "descripcion": "Gestión 1990-1995"
     },
     {
-      "id": 53,
+      "id": 48,
       "candidato_id": 46,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -1130,7 +1085,7 @@
       "descripcion": "Periodo 2011-2016"
     },
     {
-      "id": 54,
+      "id": 49,
       "candidato_id": 46,
       "cargo": "Candidata Presidencial",
       "institucion": "Elecciones Generales",
@@ -1139,7 +1094,7 @@
       "descripcion": "Primera vuelta 2016, tercer lugar"
     },
     {
-      "id": 55,
+      "id": 50,
       "candidato_id": 47,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -1148,7 +1103,7 @@
       "descripcion": "Periodo 2020-2021"
     },
     {
-      "id": 56,
+      "id": 51,
       "candidato_id": 13,
       "cargo": "Conductor de radio y televisión",
       "institucion": "Medios de comunicación",
@@ -1157,7 +1112,7 @@
       "descripcion": "Carrera en radio y televisión como comentarista y conductor"
     },
     {
-      "id": 57,
+      "id": 52,
       "candidato_id": 22,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -1166,7 +1121,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 58,
+      "id": 53,
       "candidato_id": 27,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -1175,7 +1130,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 59,
+      "id": 54,
       "candidato_id": 28,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -1184,7 +1139,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 60,
+      "id": 55,
       "candidato_id": 29,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -1193,7 +1148,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 61,
+      "id": 56,
       "candidato_id": 30,
       "cargo": "Congresista",
       "institucion": "Congreso de la República",
@@ -1202,7 +1157,7 @@
       "descripcion": "Periodo 2021-2026"
     },
     {
-      "id": 62,
+      "id": 57,
       "candidato_id": 37,
       "cargo": "Empresario - Fundador",
       "institucion": "Empresa privada",
@@ -1211,7 +1166,7 @@
       "descripcion": "Actividad empresarial y liderazgo en el sector privado"
     },
     {
-      "id": 63,
+      "id": 58,
       "candidato_id": 40,
       "cargo": "Conductor de radio",
       "institucion": "Medios de comunicación",
@@ -1220,7 +1175,7 @@
       "descripcion": "Carrera periodística y conducción en radio"
     },
     {
-      "id": 64,
+      "id": 59,
       "candidato_id": 45,
       "cargo": "Líder político",
       "institucion": "Partido Peruano de Liberación",
@@ -1229,7 +1184,7 @@
       "descripcion": "Fundador y líder del movimiento político"
     },
     {
-      "id": 65,
+      "id": 60,
       "candidato_id": 48,
       "cargo": "Dirigente juvenil",
       "institucion": "Partido Aprista Peruano",
@@ -1238,7 +1193,7 @@
       "descripcion": "Liderazgo en organizaciones juveniles del partido"
     },
     {
-      "id": 66,
+      "id": 61,
       "candidato_id": 49,
       "cargo": "Precandidata Vice Presidencial",
       "institucion": "Partido Aprista Peruano",
@@ -1247,7 +1202,7 @@
       "descripcion": "Postulación interna y actividad política"
     },
     {
-      "id": 67,
+      "id": 62,
       "candidato_id": 50,
       "cargo": "Precandidato Presidencial",
       "institucion": "Perú Primero",
