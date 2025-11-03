@@ -53,7 +53,7 @@ class CandidatosViewModel(
             resultado = resultado.filter {
                 it.nombre.contains(query, ignoreCase = true) ||
                         it.partido.contains(query, ignoreCase = true) ||
-                        it.region.contains(query, ignoreCase = true)
+                        (it.region?.contains(query, ignoreCase = true) ?: false)
             }
         }
         when (filter) {
@@ -71,28 +71,24 @@ class CandidatosViewModel(
 
     init {
         viewModelScope.launch {
-            // 1. Ejecutar y esperar a que la siembra termine en un hilo de IO.
-            withContext(Dispatchers.IO) {
-                candidatoRepository.ensureSeeded()
-            }
-
-            // 2. Una vez terminada la siembra, lanzar la recolección de datos.
-            launch {
-                candidatoRepository.getCandidatos().collect { candidatos ->
-                    _candidatos.value = candidatos
-                    _totalCandidatos.value = candidatos.size
-                    _totalPropuestas.value = candidatos.sumOf { it.propuestas?.size ?: 0 }
-                }
-            }
-
-            launch {
-                favoritoRepository.obtenerFavoritos().map { list -> list.map { it.candidatoId } }.collect {
-                    _favoritos.value = it
-                }
-            }
-
-            cargarMasBuscados()
+            candidatoRepository.refreshCandidatos()
         }
+
+        viewModelScope.launch {
+            candidatoRepository.getCandidatos().collect { candidatos ->
+                _candidatos.value = candidatos
+                _totalCandidatos.value = candidatos.size
+                _totalPropuestas.value = candidatos.sumOf { it.propuestas?.size ?: 0 }
+            }
+        }
+
+        viewModelScope.launch {
+            favoritoRepository.obtenerFavoritos().map { list -> list.map { it.candidatoId } }.collect {
+                _favoritos.value = it
+            }
+        }
+
+        cargarMasBuscados()
     }
 
     fun onSearchQueryChange(query: String) { _searchQuery.value = query }
@@ -103,8 +99,7 @@ class CandidatosViewModel(
             candidatoRepository.getCandidato(id).collect { candidato ->
                 _selectedCandidato.value = candidato
                 candidato?.let {
-                    candidatoRepository.incrementarVisitas(it.id)
-                    cargarMasBuscados()
+                    incrementarVisitas(it.id)
                 }
             }
         }
@@ -122,11 +117,11 @@ class CandidatosViewModel(
 
     fun cargarMasBuscados() {
         viewModelScope.launch {
-            candidatoRepository.getMasBuscados().collect { _masBuscados.value = it }
+            _masBuscados.value = candidatoRepository.getMasBuscados()
         }
     }
 
-    fun registrarVisita(id: Int) {
+    fun incrementarVisitas(id: Int) {
         viewModelScope.launch {
             candidatoRepository.incrementarVisitas(id)
             cargarMasBuscados()

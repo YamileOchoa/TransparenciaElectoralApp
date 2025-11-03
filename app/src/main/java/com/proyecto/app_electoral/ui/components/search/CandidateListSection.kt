@@ -79,13 +79,12 @@ fun CandidateListItem(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    val fotoResId = if (candidato.fotoResId != 0) candidato.fotoResId else R.drawable.ic_profile_placeholder
-                    Log.d("ImageCheck", "Cargando imagen para: ${candidato.foto_url} → id=$fotoResId")
-
                     val imageRequest = ImageRequest.Builder(LocalContext.current)
-                        .data(fotoResId)
+                        .data("http://10.0.2.2:8000" + candidato.fotoUrl)
                         .size(512) // Optimización: redimensionar la imagen
                         .crossfade(true)
+                        .placeholder(R.drawable.ic_profile_placeholder)
+                        .error(R.drawable.ic_profile_placeholder)
                         .build()
 
                     AsyncImage(
@@ -117,7 +116,7 @@ fun CandidateListItem(
                         }
 
                         Text(candidato.partido, color = Color(0xFF1976D2), fontSize = 14.sp)
-                        Text("${candidato.cargo} • ${candidato.region}", color = Color.Gray, fontSize = 13.sp)
+                        Text("${candidato.historial?.firstOrNull()?.cargo ?: "Sin cargo"} • ${candidato.region}", color = Color.Gray, fontSize = 13.sp)
 
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(Icons.Filled.AccessTime, "Experiencia", tint = Color.Gray, modifier = Modifier.size(12.dp))

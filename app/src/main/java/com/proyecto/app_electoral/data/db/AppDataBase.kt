@@ -11,7 +11,7 @@ import com.proyecto.app_electoral.data.model.Candidato
 import com.proyecto.app_electoral.data.model.Favorito
 
 // 1. Añadimos la nueva entidad y subimos la versión de la DB a 4
-@Database(entities = [Candidato::class, Favorito::class], version = 4, exportSchema = false)
+@Database(entities = [Candidato::class, Favorito::class], version = 5, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

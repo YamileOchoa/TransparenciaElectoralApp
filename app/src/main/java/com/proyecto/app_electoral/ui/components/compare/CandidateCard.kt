@@ -29,7 +29,7 @@ import com.proyecto.app_electoral.R
 fun CandidateCard(
     name: String,
     party: String,
-    fotoResId: Int,
+    fotoUrl: String?,
     hasCandidate: Boolean,
     onButtonClick: () -> Unit
 ) {
@@ -50,13 +50,12 @@ fun CandidateCard(
             contentAlignment = Alignment.Center
         ) {
             if (hasCandidate) {
-                val id = if (fotoResId != 0) fotoResId else R.drawable.ic_profile_placeholder
-                Log.d("ImageCheck", "Cargando imagen para (Comparar): $name → id=$id")
-
                 val imageRequest = ImageRequest.Builder(LocalContext.current)
-                    .data(id)
+                    .data("http://10.0.2.2:8000" + fotoUrl)
                     .size(512) // Optimización: redimensionar la imagen
                     .crossfade(true)
+                    .placeholder(R.drawable.ic_profile_placeholder)
+                    .error(R.drawable.ic_profile_placeholder)
                     .build()
 
                 AsyncImage(

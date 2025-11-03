@@ -37,13 +37,12 @@ fun ProfileCard(candidato: Candidato) {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(24.dp)
         ) {
-            val fotoResId = if (candidato.fotoResId != 0) candidato.fotoResId else R.drawable.ic_profile_placeholder
-            Log.d("ImageCheck", "Cargando imagen para (Perfil): ${candidato.foto_url} → id=$fotoResId")
-
             val imageRequest = ImageRequest.Builder(LocalContext.current)
-                .data(fotoResId)
-                .size(512) // Optimización: redimensionar la imagen
+                .data("http://10.0.2.2:8000" + candidato.fotoUrl)
+                .size(512)
                 .crossfade(true)
+                .placeholder(R.drawable.ic_profile_placeholder)
+                .error(R.drawable.ic_profile_placeholder)
                 .build()
 
             AsyncImage(
@@ -74,7 +73,7 @@ fun ProfileCard(candidato: Candidato) {
             )
             Spacer(modifier = Modifier.height(2.dp))
             Text(
-                text = "Candidato a ${candidato.cargo}",
+                text = "Candidato a ${candidato.historial?.firstOrNull()?.cargo ?: "Sin cargo"}",
                 fontSize = 14.sp,
                 color = Color(0xFF9E9E9E),
                 textAlign = TextAlign.Center

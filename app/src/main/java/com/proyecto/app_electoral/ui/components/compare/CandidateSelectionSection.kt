@@ -46,7 +46,7 @@ fun CandidateSelectionSection(
                 CandidateCard(
                     name = candidato1?.nombre ?: "Seleccionar",
                     party = candidato1?.partido ?: "Candidato",
-                    fotoResId = candidato1?.fotoResId ?: 0,
+                    fotoUrl = candidato1?.fotoUrl,
                     hasCandidate = candidato1 != null,
                     onButtonClick = { expanded1 = true }
                 )
@@ -78,7 +78,7 @@ fun CandidateSelectionSection(
                 CandidateCard(
                     name = candidato2?.nombre ?: "Seleccionar",
                     party = candidato2?.partido ?: "Candidato",
-                    fotoResId = candidato2?.fotoResId ?: 0,
+                    fotoUrl = candidato2?.fotoUrl,
                     hasCandidate = candidato2 != null,
                     onButtonClick = { expanded2 = true }
                 )
