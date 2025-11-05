@@ -26,11 +26,14 @@ class CandidatoSerializer(serializers.ModelSerializer):
     denuncias = DenunciaSerializer(many=True, read_only=True)
     proyectos = ProyectoSerializer(many=True, read_only=True)
     propuestas = PropuestaSerializer(many=True, read_only=True)
+    foto_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Candidato
-        fields = (
-            'id', 'nombre', 'partido', 'region', 'biografia', 'experiencia', 
-            'dni', 'nacimiento', 'estado', 'visitas', 'foto', 
-            'historial_cargos', 'denuncias', 'proyectos', 'propuestas'
-        )
+        fields = '__all__'
+
+    def get_foto_url(self, obj):
+        request = self.context.get('request')
+        if obj.foto:
+            return request.build_absolute_uri(obj.foto.url)
+        return None
