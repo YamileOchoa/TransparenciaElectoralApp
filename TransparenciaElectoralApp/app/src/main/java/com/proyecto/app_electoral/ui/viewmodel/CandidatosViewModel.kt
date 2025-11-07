@@ -121,6 +121,14 @@ class CandidatosViewModel(
         }
     }
 
+    fun cargarCandidatos() {
+        viewModelScope.launch {
+            Log.d("CandidatosViewModel", "📡 Cargando candidatos desde el repositorio...")
+            candidatoRepository.refreshCandidatos()
+        }
+    }
+
+
     fun incrementarVisitas(id: Int) {
         viewModelScope.launch {
             candidatoRepository.incrementarVisitas(id)

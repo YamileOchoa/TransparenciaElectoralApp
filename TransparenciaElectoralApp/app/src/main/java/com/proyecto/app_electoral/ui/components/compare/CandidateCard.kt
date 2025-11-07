@@ -3,6 +3,7 @@ package com.proyecto.app_electoral.ui.components.compare
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,13 +34,23 @@ fun CandidateCard(
     hasCandidate: Boolean,
     onButtonClick: () -> Unit
 ) {
+    Log.d("CandidateCard", "Renderizando card: $name / hasCandidate=$hasCandidate / foto=$fotoUrl")
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.width(120.dp)
+        modifier = Modifier
+            .width(120.dp)
+            .then(
+                // Si NO hay candidato, hacemos toda la tarjeta clickeable para abrir el diálogo
+                if (!hasCandidate) {
+                    Modifier.clickable { onButtonClick() }
+                } else {
+                    Modifier // Si hay candidato, el botón "Cambiar" se encarga del click
+                }
+            )
     ) {
         Box(
             modifier = Modifier
-                .size(64.dp)
+                .size(80.dp)
                 .clip(CircleShape)
                 .background(if (hasCandidate) Color(0xFFE8E8E8) else Color.Transparent)
                 .then(
@@ -50,9 +61,21 @@ fun CandidateCard(
             contentAlignment = Alignment.Center
         ) {
             if (hasCandidate) {
-                val imageRequest = ImageRequest.Builder(LocalContext.current)
-                    .data("http://10.0.2.2:8000" + fotoUrl)
-                    .size(512) // Optimización: redimensionar la imagen
+                val context = LocalContext.current
+
+                val validUrl = fotoUrl?.let {
+                    when {
+                        it.startsWith("http://127.0.0.1") -> it.replace("127.0.0.1", "10.0.2.2")
+                        it.startsWith("http://localhost") -> it.replace("localhost", "10.0.2.2")
+                        it.startsWith("http") -> it
+                        else -> "http://10.0.2.2:8000$it"
+                    }
+                }
+
+                Log.d("CandidateCard", "📸 URL final que carga Coil: $validUrl")
+
+                val imageRequest = ImageRequest.Builder(context)
+                    .data(validUrl)
                     .crossfade(true)
                     .placeholder(R.drawable.ic_profile_placeholder)
                     .error(R.drawable.ic_profile_placeholder)
@@ -66,7 +89,9 @@ fun CandidateCard(
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize()
                 )
-            } else {
+
+            }
+            else {
                 Icon(
                     imageVector = Icons.Default.Add,
                     contentDescription = null,
@@ -93,6 +118,7 @@ fun CandidateCard(
             textAlign = TextAlign.Center
         )
 
+        // Este botón solo aparece si hay un candidato, y su onClick ya funciona correctamente.
         if (hasCandidate) {
             Spacer(modifier = Modifier.height(8.dp))
             Button(

@@ -38,7 +38,7 @@ fun ProfileCard(candidato: Candidato) {
             modifier = Modifier.padding(24.dp)
         ) {
             val imageRequest = ImageRequest.Builder(LocalContext.current)
-                .data("http://10.0.2.2:8000" + candidato.fotoUrl)
+                .data(candidato.fotoUrl)
                 .size(512)
                 .crossfade(true)
                 .placeholder(R.drawable.ic_profile_placeholder)

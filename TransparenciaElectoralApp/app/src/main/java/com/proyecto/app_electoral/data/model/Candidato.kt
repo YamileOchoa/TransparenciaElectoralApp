@@ -12,7 +12,7 @@ data class Candidato(
     val biografia: String,
     val experiencia: Int,
     val visitas: Int = 0,
-    @SerializedName("foto") val fotoUrl: String?,
+    @SerializedName("foto_url") val fotoUrl: String?,
     val region: String?,
     val estado: String?,
     val dni: String?,

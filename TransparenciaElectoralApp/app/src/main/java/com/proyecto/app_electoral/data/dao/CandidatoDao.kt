@@ -24,4 +24,8 @@ interface CandidatoDao {
 
     @Query("UPDATE candidatos SET visitas = visitas + 1 WHERE id = :id")
     suspend fun incrementarVisitas(id: Int)
+
+    @Query("DELETE FROM candidatos")
+    suspend fun clearAll()
+
 }

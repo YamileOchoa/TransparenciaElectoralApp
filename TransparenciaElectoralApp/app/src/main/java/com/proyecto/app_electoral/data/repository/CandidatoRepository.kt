@@ -15,12 +15,18 @@ class CandidatoRepository(
 
     suspend fun refreshCandidatos() {
         try {
+            Log.d("CandidatoRepository", "🔄 Descargando candidatos desde la API...")
             val candidatosFromApi = apiService.getCandidatos()
+
+            db.candidatoDao().clearAll() // ← limpia la tabla antes de insertar
+
             db.candidatoDao().insertAll(candidatosFromApi)
+            Log.d("CandidatoRepository", "✅ Candidatos guardados: ${candidatosFromApi.size}")
         } catch (e: Exception) {
             Log.e("CandidatoRepository", "Error al refrescar desde la API", e)
         }
     }
+
 
     fun getCandidatos(): Flow<List<Candidato>> = db.candidatoDao().getAllCandidatos()
 
