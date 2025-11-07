@@ -28,6 +28,18 @@ class HistorialCargoViewSet(viewsets.ModelViewSet):
     queryset = HistorialCargo.objects.all()
     serializer_class = HistorialCargoSerializer
 
+    def create(self, request, *args, **kwargs):
+        # Si el cuerpo es una lista → many=True
+        if isinstance(request.data, list):
+            serializer = self.get_serializer(data=request.data, many=True)
+        else:
+            serializer = self.get_serializer(data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 class DenunciaViewSet(viewsets.ModelViewSet):
     queryset = Denuncia.objects.all()
     serializer_class = DenunciaSerializer

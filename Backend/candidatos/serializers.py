@@ -4,9 +4,16 @@ from .models import Candidato, HistorialCargo, Denuncia, Proyecto, Propuesta
 
 
 class HistorialCargoSerializer(serializers.ModelSerializer):
+    periodo = serializers.SerializerMethodField() 
+
     class Meta:
         model = HistorialCargo
         fields = '__all__'
+    def get_periodo(self, obj):
+        if obj.fecha_fin:
+            return f"{obj.fecha_inicio} - {obj.fecha_fin}"
+        else:
+            return f"{obj.fecha_inicio} - vigente"
 
 class DenunciaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,19 +35,12 @@ class CandidatoSerializer(serializers.ModelSerializer):
     denuncias = DenunciaSerializer(many=True, read_only=True)
     proyectos = ProyectoSerializer(many=True, read_only=True)
     propuestas = PropuestaSerializer(many=True, read_only=True)
-    foto_url = serializers.SerializerMethodField()
     edad = serializers.SerializerMethodField() 
 
 
     class Meta:
         model = Candidato
         fields = '__all__'
-
-    def get_foto_url(self, obj):
-        request = self.context.get('request')
-        if obj.foto:
-            return request.build_absolute_uri(obj.foto.url)
-        return None
     
     def get_edad(self, obj):
         if obj.nacimiento:

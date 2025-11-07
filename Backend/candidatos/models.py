@@ -4,10 +4,9 @@ class Candidato(models.Model):
     nombre = models.CharField(max_length=100)
     partido = models.CharField(max_length=100)
     biografia = models.TextField()
-    experiencia = models.IntegerField()
     visitas = models.PositiveIntegerField(default=0)
-    foto = models.ImageField(upload_to='candidatos/', null=True, blank=True)
-    dni = models.IntegerField(default=0)
+    foto_url = models.URLField(null=True, blank=True)  # Cambiado a URLField
+    dni = models.CharField(max_length=20, null=True, blank=True)
     region = models.CharField(max_length=100, default="Desconocido")
     nacimiento = models.DateField(null=True, blank=True)
     estado = models.CharField(max_length=100, default="Activo")
@@ -24,7 +23,7 @@ class HistorialCargo(models.Model):
     cargo = models.CharField(max_length=100)
     institucion = models.CharField(max_length=100)
     fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
+    fecha_fin = models.DateField(null=True, blank=True)
     descripcion = models.TextField()
     fuente_url = models.URLField(null=True, blank=True)
 
@@ -46,6 +45,11 @@ class Denuncia(models.Model):
         return self.titulo
 
 class Proyecto(models.Model):
+    class Estado(models.TextChoices):
+        SIN_INICIAR = "Sin iniciar", "Sin iniciar"
+        EN_EJECUCION = "En ejecución", "En ejecución"
+        FINALIZADO = "Finalizado", "Finalizado"
+        
     candidato = models.ForeignKey(Candidato, related_name='proyectos', on_delete=models.CASCADE)
     titulo = models.CharField(max_length=200)
     descripcion = models.TextField()
@@ -57,13 +61,21 @@ class Proyecto(models.Model):
         return self.titulo
 
 class Propuesta(models.Model):
+    class Prioridad(models.TextChoices):
+        ALTA = "Alta", "Alta"
+        MEDIA = "Media", "Media"
+        BAJA = "Baja", "Baja"
+
     candidato = models.ForeignKey(Candidato, related_name='propuestas', on_delete=models.CASCADE)
     titulo = models.CharField(max_length=200)
     descripcion = models.TextField()
     categoria = models.CharField(max_length=100)
-    prioridad = models.CharField(max_length=50)
+    prioridad = models.CharField(
+        max_length=50,
+        choices=Prioridad.choices,
+        default=Prioridad.MEDIA
+    )
     fuente_url = models.URLField(null=True, blank=True)
-
 
     def __str__(self):
         return self.titulo
