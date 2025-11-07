@@ -19,18 +19,16 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme // Importación CRÍTICA
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-// Importa el objeto Screen si ya lo tienes definido para las rutas
 // import com.proyecto.app_electoral.ui.navigation.Screen
 
 /**
@@ -42,15 +40,11 @@ data class QuickAccessItem(
     val route: String // Ruta de navegación, usa un placeholder por ahora
 )
 
-// Definición de los 4 accesos rápidos
+// Definición de los 4 accesos rápidos (Sin cambios, es data)
 private val accessItems = listOf(
-    // 1. Buscar Candidato
     QuickAccessItem("Buscar Candidato", Icons.Default.Search, "search_route"),
-    // 2. Estadísticas
     QuickAccessItem("Estadísticas", Icons.Default.Assessment, "stats_route"),
-    // 3. Comparar
     QuickAccessItem("Comparar", Icons.Default.CompareArrows, "compare_route"),
-    // 4. Voto Informado
     QuickAccessItem("Voto Informado", Icons.Default.Description, "vote_info_route")
 )
 
@@ -67,14 +61,14 @@ fun QuickAccessGrid(navController: NavController) {
         // Fila 1 (Ítem 1 y 2)
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween // Distribuye el espacio entre ellas
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             QuickAccessItemCard(item = accessItems[0], navController, Modifier.weight(1f))
-            Spacer(modifier = Modifier.width(16.dp)) // Espacio entre tarjetas
+            Spacer(modifier = Modifier.width(16.dp))
             QuickAccessItemCard(item = accessItems[1], navController, Modifier.weight(1f))
         }
 
-        Spacer(modifier = Modifier.height(16.dp)) // Espacio entre filas
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Fila 2 (Ítem 3 y 4)
         Row(
@@ -93,10 +87,10 @@ fun QuickAccessItemCard(item: QuickAccessItem, navController: NavController, mod
     Card(
         modifier = modifier
             .height(120.dp)
-            // Implementa navegación (reemplazar la lambda con la lógica de navegación real)
             .clickable { navController.navigate(item.route) },
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        // [MODIFICADO] Usamos el color de Superficie del tema (Color.White en modo claro)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(
@@ -110,15 +104,17 @@ fun QuickAccessItemCard(item: QuickAccessItem, navController: NavController, mod
             Icon(
                 imageVector = item.icon,
                 contentDescription = item.title,
-                tint = Color(0xFF542F96), // Color morado principal
+                // [MODIFICADO] Usamos el color Primario del tema (el morado principal)
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(32.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = item.title,
-                fontWeight = FontWeight.Bold,
+                // [MODIFICADO] Usamos la tipografía del tema (labelLarge es ideal para botones/etiquetas)
+                style = MaterialTheme.typography.labelLarge,
                 textAlign = TextAlign.Center,
-                fontSize = 14.sp
+                // El color del texto será automáticamente MaterialTheme.colorScheme.onSurface
             )
         }
     }

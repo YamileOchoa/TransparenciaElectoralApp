@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.proyecto.app_electoral.data.network.model.Candidato
@@ -24,7 +25,6 @@ import com.proyecto.app_electoral.ui.components.home.ImageLoader // Importamos l
 
 /**
  * Tarjeta horizontal para mostrar un candidato (usada en Los 3 Más Vistos).
- * Ocupa casi todo el ancho del móvil.
  */
 @Composable
 fun CandidateListItem(candidate: Candidato, modifier: Modifier = Modifier) {
@@ -34,8 +34,9 @@ fun CandidateListItem(candidate: Candidato, modifier: Modifier = Modifier) {
             .padding(vertical = 4.dp)
             .clickable { /* Acción de navegación a detalle del candidato */ },
         shape = RoundedCornerShape(10.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp) // Sombra suave
+        // [MODIFICADO] Usamos el color de Superficie del tema
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
     ) {
         Row(
             modifier = Modifier
@@ -43,7 +44,7 @@ fun CandidateListItem(candidate: Candidato, modifier: Modifier = Modifier) {
                 .padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Foto (usamos la utilidad)
+            // Foto (usamos la utilidad ImageLoader)
             ImageLoader(
                 imageUrl = candidate.foto_url,
                 contentDescription = "Foto de ${candidate.nombre}",
@@ -57,16 +58,17 @@ fun CandidateListItem(candidate: Candidato, modifier: Modifier = Modifier) {
                 // Nombre en negrita
                 Text(
                     text = candidate.nombre,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                    color = Color.Black
+                    // [MODIFICADO] Usamos la tipografía y el color del tema
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 // Partido Político como gris suave
                 Text(
                     text = candidate.partido,
-                    fontSize = 13.sp,
-                    color = Color.Gray
+                    // [MODIFICADO] Usamos una variante para texto secundario
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }

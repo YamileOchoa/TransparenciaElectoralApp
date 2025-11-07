@@ -8,14 +8,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.proyecto.app_electoral.ui.navigation.AppNavigation // Importamos el NavHost principal
-import com.proyecto.app_electoral.ui.theme.AppelectoralTheme
+import com.proyecto.app_electoral.ui.theme.AppElectoralTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             // Asegúrese de usar el nombre correcto de su tema (usé 'TransparenciaElectoralAppTheme' del ejemplo anterior)
-            AppelectoralTheme {
+            AppElectoralTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background

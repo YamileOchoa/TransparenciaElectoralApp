@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme // Importación CRÍTICA
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,8 +17,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import coil.compose.rememberAsyncImagePainter // Necesario si usa versiones antiguas de Coil
-import androidx.compose.runtime.remember // Importar remember
 import androidx.compose.ui.graphics.painter.ColorPainter
 
 
@@ -34,18 +33,22 @@ fun ImageLoader(
     modifier: Modifier = Modifier
 ) {
     // Si la URL es nula, usamos un placeholder genérico
-    val finalUrl = imageUrl ?: "https://placehold.co/1x1.png" // URL de placeholder mínima
+    val finalUrl = imageUrl ?: "https://placehold.co/1x1.png"
 
-    // Definimos el Composable que actuará como 'error' y 'placeholder'
+    // [MODIFICACIÓN] Usamos tokens del tema para que respeten el modo claro/oscuro
+    val placeholderBackgroundColor = MaterialTheme.colorScheme.surfaceVariant
+    val placeholderContentColor = MaterialTheme.colorScheme.onSurfaceVariant
+
+    // [Modificación] El Composable de errorPlaceholder ahora usa los tokens del tema
     val errorPlaceholder: @Composable () -> Unit = {
         Box(
             modifier = Modifier
                 .size(width, height)
                 .clip(RoundedCornerShape(8.dp))
-                .background(Color(0xFFCCCCCC)), // Fondo gris
+                .background(placeholderBackgroundColor),
             contentAlignment = Alignment.Center
         ) {
-            Text("N/A", color = Color.Black)
+            Text("N/A", color = placeholderContentColor)
         }
     }
 
@@ -59,7 +62,8 @@ fun ImageLoader(
             .size(width, height)
             .clip(RoundedCornerShape(8.dp)),
         contentScale = ContentScale.Crop,
-        error = ColorPainter(Color(0xFFCCCCCC)), // simple fondo gris como error
-        placeholder = ColorPainter(Color.LightGray) // color de carga
+        // [MODIFICACIÓN] Usamos los tokens para los pintores de error y placeholder
+        error = ColorPainter(placeholderBackgroundColor),
+        placeholder = ColorPainter(MaterialTheme.colorScheme.surfaceContainerHighest) // Gris claro/superficie
     )
 }

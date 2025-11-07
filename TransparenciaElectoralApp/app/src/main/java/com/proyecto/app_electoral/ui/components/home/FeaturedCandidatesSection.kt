@@ -11,15 +11,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.MaterialTheme // Importación clave
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.proyecto.app_electoral.data.network.model.Candidato
-import com.proyecto.app_electoral.ui.components.home.ImageLoader// Importamos la utilidad ImageLoader
+import com.proyecto.app_electoral.ui.components.home.ImageLoader
 
 /**
  * Sección que muestra el título "Candidatos Destacados" y un carrusel horizontal.
@@ -29,8 +29,10 @@ fun FeaturedCandidatesSection(candidates: List<Candidato>) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = "Candidatos Destacados",
-            fontWeight = FontWeight.Bold,
-            fontSize = 18.sp,
+            // [MODIFICADO] Usamos headlineMedium o titleLarge para títulos de sección
+            style = MaterialTheme.typography.headlineMedium,
+            // Aseguramos el color de contraste
+            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
         )
 
@@ -46,7 +48,7 @@ fun FeaturedCandidatesSection(candidates: List<Candidato>) {
 }
 
 /**
- * Diseño individual de la tarjeta para el carrusel (168px ancho, 190px alto).
+ * Diseño individual de la tarjeta para el carrusel (168dp ancho, 190dp alto).
  */
 @Composable
 fun CandidateCarouselItem(candidate: Candidato) {
@@ -58,7 +60,7 @@ fun CandidateCarouselItem(candidate: Candidato) {
     ) {
         // Foto de 168dp x 190dp
         ImageLoader(
-            imageUrl = candidate.foto_url, // Usamos foto_url
+            imageUrl = candidate.foto_url,
             contentDescription = "Foto de ${candidate.nombre}",
             width = 168.dp,
             height = 190.dp
@@ -66,15 +68,18 @@ fun CandidateCarouselItem(candidate: Candidato) {
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = candidate.nombre,
-            fontWeight = FontWeight.Bold,
-            fontSize = 16.sp,
-            color = Color.Black,
+            // [MODIFICADO] Usamos titleMedium para el nombre
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground,
             maxLines = 1,
+            overflow = TextOverflow.Ellipsis // Para manejar nombres largos
         )
         Text(
             text = candidate.partido, // Campo partido
-            fontSize = 12.sp,
-            color = Color.Gray // Gris suave para el partido
+            // [MODIFICADO] Usamos labelSmall o bodySmall para información secundaria
+            style = MaterialTheme.typography.bodySmall,
+            // Usamos onSurfaceVariant para texto secundario grisáceo
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
 }
