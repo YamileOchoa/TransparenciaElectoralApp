@@ -11,6 +11,8 @@ class Candidato(models.Model):
     region = models.CharField(max_length=100, default="Desconocido")
     nacimiento = models.DateField(null=True, blank=True)
     estado = models.CharField(max_length=100, default="Activo")
+    fuente_url = models.URLField(null=True, blank=True)
+
 
     def __str__(self):
         return self.nombre
@@ -22,6 +24,8 @@ class HistorialCargo(models.Model):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     descripcion = models.TextField()
+    fuente_url = models.URLField(null=True, blank=True)
+
 
     def __str__(self):
         return f"{self.cargo} en {self.institucion}"
@@ -44,6 +48,8 @@ class Proyecto(models.Model):
     titulo = models.CharField(max_length=200)
     descripcion = models.TextField()
     categoria = models.CharField(max_length=100)
+    fuente_url = models.URLField(null=True, blank=True)
+
 
     def __str__(self):
         return self.titulo
@@ -54,6 +60,8 @@ class Propuesta(models.Model):
     descripcion = models.TextField()
     categoria = models.CharField(max_length=100)
     prioridad = models.CharField(max_length=50)
+    fuente_url = models.URLField(null=True, blank=True)
+
 
     def __str__(self):
         return self.titulo
