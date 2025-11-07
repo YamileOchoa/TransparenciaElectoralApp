@@ -103,13 +103,22 @@ private fun CompareItemColumn(
         modifier = modifier
             .padding(end = 8.dp)
     ) {
-        items.forEach { item ->
+        if (items.isEmpty()) {
             Text(
-                text = "• $item",
+                text = "Sin información disponible",
                 fontSize = 12.sp,
-                color = Color(0xFF666666),
+                color = Color(0xFF999999),
                 modifier = Modifier.padding(vertical = 4.dp)
             )
+        } else {
+            items.forEach { item ->
+                Text(
+                    text = "• $item",
+                    fontSize = 12.sp,
+                    color = Color(0xFF666666),
+                    modifier = Modifier.padding(vertical = 4.dp)
+                )
+            }
         }
 
         if (buttonText.isNotEmpty()) {

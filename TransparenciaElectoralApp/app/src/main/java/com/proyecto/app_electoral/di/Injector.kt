@@ -3,8 +3,7 @@ package com.proyecto.app_electoral.di
 import com.proyecto.app_electoral.data.network.ApiService
 import com.proyecto.app_electoral.data.network.BASE_URL
 import com.proyecto.app_electoral.data.repository.CandidatoRepository
-// Importar Repositorio si vas a manejar otros datos (ej: Historial, Denuncias)
-// import com.proyecto.app_electoral.data.repository.HistorialRepository
+import com.proyecto.app_electoral.data.repository.StatsRepository // [NUEVO] Importamos el repositorio de estadísticas
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -34,11 +33,9 @@ object Injector {
         return CandidatoRepository(apiService)
     }
 
-    /*
-    // Si decides separarlos, podrías agregar:
-    fun provideHistorialRepository(): HistorialRepository {
-        return HistorialRepository(apiService)
+    // [NUEVO] Proveedor del Repositorio de Estadísticas
+    fun provideStatsRepository(): StatsRepository {
+        // Inyecta el servicio de la API al nuevo Repositorio de Estadísticas
+        return StatsRepository(apiService)
     }
-    // ... y así para Denuncias, Proyectos, Propuestas
-    */
 }

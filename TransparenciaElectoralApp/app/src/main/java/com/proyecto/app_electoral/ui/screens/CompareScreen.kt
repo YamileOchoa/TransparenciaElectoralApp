@@ -1,171 +1,117 @@
 package com.proyecto.app_electoral.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.AssistChipDefaults
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.surfaceColorAtElevation
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-import com.proyecto.app_electoral.data.model.Candidato
+import androidx.navigation.NavController
 import com.proyecto.app_electoral.di.Injector
-import com.proyecto.app_electoral.ui.components.BottomNavigationBar
-import com.proyecto.app_electoral.ui.components.compare.CandidateDialog
-import com.proyecto.app_electoral.ui.components.compare.CandidateSelectionSection
-import com.proyecto.app_electoral.ui.components.compare.ComparisonSection
-import com.proyecto.app_electoral.ui.components.compare.DenunciasSection
-import com.proyecto.app_electoral.ui.components.search.HeaderSection
-import com.proyecto.app_electoral.ui.viewmodel.CandidatosViewModel
+import com.proyecto.app_electoral.ui.components.compare.CandidateComparisonContent
+import com.proyecto.app_electoral.ui.components.compare.CandidateSelectionDialog
+import com.proyecto.app_electoral.ui.components.compare.ComparisonHeader
+import com.proyecto.app_electoral.ui.components.compare.ComparisonTab
+import com.proyecto.app_electoral.ui.components.compare.ComparisonTabs
+import com.proyecto.app_electoral.ui.theme.BackgroundCustom
+import com.proyecto.app_electoral.ui.viewmodel.CompareSlot
+import com.proyecto.app_electoral.ui.viewmodel.CompareViewModel
+import com.proyecto.app_electoral.ui.viewmodel.CompareViewModelFactory
 
 @Composable
-fun CompareScreen(navController: NavHostController) {
-    var candidato1Selected by remember { mutableStateOf<Candidato?>(null) }
-    var candidato2Selected by remember { mutableStateOf<Candidato?>(null) }
-    var showDialog1 by remember { mutableStateOf(false) }
-    var showDialog2 by remember { mutableStateOf(false) }
+fun CompareScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    viewModel: CompareViewModel = viewModel(factory = CompareViewModelFactory(Injector.provideCandidatoRepository()))
+) {
+    val uiState by viewModel.uiState.collectAsState()
+    var selectedTab by remember { mutableStateOf(ComparisonTab.Experience) }
+    var activeDialogSlot by remember { mutableStateOf<CompareSlot?>(null) }
 
-    val viewModel: CandidatosViewModel = viewModel(
-        factory = Injector.provideViewModelFactory(context = LocalContext.current)
-    )
-
-    val candidatos by viewModel.filteredCandidatos.collectAsState(initial = emptyList())
-
-    LaunchedEffect(Unit) {
-        viewModel.cargarCandidatos()
-    }
-
-    LaunchedEffect(candidatos) {
-        if (candidato1Selected == null && candidatos.isNotEmpty()) {
-            candidato1Selected = candidatos.getOrNull(0)
-        }
-        if (candidato2Selected == null && candidatos.size > 1) {
-            candidato2Selected = candidatos.getOrNull(1)
-        }
-    }
-
-    Scaffold(
-        bottomBar = { BottomNavigationBar(navController, "comparar") }
-    ) { padding ->
-        Box(
-            modifier = Modifier
-                .padding(padding)
-                .fillMaxSize()
-                .background(Color(0xFFF5F6FA))
-        ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color(0xFFF5F6FA)),
-                contentPadding = PaddingValues(bottom = 80.dp)
-            ) {
-                item { HeaderSection() }
-
-                item {
-                    CandidateSelectionSection(
-                        candidatos = candidatos,
-                        candidato1 = candidato1Selected,
-                        candidato2 = candidato2Selected,
-                        onSelectCandidato1 = { showDialog1 = true },
-                        onSelectCandidato2 = { showDialog2 = true }
-                    )
-                }
-
-                item {
-                    ComparisonSection(
-                        title = "📋 Propuestas",
-                        candidate1Items = candidato1Selected?.propuestas?.map { it.titulo } ?: emptyList(),
-                        candidate1Button = "Ver todas (${candidato1Selected?.propuestas?.size ?: 0})",
-                        candidate2Items = candidato2Selected?.propuestas?.map { it.titulo } ?: emptyList(),
-                        candidate2Button = "Ver todas (${candidato2Selected?.propuestas?.size ?: 0})",
-                        hasCandidate2 = candidato2Selected != null
-                    )
-                }
-
-                item {
-                    ComparisonSection(
-                        title = "🏗️ Historial de Cargos",
-                        candidate1Items = candidato1Selected?.historial?.map { it.cargo } ?: emptyList(),
-                        candidate1Button = "Ver todos (${candidato1Selected?.historial?.size ?: 0})",
-                        candidate2Items = candidato2Selected?.historial?.map { it.cargo } ?: emptyList(),
-                        candidate2Button = "Ver todos (${candidato2Selected?.historial?.size ?: 0})",
-                        hasCandidate2 = candidato2Selected != null
-                    )
-                }
-
-                item {
-                    DenunciasSection(
-                        denuncias1 = candidato1Selected?.denuncias ?: emptyList(),
-                        denuncias2 = candidato2Selected?.denuncias ?: emptyList()
-                    )
-                }
-            }
-
-            // 🔹 DIALOGOS *fuera* del LazyColumn:
-            if (showDialog1) {
-                CandidateDialog(
-                    candidatos = candidatos,
-                    onSelect = {
-                        candidato1Selected = it
-                        showDialog1 = false
-                    },
-                    onDismiss = { showDialog1 = false }
-                )
-            }
-
-            if (showDialog2) {
-                CandidateDialog(
-                    candidatos = candidatos,
-                    onSelect = {
-                        candidato2Selected = it
-                        showDialog2 = false
-                    },
-                    onDismiss = { showDialog2 = false }
-                )
-            }
-        }
-    }
-}
-
-@Preview(showBackground = true, showSystemUi = true, name = "Vista de Comparación")
-@Composable
-fun PreviewCompareScreen() {
-    val navController = rememberNavController()
-    CompareScreen(navController = navController)
-}
-
-@Composable
-fun TestDialogVisibility() {
-    var showDialog by remember { mutableStateOf(false) }
-
-    Box(
-        modifier = Modifier
+    Column(
+        modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F6FA)),
-        contentAlignment = Alignment.Center
+            .background(BackgroundCustom)
     ) {
-        Button(onClick = { showDialog = true }) {
-            Text("Mostrar diálogo de prueba")
+        ComparisonHeader(
+            leftProfile = uiState.leftProfile,
+            rightProfile = uiState.rightProfile,
+            isLeftLoading = uiState.slotLoading == CompareSlot.LEFT,
+            isRightLoading = uiState.slotLoading == CompareSlot.RIGHT,
+            onBackClick = { navController.popBackStack() },
+            onSelectCandidateLeft = {
+                if (!uiState.isLoadingList) activeDialogSlot = CompareSlot.LEFT
+            },
+            onSelectCandidateRight = {
+                if (!uiState.isLoadingList) activeDialogSlot = CompareSlot.RIGHT
+            }
+        )
+
+        if (uiState.isLoadingList) {
+            LinearProgressIndicator(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                color = MaterialTheme.colorScheme.primary
+            )
+        } else {
+            Spacer(modifier = Modifier.size(8.dp))
         }
 
-        if (showDialog) {
-            AlertDialog(
-                onDismissRequest = { showDialog = false },
-                confirmButton = {
-                    TextButton(onClick = { showDialog = false }) {
-                        Text("Cerrar")
-                    }
-                },
-                title = { Text("Diálogo de prueba") },
-                text = { Text("Si ves esto, los diálogos funcionan correctamente.") }
+        uiState.error?.let { error ->
+            AssistChip(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                onClick = { viewModel.dismissError() },
+                label = { Text(text = error) },
+                colors = AssistChipDefaults.assistChipColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp),
+                    labelColor = MaterialTheme.colorScheme.error
+                )
             )
         }
+
+        ComparisonTabs(
+            selectedTab = selectedTab,
+            onTabSelected = { selectedTab = it }
+        )
+
+        CandidateComparisonContent(
+            modifier = Modifier
+                .fillMaxHeight()
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+            selectedTab = selectedTab,
+            leftProfile = uiState.leftProfile,
+            rightProfile = uiState.rightProfile
+        )
+    }
+
+    val slot = activeDialogSlot
+    if (slot != null) {
+        CandidateSelectionDialog(
+            candidatos = uiState.candidates,
+            onDismiss = { activeDialogSlot = null },
+            onSelect = { candidate ->
+                viewModel.selectCandidate(slot, candidate)
+                activeDialogSlot = null
+            }
+        )
     }
 }

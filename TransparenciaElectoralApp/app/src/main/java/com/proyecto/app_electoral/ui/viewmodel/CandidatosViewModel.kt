@@ -2,7 +2,7 @@ package com.proyecto.app_electoral.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.proyecto.app_electoral.data.model.Candidato
+import com.proyecto.app_electoral.data.network.model.Candidato
 import com.proyecto.app_electoral.data.repository.CandidatoRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

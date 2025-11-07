@@ -50,18 +50,23 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.ui)
     testImplementation(libs.junit)
+    implementation(platform("androidx.compose:compose-bom:2024.09.01"))
+
+
+
+    // --- Retrofit & Networking ---
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("io.coil-kt:coil-compose:2.5.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    // --- Room (Base de Datos) ---
-    val roomVersion = "2.6.1"
-    implementation("androidx.room:room-runtime:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
+    // --- Room (Base de Datos) - ELIMINADO para evitar el error @Entity ---
+    // val roomVersion = "2.6.1"
+    // implementation("androidx.room:room-runtime:$roomVersion")
+    // kapt("androidx.room:room-compiler:$roomVersion")
+    // implementation("androidx.room:room-ktx:$roomVersion")
+
     implementation("androidx.compose.material3:material3:1.3.1")
 
 

@@ -1,10 +1,10 @@
 package com.proyecto.app_electoral.data.network
 
-import com.proyecto.app_electoral.data.model.Candidato
-import com.proyecto.app_electoral.data.model.Denuncia
-import com.proyecto.app_electoral.data.model.HistorialCargo
-import com.proyecto.app_electoral.data.model.Propuesta
-import com.proyecto.app_electoral.data.model.Proyecto
+import com.proyecto.app_electoral.data.network.model.Candidato // <-- Nuevo path
+import com.proyecto.app_electoral.data.network.model.Denuncia // <-- Nuevo path
+import com.proyecto.app_electoral.data.network.model.HistorialCargo // <-- Nuevo path
+import com.proyecto.app_electoral.data.network.model.Propuesta // <-- Nuevo path
+import com.proyecto.app_electoral.data.network.model.Proyecto // <-- Nuevo path
 import retrofit2.http.GET
 
 // **IMPORTANTE:** Usar 10.0.2.2 para acceder a localhost desde el emulador de Android.
@@ -46,6 +46,4 @@ interface ApiService {
      */
     @GET("propuestas/")
     suspend fun getPropuestas(): List<Propuesta>
-
-    // Nota: Todas las funciones son 'suspend' para ser llamadas desde Coroutines (ViewModel).
 }
