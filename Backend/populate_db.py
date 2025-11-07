@@ -6,14 +6,12 @@ django.setup()
 from candidatos.models import Candidato, HistorialCargo, Denuncia, Proyecto, Propuesta
 from datetime import date
 
-# Clean up existing data
 Candidato.objects.all().delete()
 HistorialCargo.objects.all().delete()
 Denuncia.objects.all().delete()
 Proyecto.objects.all().delete()
 Propuesta.objects.all().delete()
 
-# Create a candidate
 candidato1 = Candidato.objects.create(
     nombre="Juan Perez",
     partido="Partido Transparente",
@@ -25,7 +23,6 @@ candidato1 = Candidato.objects.create(
     estado="Activo"
 )
 
-# Create related objects
 HistorialCargo.objects.create(
     candidato=candidato1,
     cargo="Congresista",
