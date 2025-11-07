@@ -10,14 +10,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme // Importación CRÍTICA
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember // Importación crucial
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color // Nota: Color no se usa directamente, pero se deja
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -30,24 +33,29 @@ import com.proyecto.app_electoral.ui.components.home.WelcomeCard
 import com.proyecto.app_electoral.ui.viewmodel.HomeViewModel
 
 /**
- * 🗳️ Pantalla principal (Home) del diseño, que orquesta todos los componentes
- * y maneja el estado de los datos del CandidatoRepository.
+ * 🗳️ Pantalla principal (Home) del diseño, que orquesta todo el contenido visible
+ * en la pestaña de inicio y maneja el estado de los datos del CandidatoRepository.
  */
 @Composable
 fun HomeScreen(
     navController: NavController,
+    modifier: Modifier = Modifier, // Añadido para aceptar el padding del BottomBar
     viewModel: HomeViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+
+    // El estado 'selectedTab' y la lógica de 'Scaffold' se han ELIMINADO de aquí.
+    // Esa lógica pertenece al AppNavigation y AppScreenWrapper.
 
     // --- Lógica de Filtrado y Ordenamiento ---
     val featuredCandidates = uiState.candidates.filter { it.visitas > 500 }
     val mostViewedCandidates = uiState.candidates.sortedByDescending { it.visitas }.take(3)
 
     Column(
-        modifier = Modifier
+        // Aplicamos el modifier que incluye el padding del BottomBar
+        modifier = modifier
             .fillMaxSize()
-            // [MODIFICADO] Usamos el color de fondo definido en Theme.kt (#F5F5F5 en modo claro)
+            // Usamos el color de fondo del tema
             .background(MaterialTheme.colorScheme.background)
     ) {
 
@@ -60,7 +68,7 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                // [MODIFICADO] Usamos el color Primario del tema para el indicador de carga
+                // Usamos el color Primario del tema para el indicador de carga
                 CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
             }
         } else if (uiState.error != null) {
@@ -72,14 +80,14 @@ fun HomeScreen(
             ) {
                 Text(
                     text = "¡Error de Conexión!\n${uiState.error}",
-                    // [MODIFICADO] Usamos el color de Error del tema
+                    // Usamos el color de Error del tema
                     color = MaterialTheme.colorScheme.error,
-                    // [MODIFICADO] Usamos la tipografía del tema
+                    // Usamos la tipografía del tema
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold)
                 )
             }
         } else {
-            // --- Contenido Principal con Scroll ---
+            // --- Contenido Principal con Scroll (LazyColumn) ---
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
@@ -96,7 +104,7 @@ fun HomeScreen(
                         Text(
                             text = "No hay candidatos destacados disponibles.",
                             modifier = Modifier.padding(horizontal = 16.dp),
-                            // [MODIFICADO] Usamos el color para texto secundario
+                            // Usamos el color para texto secundario
                             color = MaterialTheme.colorScheme.onBackground
                         )
                     }
@@ -114,7 +122,7 @@ fun HomeScreen(
                     item {
                         Text(
                             text = "Los 3 Más Vistos",
-                            // [MODIFICADO] Usamos la tipografía del tema para el título de sección
+                            // Usamos la tipografía del tema para el título de sección
                             style = MaterialTheme.typography.headlineMedium,
                             color = MaterialTheme.colorScheme.onBackground,
                             modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)

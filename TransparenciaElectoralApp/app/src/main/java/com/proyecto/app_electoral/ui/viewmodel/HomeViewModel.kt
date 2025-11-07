@@ -11,6 +11,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+// ------------------------------------------------------------------
+// DATA CLASS DE ESTADO
+// ------------------------------------------------------------------
+
 /**
  * Representa el estado actual de la pantalla de inicio (Home).
  */
@@ -20,22 +24,21 @@ data class HomeUiState(
     val error: String? = null
 )
 
+// ------------------------------------------------------------------
+// VIEW MODEL
+// ------------------------------------------------------------------
+
 /**
- * ViewModel para gestionar los datos de la Home Screen.
- * Utiliza StateFlow para exponer el estado reactivamente a Compose.
+ * ViewModel para gestionar los datos de la Home Screen y proveer datos base para la Search Screen.
  */
 class HomeViewModel(
     private val repository: CandidatoRepository = Injector.provideCandidatoRepository()
 ) : ViewModel() {
 
-    // MutableStateFlow interno para actualizar el estado.
     private val _uiState = MutableStateFlow(HomeUiState(isLoading = true))
-
-    // StateFlow público e inmutable que la UI consume.
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
     init {
-        // Al iniciar el ViewModel, carga los candidatos.
         loadCandidates()
     }
 
@@ -43,19 +46,16 @@ class HomeViewModel(
      * Función que realiza la llamada asíncrona a la API a través del repositorio.
      */
     fun loadCandidates() {
-        // Indica que la carga está en curso.
         _uiState.value = _uiState.value.copy(isLoading = true, error = null)
 
         viewModelScope.launch {
             try {
                 val candidates = repository.getCandidatos()
-                // Éxito: Actualiza la lista de candidatos y desactiva la carga.
                 _uiState.value = _uiState.value.copy(
                     candidates = candidates,
                     isLoading = false
                 )
             } catch (e: Exception) {
-                // Error: Captura la excepción y muestra un mensaje de error.
                 _uiState.value = _uiState.value.copy(
                     error = "Error al cargar candidatos: ${e.message}",
                     isLoading = false
@@ -64,14 +64,42 @@ class HomeViewModel(
             }
         }
     }
+
+    // ------------------------------------------------------------------
+    // LÓGICA DE FILTRADO PARA LA BÚSQUEDA (SearchScreen)
+    // ------------------------------------------------------------------
+
+    /**
+     * 🔍 Filtra la lista completa de candidatos almacenada en el estado local.
+     * La SearchScreen debe llamar a esta función cuando el texto de búsqueda cambie.
+     *
+     * @param query El texto ingresado por el usuario.
+     * @return Una lista de Candidato filtrada por nombre, partido o región.
+     */
+    fun filterCandidates(query: String): List<Candidato> {
+        val currentList = _uiState.value.candidates
+
+        if (query.isBlank()) {
+            return currentList // Devuelve la lista completa si la consulta está vacía.
+        }
+
+        val normalizedQuery = query.trim().lowercase()
+
+        return currentList.filter { candidato ->
+            // El filtro verifica si la consulta coincide en Nombre, Partido o Región.
+            candidato.nombre.lowercase().contains(normalizedQuery) ||
+                    candidato.partido.lowercase().contains(normalizedQuery) ||
+                    candidato.region.lowercase().contains(normalizedQuery)
+        }
+    }
 }
+
+// ------------------------------------------------------------------
+// VIEW MODEL FACTORY (Se mantiene sin cambios, es correcto)
+// ------------------------------------------------------------------
 
 /**
  * Factory para crear instancias del HomeViewModel.
- * Esto es necesario cuando el ViewModel tiene dependencias (como el Repositorio).
- *
- * NOTA: Para un proyecto con Hilt/Koin, este patrón sería reemplazado por la inyección.
- * Por ahora, lo hacemos manual.
  */
 class HomeViewModelFactory(private val repository: CandidatoRepository) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")

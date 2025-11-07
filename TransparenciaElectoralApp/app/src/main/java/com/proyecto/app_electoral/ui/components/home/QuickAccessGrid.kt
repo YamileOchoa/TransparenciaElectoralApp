@@ -29,7 +29,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-// import com.proyecto.app_electoral.ui.navigation.Screen
+import com.proyecto.app_electoral.ui.navigation.Screen
 
 /**
  * Clase de datos para cada ítem de acceso rápido.
@@ -42,7 +42,7 @@ data class QuickAccessItem(
 
 // Definición de los 4 accesos rápidos (Sin cambios, es data)
 private val accessItems = listOf(
-    QuickAccessItem("Buscar Candidato", Icons.Default.Search, "search_route"),
+    QuickAccessItem("Buscar Candidato", Icons.Default.Search, Screen.Search.route),
     QuickAccessItem("Estadísticas", Icons.Default.Assessment, "stats_route"),
     QuickAccessItem("Comparar", Icons.Default.CompareArrows, "compare_route"),
     QuickAccessItem("Voto Informado", Icons.Default.Description, "vote_info_route")
