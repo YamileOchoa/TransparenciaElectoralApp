@@ -1,22 +1,32 @@
 package com.proyecto.app_electoral
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.proyecto.app_electoral.data.repository.JsonRepository
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
+import com.proyecto.app_electoral.ui.navigation.AppNavigation // Importamos el NavHost principal
 import com.proyecto.app_electoral.ui.theme.AppelectoralTheme
-import com.proyecto.app_electoral.ui.screens.CandidatoTestScreen
 
-// En MainActivity.kt
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            // Asegúrese de usar el nombre correcto de su tema (usé 'TransparenciaElectoralAppTheme' del ejemplo anterior)
             AppelectoralTheme {
-                // LLAMAR AQUÍ:
-                CandidatoTestScreen()
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    // 🎉 ¡Iniciamos la navegación aquí!
+                    // La AppNavigation contiene el NavHost que inicia en SplashScreen.
+                    AppNavigation()
+                }
             }
         }
     }
 }
+
+
