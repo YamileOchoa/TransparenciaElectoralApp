@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+venv/
+.env/
+
+*.log
+  
+.idea/
+.vscode/
+
+*.apk
+*.aab
+.gradle/
+build/
+local.properties

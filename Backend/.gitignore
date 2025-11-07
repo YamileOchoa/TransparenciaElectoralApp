@@ -1,0 +1,30 @@
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Entorno virtual
+venv/
+.env/
+
+# (No ignoramos SQLite porque queremos compartir la BD)
+# *.sqlite3
+# db.sqlite3
+
+# Logs
+*.log
+
+# Configuración de IDEs
+.vscode/
+.idea/
+
+# Archivos temporales del sistema
+*.DS_Store
+Thumbs.db
+
+# Archivos Android (si aplica)
+*.apk
+*.aab
+.gradle/
+build/
+local.properties
