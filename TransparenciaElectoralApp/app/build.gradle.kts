@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -61,11 +60,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    // --- Room (Base de Datos) - ELIMINADO para evitar el error @Entity ---
-    // val roomVersion = "2.6.1"
-    // implementation("androidx.room:room-runtime:$roomVersion")
-    // kapt("androidx.room:room-compiler:$roomVersion")
-    // implementation("androidx.room:room-ktx:$roomVersion")
+    // --- Room (Base de Datos) - Eliminado ---
 
     implementation("androidx.compose.material3:material3:1.3.1")
 
