@@ -11,7 +11,9 @@ class Candidato(models.Model):
     region = models.CharField(max_length=100, default="Desconocido")
     nacimiento = models.DateField(null=True, blank=True)
     estado = models.CharField(max_length=100, default="Activo")
+    profesion = models.TextField(null=True, blank=True)
     fuente_url = models.URLField(null=True, blank=True)
+    
 
 
     def __str__(self):
