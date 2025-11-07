@@ -7,26 +7,27 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.proyecto.app_electoral.ui.navigation.AppNavigation // Importamos el NavHost principal
+import androidx.core.view.WindowCompat
+import com.proyecto.app_electoral.ui.navigation.AppNavigation
 import com.proyecto.app_electoral.ui.theme.AppElectoralTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Permitir dibujar edge-to-edge (detrás de status/navigation bars)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        // Opcional: hacer status bar transparente (si quieres ver el degradado debajo)
+        window.statusBarColor = android.graphics.Color.TRANSPARENT
+
         super.onCreate(savedInstanceState)
         setContent {
-            // Asegúrese de usar el nombre correcto de su tema (usé 'TransparenciaElectoralAppTheme' del ejemplo anterior)
             AppElectoralTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // 🎉 ¡Iniciamos la navegación aquí!
-                    // La AppNavigation contiene el NavHost que inicia en SplashScreen.
                     AppNavigation()
                 }
             }
         }
     }
 }
-
-

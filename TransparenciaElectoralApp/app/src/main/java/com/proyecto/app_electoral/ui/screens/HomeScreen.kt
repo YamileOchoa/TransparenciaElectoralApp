@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme // Importación CRÍTICA
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -19,11 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.proyecto.app_electoral.ui.components.home.AppHeader
-// Importamos los componentes de la subcarpeta 'home'
 import com.proyecto.app_electoral.ui.components.home.CandidateListItem
 import com.proyecto.app_electoral.ui.components.home.FeaturedCandidatesSection
 import com.proyecto.app_electoral.ui.components.home.QuickAccessGrid
@@ -37,25 +36,19 @@ import com.proyecto.app_electoral.ui.viewmodel.HomeViewModel
 @Composable
 fun HomeScreen(
     navController: NavController,
-    // El ViewModel se inyecta automáticamente usando la función compose 'viewModel()'
     viewModel: HomeViewModel = viewModel()
 ) {
-    // Recolecta el estado del flujo de datos (HomeUiState)
     val uiState by viewModel.uiState.collectAsState()
 
-    // --- Lógica de Filtrado y Ordenamiento (Basada en los datos del estado) ---
-
-    // Asunción: Candidatos Destacados son aquellos con más de 500 visitas.
+    // --- Lógica de Filtrado y Ordenamiento ---
     val featuredCandidates = uiState.candidates.filter { it.visitas > 500 }
-
-    // Los 3 Más Vistos: Ordenados por visitas descendente.
     val mostViewedCandidates = uiState.candidates.sortedByDescending { it.visitas }.take(3)
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            // Fondo de toda la pantalla: #F5F5F5
-            .background(Color(0xFFF5F5F5))
+            // [MODIFICADO] Usamos el color de fondo definido en Theme.kt (#F5F5F5 en modo claro)
+            .background(MaterialTheme.colorScheme.background)
     ) {
 
         // --- 1. Navbar con Degradado ---
@@ -67,7 +60,8 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator(color = Color(0xFF542F96))
+                // [MODIFICADO] Usamos el color Primario del tema para el indicador de carga
+                CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
             }
         } else if (uiState.error != null) {
             Box(
@@ -78,9 +72,10 @@ fun HomeScreen(
             ) {
                 Text(
                     text = "¡Error de Conexión!\n${uiState.error}",
-                    color = Color.Red,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold
+                    // [MODIFICADO] Usamos el color de Error del tema
+                    color = MaterialTheme.colorScheme.error,
+                    // [MODIFICADO] Usamos la tipografía del tema
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold)
                 )
             }
         } else {
@@ -90,9 +85,7 @@ fun HomeScreen(
             ) {
 
                 // --- A. Tarjeta de Bienvenida ---
-                item {
-                    WelcomeCard()
-                }
+                item { WelcomeCard() }
 
                 // --- B. Carrusel de Candidatos Destacados ---
                 item {
@@ -103,7 +96,8 @@ fun HomeScreen(
                         Text(
                             text = "No hay candidatos destacados disponibles.",
                             modifier = Modifier.padding(horizontal = 16.dp),
-                            color = Color.Gray
+                            // [MODIFICADO] Usamos el color para texto secundario
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
@@ -120,8 +114,9 @@ fun HomeScreen(
                     item {
                         Text(
                             text = "Los 3 Más Vistos",
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp,
+                            // [MODIFICADO] Usamos la tipografía del tema para el título de sección
+                            style = MaterialTheme.typography.headlineMedium,
+                            color = MaterialTheme.colorScheme.onBackground,
                             modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 8.dp)
                         )
                     }
