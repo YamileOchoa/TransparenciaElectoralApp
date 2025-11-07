@@ -1,5 +1,7 @@
 from rest_framework import serializers
+from datetime import date
 from .models import Candidato, HistorialCargo, Denuncia, Proyecto, Propuesta
+
 
 class HistorialCargoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,6 +29,8 @@ class CandidatoSerializer(serializers.ModelSerializer):
     proyectos = ProyectoSerializer(many=True, read_only=True)
     propuestas = PropuestaSerializer(many=True, read_only=True)
     foto_url = serializers.SerializerMethodField()
+    edad = serializers.SerializerMethodField() 
+
 
     class Meta:
         model = Candidato
@@ -36,4 +40,12 @@ class CandidatoSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if obj.foto:
             return request.build_absolute_uri(obj.foto.url)
+        return None
+    
+    def get_edad(self, obj):
+        if obj.nacimiento:
+            today = date.today()
+            return today.year - obj.nacimiento.year - (
+                (today.month, today.day) < (obj.nacimiento.month, obj.nacimiento.day)
+            )
         return None
