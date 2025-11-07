@@ -28,7 +28,7 @@ import com.proyecto.app_electoral.di.Injector
 import com.proyecto.app_electoral.ui.components.comparison.ComparisonHeader
 import com.proyecto.app_electoral.ui.components.comparison.ComparisonTabs
 import com.proyecto.app_electoral.ui.components.comparison.ExperienceContent
-import com.proyecto.app_electoral.ui.components.comparison.ProposalContent // Importación necesaria para el siguiente paso
+import com.proyecto.app_electoral.ui.components.comparison.ProposalContent
 import com.proyecto.app_electoral.ui.navigation.Screen // Importación necesaria para la navegación
 import com.proyecto.app_electoral.ui.viewmodel.ComparisonViewModel
 import com.proyecto.app_electoral.ui.viewmodel.ComparisonViewModelFactory
@@ -48,7 +48,7 @@ fun ComparisonScreen(
     navController: NavController,
     candidatoId1: Int?,
     candidatoId2: Int?,
-    modifier: Modifier = Modifier // <<-- AÑADIDO: Recibir el modifier de AppNavigation
+    modifier: Modifier = Modifier
 ) {
     // Inyección del ViewModel usando la Factory
     val repository = Injector.provideCandidatoRepository()
@@ -63,22 +63,37 @@ fun ComparisonScreen(
 
     // Función que se ejecuta cuando se hace clic en una tarjeta vacía
     val onSelectCandidate: (position: Int) -> Unit = { position ->
-        // Obtenemos el ID del candidato opuesto (el que NO se está cambiando)
-        val existingId = if (position == 1) candidatoId2 else candidatoId1
+        // 1️⃣ CORRECCIÓN CLAVE: Lanzar la navegación a SearchScreen con argumentos
+        val route = Screen.Search.createRoute(mode = "COMPARE", position = position)
+        navController.navigate(route)
+    }
 
-        // Navegamos a la pantalla de búsqueda (Screen.Search)
-        // Usamos los IDs actuales y agregamos el parámetro 'position' (1 o 2)
-        navController.navigate(
-            // Asumo que tu ruta de búsqueda debe modificarse para aceptar argumentos
-            // Por ahora, solo navegamos, pero el siguiente paso será corregir la ruta Search.
-            Screen.Search.route
-        )
-        // NOTA: Para completar esta funcionalidad, necesitaremos modificar Screen.Search
-        // para que acepte argumentos (ID1, ID2, POSITION) en un futuro paso.
+    // 2️⃣ CORRECCIÓN CLAVE: Escuchar el resultado devuelto de SearchScreen
+    LaunchedEffect(key1 = Unit) {
+        // Obtenemos el SavedStateHandle de la ruta actual (Compare)
+        val currentEntry = navController.currentBackStackEntry
+
+        // Obtenemos el SavedStateHandle de la ruta de búsqueda (Search)
+        // Usamos el SavedStateHandle del 'previousBackStackEntry' porque es el que la SearchScreen actualizó
+        val savedStateHandle = navController.previousBackStackEntry?.savedStateHandle
+
+        // Observamos los cambios en los resultados de búsqueda
+        savedStateHandle?.getLiveData<Int>("CANDIDATE_ID_RESULT")?.observe(currentEntry!!) { resultId ->
+            val resultPosition = savedStateHandle.get<Int>("CANDIDATE_POSITION_RESULT")
+
+            if (resultId != null && resultPosition != null) {
+                // 3️⃣ Actualizar el ViewModel con el candidato seleccionado
+                viewModel.handleCandidateSelectionResult(resultId, resultPosition)
+
+                // Limpiar los resultados para evitar re-procesarlos si la pantalla se recompone
+                savedStateHandle.remove<Int>("CANDIDATE_ID_RESULT")
+                savedStateHandle.remove<Int>("CANDIDATE_POSITION_RESULT")
+            }
+        }
     }
 
 
-    // 2. Cargar datos al iniciar la pantalla
+    // 4️⃣ Cargar datos iniciales o actualizar si los IDs de la ruta cambian (solo si se navega con IDs)
     LaunchedEffect(candidatoId1, candidatoId2) {
         viewModel.loadComparisonData(candidatoId1, candidatoId2)
     }
@@ -90,13 +105,13 @@ fun ComparisonScreen(
                 navController = navController,
                 candidato1 = uiState.candidate1,
                 candidato2 = uiState.candidate2,
-                onSelectCandidate = onSelectCandidate // <<-- CORRECCIÓN 1: Pasar el callback
+                onSelectCandidate = onSelectCandidate
             )
         }
     ) { paddingValues ->
 
         Column(
-            modifier = modifier // <<-- Aplicar el modifier aquí
+            modifier = modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .background(MaterialTheme.colorScheme.background)
@@ -121,7 +136,6 @@ fun ComparisonScreen(
                         profile1 = uiState.candidate1Profile,
                         profile2 = uiState.candidate2Profile
                     )
-                    // Integración de ProposalContent (asumiendo que ya fue importado)
                     ComparisonTab.PROPOSALS -> ProposalContent(
                         profile1 = uiState.candidate1Profile,
                         profile2 = uiState.candidate2Profile
@@ -133,7 +147,8 @@ fun ComparisonScreen(
     }
 }
 
-// Componente Placeholder simple para las pestañas no implementadas
+// ... (Componentes Auxiliares PlaceholderContent, LoadingView, ErrorView sin cambios) ...
+
 @Composable
 fun PlaceholderContent(title: String) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
