@@ -1,19 +1,14 @@
 package com.proyecto.app_electoral.data.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "proyectos")
 data class Proyecto(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val candidato_id: Int,
-    val numero_proyecto: String,
+    val id: Int, // ID Primario
+    val candidato: Int, // ForeignKey a Candidato
+
     val titulo: String,
     val descripcion: String,
-    val fecha_presentacion: String,
-    val estado: String,
-    val tema: String,
-    val fuente_url: String
-)
+    val categoria: String,
+    val fuente_url: String?, // URLField(null=True, blank=True)
 
+    // El campo de opciones (TextChoices) se serializa como String (ej: "Sin iniciar")
+    val estado: String
+)

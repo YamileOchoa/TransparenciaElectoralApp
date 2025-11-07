@@ -1,51 +1,25 @@
 package com.proyecto.app_electoral.data.repository
 
-import android.content.Context
-import android.util.Log
-import com.proyecto.app_electoral.data.db.AppDatabase
 import com.proyecto.app_electoral.data.model.Candidato
 import com.proyecto.app_electoral.data.network.ApiService
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class CandidatoRepository(
-    private val context: Context,
-    private val db: AppDatabase,
-    private val apiService: ApiService
-) {
+class CandidatoRepository(private val apiService: ApiService) {
 
-    suspend fun refreshCandidatos() {
-        try {
-            Log.d("CandidatoRepository", "🔄 Descargando candidatos desde la API...")
-            val candidatosFromApi = apiService.getCandidatos()
-
-            db.candidatoDao().clearAll() // ← limpia la tabla antes de insertar
-
-            db.candidatoDao().insertAll(candidatosFromApi)
-            Log.d("CandidatoRepository", "✅ Candidatos guardados: ${candidatosFromApi.size}")
-        } catch (e: Exception) {
-            Log.e("CandidatoRepository", "Error al refrescar desde la API", e)
-        }
+    /**
+     * Obtiene la lista de candidatos desde el endpoint de Django.
+     */
+    suspend fun getCandidatos(): List<Candidato> = withContext(Dispatchers.IO) {
+        // Llama a la función suspend de Retrofit para obtener la lista
+        return@withContext apiService.getCandidatos()
     }
 
-
-    fun getCandidatos(): Flow<List<Candidato>> = db.candidatoDao().getAllCandidatos()
-
-    fun getCandidato(id: Int): Flow<Candidato?> = db.candidatoDao().getCandidatoById(id)
-
-    suspend fun getMasBuscados(): List<Candidato> {
-        return try {
-            apiService.getMasBuscados()
-        } catch (e: Exception) {
-            Log.e("CandidatoRepository", "Error al obtener los más buscados", e)
-            emptyList()
-        }
+    /*
+    // Opcional: Si quieres centralizar otros datos de Candidato aquí:
+    suspend fun getDenuncias(): List<Denuncia> = withContext(Dispatchers.IO) {
+        return@withContext apiService.getDenuncias()
     }
-
-    suspend fun incrementarVisitas(id: Int) {
-        try {
-            apiService.incrementarVisita(id)
-        } catch (e: Exception) {
-            Log.e("CandidatoRepository", "Error al incrementar visita", e)
-        }
-    }
+    // ...
+    */
 }

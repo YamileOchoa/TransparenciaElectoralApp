@@ -1,23 +1,22 @@
 package com.proyecto.app_electoral.data.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
-
-@Entity(tableName = "candidatos")
 data class Candidato(
-    @PrimaryKey val id: Int,
+    // ID Primario de Django
+    val id: Int,
+
     val nombre: String,
     val partido: String,
     val biografia: String,
-    val experiencia: Int,
-    val visitas: Int = 0,
-    @SerializedName("foto_url") val fotoUrl: String?,
-    val region: String?,
-    val estado: String?,
+    val visitas: Int, // PositiveIntegerField es Int en Kotlin
+
+    // URLField(null=True, blank=True) -> String?
+    val foto_url: String?,
     val dni: String?,
+    val region: String,
+
+    // DateField(null=True, blank=True) -> String? (formato "YYYY-MM-DD")
     val nacimiento: String?,
-    val historial: List<HistorialCargo>? = emptyList(),
-    val propuestas: List<Propuesta>? = emptyList(),
-    val denuncias: List<Denuncia>? = emptyList()
+    val estado: String,
+    val profesion: String?, // TextField(null=True, blank=True)
+    val fuente_url: String?
 )
