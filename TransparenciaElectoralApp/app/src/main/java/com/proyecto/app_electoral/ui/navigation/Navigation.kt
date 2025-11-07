@@ -29,8 +29,14 @@ import com.proyecto.app_electoral.ui.screens.ComparisonScreen // <<-- Importaci�
 sealed class Screen(val route: String, val title: String? = null) {
     // Pantallas sin BottomBar (o que manejan su propia navegación de vuelta)
     object Splash : Screen("splash_screen")
-    object Search : Screen("search_screen")
-
+    object Search : Screen("search_screen?mode={mode}&position={position}") {
+        /**
+         * Crea la ruta de navegación para SearchScreen.
+         * Por defecto, mode="NORMAL" y position=0 (comportamiento de búsqueda estándar).
+         */
+        fun createRoute(mode: String = "NORMAL", position: Int = 0) =
+            "search_screen?mode=$mode&position=$position"
+    }
     // RUTA CON ARGUMENTO: Define la ruta base y el placeholder del argumento
     object Profile : Screen("candidate_profile_screen/{candidatoId}") {
         // Función helper para construir la ruta final con un ID
@@ -87,10 +93,35 @@ fun AppNavigation() {
         }
 
         // --- 2. PANTALLA DE BÚSQUEDA (Ruta directa de acceso rápido)
-        composable(Screen.Search.route) {
+        // --- 2. PANTALLA DE BÚSQUEDA (Ruta directa de acceso rápido)
+        // MODIFICACIÓN CLAVE: Definimos y leemos los argumentos de modo y posición.
+        composable(
+            route = Screen.Search.route, // Ahora usa la ruta con ?mode={mode}&position={position}
+            arguments = listOf(
+                navArgument("mode") { // Argumento para el modo (NORMAL o COMPARE)
+                    type = NavType.StringType
+                    defaultValue = "NORMAL"
+                },
+                navArgument("position") { // Argumento para la posición (1 o 2 en modo COMPARE)
+                    type = NavType.IntType
+                    defaultValue = 0
+                }
+            )
+        ) { backStackEntry ->
+            // Leemos los argumentos
+            val mode = backStackEntry.arguments?.getString("mode") ?: "NORMAL"
+            val position = backStackEntry.arguments?.getInt("position") ?: 0
+
+            // NOTA: Para simplificar, si la navegación de búsqueda no viene del BottomBar,
+            // podemos omitir el AppScreenWrapper para que la pantalla ocupe todo el espacio.
+            // Aquí se mantiene la lógica original que usa AppScreenWrapper para aplicar padding.
+
             AppScreenWrapper(navController = navController) { paddingValues ->
                 SearchScreen(
                     navController = navController,
+                    // PASAMOS LOS NUEVOS ARGUMENTOS A LA COMPOSABLE DE BÚSQUEDA
+                    searchMode = mode,
+                    searchPosition = position,
                     modifier = Modifier.padding(paddingValues)
                 )
             }

@@ -20,46 +20,44 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.compose.foundation.shape.CircleShape
-import androidx.lifecycle.viewmodel.compose.viewModel // Importación del ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.proyecto.app_electoral.data.network.model.Candidato
 import com.proyecto.app_electoral.ui.components.search.SearchHeader
 import com.proyecto.app_electoral.ui.theme.*
-import com.proyecto.app_electoral.ui.viewmodel.HomeViewModel // Importación del HomeViewModel
-import com.proyecto.app_electoral.ui.viewmodel.HomeViewModelFactory // Importación del Factory
-import com.proyecto.app_electoral.di.Injector // Importación del Injector
+import com.proyecto.app_electoral.ui.viewmodel.HomeViewModel
+import com.proyecto.app_electoral.ui.viewmodel.HomeViewModelFactory
+import com.proyecto.app_electoral.di.Injector
 import com.proyecto.app_electoral.ui.components.home.ImageShapeType
-// --- Importaciones de Colores ---
 import com.proyecto.app_electoral.ui.theme.BackgroundCustom
 import com.proyecto.app_electoral.ui.theme.PrimaryCustom
 import com.proyecto.app_electoral.ui.theme.DarkCustom
 import com.proyecto.app_electoral.ui.theme.SurfaceLight
 import com.proyecto.app_electoral.ui.components.home.ImageLoader
-// ⬅️ IMPORTACIÓN CLAVE: Necesaria para acceder a las rutas de navegación
 import com.proyecto.app_electoral.ui.navigation.Screen
 
 /**
  * 🔍 Pantalla de Búsqueda de Candidatos.
- * Muestra el campo de búsqueda, filtros y los resultados en tiempo real.
  */
 @Composable
 fun SearchScreen(
     navController: NavController,
+    // ⚙️ CORRECCIÓN 1: Agregar los parámetros de navegación
+    searchMode: String,
+    searchPosition: Int,
     modifier: Modifier = Modifier,
-    // [CRÍTICO] Inyectar HomeViewModel (usando el Factory si es necesario)
     viewModel: HomeViewModel = viewModel(factory = HomeViewModelFactory(Injector.provideCandidatoRepository()))
 ) {
     // 1. Estados de la UI
     var selectedFilter by remember { mutableStateOf("Nombre") }
-    var searchQuery by remember { mutableStateOf("") } // Estado del texto de búsqueda
+    var searchQuery by remember { mutableStateOf("") }
 
     // 2. Datos y Estado de Carga
     val uiState by viewModel.uiState.collectAsState()
 
-    // Lista filtrada basada en el texto de búsqueda y el filtro
+    // Lista filtrada
     val filteredCandidates = remember(uiState.candidates, searchQuery, selectedFilter) {
-        viewModel.filterCandidates(searchQuery) // Usa la función de filtrado del ViewModel
+        viewModel.filterCandidates(searchQuery)
             .let { list ->
-                // Aplica el filtro adicional por campo (si es necesario)
                 when (selectedFilter) {
                     "Nombre" -> list.sortedBy { it.nombre }
                     "Partido" -> list.sortedBy { it.partido }
@@ -76,11 +74,9 @@ fun SearchScreen(
             .background(BackgroundCustom)
     ) {
 
-        // --- 1. Cabecera ---
+        // ... (Cabecera, Caja de Búsqueda y Filtros de Búsqueda sin cambios) ...
         SearchHeader()
         Spacer(modifier = Modifier.height(16.dp))
-
-        // --- 2. Caja de Búsqueda (Ahora un OutlinedTextField funcional) ---
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
@@ -103,7 +99,6 @@ fun SearchScreen(
             },
             singleLine = true,
             shape = RoundedCornerShape(12.dp),
-            // Estilos M3
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = SurfaceLight,
                 unfocusedContainerColor = SurfaceLight,
@@ -115,7 +110,6 @@ fun SearchScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // --- 3. Filtros de Búsqueda ---
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -124,7 +118,6 @@ fun SearchScreen(
         ) {
             listOf("Nombre", "Partido", "Región").forEach { filter ->
                 val isSelected = selectedFilter == filter
-
                 Box(
                     modifier = Modifier
                         .weight(1f)
@@ -140,11 +133,10 @@ fun SearchScreen(
                         )
                     } else {
                         Modifier.background(
-                            color = SurfaceLight, // Fondo visible para el no seleccionado
+                            color = SurfaceLight,
                             shape = RoundedCornerShape(20.dp)
                         )
                     }
-
                     Box(
                         modifier = Modifier
                             .matchParentSize()
@@ -163,12 +155,10 @@ fun SearchScreen(
         }
 
         Spacer(modifier = Modifier.height(24.dp))
-
         // --- 4. Manejo del Estado (Carga / Error / Resultados Reales) ---
 
         when {
             uiState.isLoading && searchQuery.isEmpty() -> {
-                // Mostrar indicador de carga solo si no se está buscando (carga inicial)
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(color = PrimaryCustom)
                 }
@@ -181,7 +171,6 @@ fun SearchScreen(
                 )
             }
             filteredCandidates.isEmpty() -> {
-                // Mostrar mensaje si no hay resultados
                 Text(
                     text = if (searchQuery.isBlank()) "Cargando candidatos..." else "No se encontraron resultados para \"$searchQuery\".",
                     color = Color.Gray,
@@ -206,10 +195,26 @@ fun SearchScreen(
                     items(filteredCandidates) { candidato ->
                         CandidateResultItem(
                             candidato = candidato,
-                            // ⬅️ IMPLEMENTACIÓN DE LA NAVEGACIÓN
+                            // ⚙️ CORRECCIÓN 2: Implementación de la lógica de navegación condicional
                             onCandidateClick = {
-                                val route = Screen.Profile.createRoute(candidato.id)
-                                navController.navigate(route)
+                                if (searchMode == "COMPARE") {
+                                    // Guardamos el ID del candidato y la posición a llenar
+                                    navController.previousBackStackEntry
+                                        ?.savedStateHandle
+                                        ?.set("CANDIDATE_ID_RESULT", candidato.id)
+
+                                    navController.previousBackStackEntry
+                                        ?.savedStateHandle
+                                        ?.set("CANDIDATE_POSITION_RESULT", searchPosition)
+
+                                    // Volvemos a la pantalla anterior (ComparisonScreen)
+                                    navController.popBackStack()
+
+                                } else {
+                                    // Modo Normal: Navegar al perfil
+                                    val route = Screen.Profile.createRoute(candidato.id)
+                                    navController.navigate(route)
+                                }
                             }
                         )
                     }
@@ -219,11 +224,8 @@ fun SearchScreen(
     }
 }
 
-// --- Componente de Ítem de Resultado Real (Reemplaza el Placeholder) ---
-
-/**
- * Muestra la información básica de un candidato en la lista de resultados.
- */
+// ... (El componente CandidateResultItem sigue igual) ...
+// (Omisión de CandidateResultItem por brevedad)
 @Composable
 fun CandidateResultItem(candidato: Candidato, onCandidateClick: () -> Unit) {
     Row(
@@ -235,7 +237,6 @@ fun CandidateResultItem(candidato: Candidato, onCandidateClick: () -> Unit) {
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // ✅ CORRECTO: Usamos ImageLoader con la forma circular
         ImageLoader(
             imageUrl = candidato.foto_url,
             contentDescription = "Foto de ${candidato.nombre}",
