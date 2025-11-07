@@ -44,10 +44,44 @@ class DenunciaViewSet(viewsets.ModelViewSet):
     queryset = Denuncia.objects.all()
     serializer_class = DenunciaSerializer
 
+    def create(self, request, *args, **kwargs):
+        # Permitir crear una o varias denuncias (array o diccionario)
+        if isinstance(request.data, list):
+            serializer = self.get_serializer(data=request.data, many=True)
+        else:
+            serializer = self.get_serializer(data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 class ProyectoViewSet(viewsets.ModelViewSet):
     queryset = Proyecto.objects.all()
     serializer_class = ProyectoSerializer
 
+    def create(self, request, *args, **kwargs):
+        # Permitir POST con lista (array) de proyectos
+        if isinstance(request.data, list):
+            serializer = self.get_serializer(data=request.data, many=True)
+        else:
+            serializer = self.get_serializer(data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
 class PropuestaViewSet(viewsets.ModelViewSet):
     queryset = Propuesta.objects.all()
     serializer_class = PropuestaSerializer
+
+    def create(self, request, *args, **kwargs):
+        # Permitir POST con lista (array) de propuestas
+        if isinstance(request.data, list):
+            serializer = self.get_serializer(data=request.data, many=True)
+        else:
+            serializer = self.get_serializer(data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

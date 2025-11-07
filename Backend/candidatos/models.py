@@ -55,7 +55,11 @@ class Proyecto(models.Model):
     descripcion = models.TextField()
     categoria = models.CharField(max_length=100)
     fuente_url = models.URLField(null=True, blank=True)
-
+    estado = models.CharField(
+        max_length=50,
+        choices=Estado.choices,
+        default=Estado.SIN_INICIAR
+    )
 
     def __str__(self):
         return self.titulo
