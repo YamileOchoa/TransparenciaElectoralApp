@@ -1,7 +1,9 @@
 package com.proyecto.app_electoral.ui.components.compare
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,29 +16,41 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.proyecto.app_electoral.R
 
 @Composable
 fun CandidateCard(
     name: String,
     party: String,
-    fotoResId: Int,
+    fotoUrl: String?,
     hasCandidate: Boolean,
     onButtonClick: () -> Unit
 ) {
+    Log.d("CandidateCard", "Renderizando card: $name / hasCandidate=$hasCandidate / foto=$fotoUrl")
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.width(120.dp)
+        modifier = Modifier
+            .width(120.dp)
+            .then(
+                // Si NO hay candidato, hacemos toda la tarjeta clickeable para abrir el diálogo
+                if (!hasCandidate) {
+                    Modifier.clickable { onButtonClick() }
+                } else {
+                    Modifier // Si hay candidato, el botón "Cambiar" se encarga del click
+                }
+            )
     ) {
         Box(
             modifier = Modifier
-                .size(64.dp)
+                .size(80.dp)
                 .clip(CircleShape)
                 .background(if (hasCandidate) Color(0xFFE8E8E8) else Color.Transparent)
                 .then(
@@ -47,15 +61,37 @@ fun CandidateCard(
             contentAlignment = Alignment.Center
         ) {
             if (hasCandidate) {
+                val context = LocalContext.current
+
+                val validUrl = fotoUrl?.let {
+                    when {
+                        it.startsWith("http://127.0.0.1") -> it.replace("127.0.0.1", "10.0.2.2")
+                        it.startsWith("http://localhost") -> it.replace("localhost", "10.0.2.2")
+                        it.startsWith("http") -> it
+                        else -> "http://10.0.2.2:8000$it"
+                    }
+                }
+
+                Log.d("CandidateCard", "📸 URL final que carga Coil: $validUrl")
+
+                val imageRequest = ImageRequest.Builder(context)
+                    .data(validUrl)
+                    .crossfade(true)
+                    .placeholder(R.drawable.ic_profile_placeholder)
+                    .error(R.drawable.ic_profile_placeholder)
+                    .build()
+
                 AsyncImage(
-                    model = if (fotoResId != 0) fotoResId else R.drawable.ic_profile_placeholder,
+                    model = imageRequest,
                     contentDescription = "Foto de $name",
                     placeholder = painterResource(id = R.drawable.ic_profile_placeholder),
                     error = painterResource(id = R.drawable.ic_profile_placeholder),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize()
                 )
-            } else {
+
+            }
+            else {
                 Icon(
                     imageVector = Icons.Default.Add,
                     contentDescription = null,
@@ -82,6 +118,7 @@ fun CandidateCard(
             textAlign = TextAlign.Center
         )
 
+        // Este botón solo aparece si hay un candidato, y su onClick ya funciona correctamente.
         if (hasCandidate) {
             Spacer(modifier = Modifier.height(8.dp))
             Button(
