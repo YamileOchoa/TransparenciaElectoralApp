@@ -17,11 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.navigation.navArgument
 import com.proyecto.app_electoral.ui.components.BottomNavigationBar
 import com.proyecto.app_electoral.ui.screens.CandidateProfileScreen
-import com.proyecto.app_electoral.ui.screens.CandidatosScreen
 import com.proyecto.app_electoral.ui.screens.HomeScreen
 import com.proyecto.app_electoral.ui.screens.SplashScreen
 import com.proyecto.app_electoral.ui.screens.SearchScreen
 import com.proyecto.app_electoral.ui.screens.StatisticsScreen
+import com.proyecto.app_electoral.ui.screens.ComparisonScreen // <<-- Importación necesaria
 
 /**
  * Define todas las rutas (pantallas) de navegación y sus metadatos (título/BottomBar).
@@ -40,7 +40,18 @@ sealed class Screen(val route: String, val title: String? = null) {
     // Pantallas con BottomBar
     object Home : Screen("home_screen", "Inicio")
     object Candidates : Screen("candidates_screen", "Candidatos")
-    object Compare : Screen("compare_screen", "Comparar")
+
+    // CORRECCIÓN CLAVE: RUTA DE COMPARACIÓN CON ARGUMENTOS OPCIONALES
+    object Compare : Screen("compare_screen?candidatoId1={candidatoId1}&candidatoId2={candidatoId2}", "Comparar") {
+        fun createRoute(candidatoId1: Int? = null, candidatoId2: Int? = null): String {
+            // Se usa "null" como string para la navegación cuando el ID es nulo
+            val id1 = candidatoId1?.toString() ?: "null"
+            val id2 = candidatoId2?.toString() ?: "null"
+            return "compare_screen?candidatoId1=$id1&candidatoId2=$id2"
+        }
+    }
+    // FIN CORRECCIÓN CLAVE
+
     object Stats : Screen("stats_screen", "Estadísticas")
 }
 
@@ -75,10 +86,9 @@ fun AppNavigation() {
             SplashScreen(navController = navController)
         }
 
-        // --- 2. PANTALLA DE BÚSQUEDA (Ruta directa de acceso rápido) ⬅️ CORRECCIÓN: Ahora usa el Wrapper
-        // Usado por el Quick Access Grid y también la pestaña Candidatos.
+        // --- 2. PANTALLA DE BÚSQUEDA (Ruta directa de acceso rápido)
         composable(Screen.Search.route) {
-            AppScreenWrapper(navController = navController) { paddingValues -> // ⬅️ AÑADIDO WRAPPER
+            AppScreenWrapper(navController = navController) { paddingValues ->
                 SearchScreen(
                     navController = navController,
                     modifier = Modifier.padding(paddingValues)
@@ -112,32 +122,55 @@ fun AppNavigation() {
             }
         }
 
-        // Pestaña: CANDIDATOS (Redirigida a la misma SearchScreen) ⬅️ CAMBIO IMPORTANTE
-        // Ahora solo navegamos a la ruta Screen.Search.route
+        // Pestaña: CANDIDATOS (Redirigida a la misma SearchScreen)
         composable(Screen.Candidates.route) {
-            // Utilizamos el Wrapper para mantener la estructura del TabBar, pero el contenido es la redirección.
             AppScreenWrapper(navController = navController) {
-                // Navegamos inmediatamente a la ruta principal de búsqueda
                 navController.navigate(Screen.Search.route) {
                     popUpTo(navController.graph.startDestinationId) { inclusive = false }
                     launchSingleTop = true
                 }
-                Box(Modifier.fillMaxSize()) {} // Placeholder mientras ocurre la navegación
+                Box(Modifier.fillMaxSize()) {}
             }
         }
 
 
-        // Pestaña: COMPARAR (Placeholder)
-        composable(Screen.Compare.route) {
+        // Pestaña: COMPARAR (IMPLEMENTACIÓN DE COMPARISONSCREEN)
+        composable(
+            route = Screen.Compare.route,
+            arguments = listOf(
+                navArgument("candidatoId1") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = "null" // Usamos "null" para representar la ausencia
+                },
+                navArgument("candidatoId2") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = "null"
+                }
+            )
+        ) { backStackEntry ->
+            // Convertimos la cadena "null" de vuelta a null (Int?)
+            val id1 = backStackEntry.arguments?.getString("candidatoId1").takeIf { it != "null" }?.toIntOrNull()
+            val id2 = backStackEntry.arguments?.getString("candidatoId2").takeIf { it != "null" }?.toIntOrNull()
+
             AppScreenWrapper(navController = navController) { paddingValues ->
-                PlaceholderScreen(title = Screen.Compare.title!!, paddingValues)
+                ComparisonScreen(
+                    navController = navController,
+                    candidatoId1 = id1,
+                    candidatoId2 = id2,
+                    modifier = Modifier.padding(paddingValues) // Aplicamos el padding
+                )
             }
         }
 
         // Pestaña: ESTADÍSTICAS
         composable(Screen.Stats.route) {
-            AppScreenWrapper(navController = navController) {
-                StatisticsScreen(navController = navController)
+            AppScreenWrapper(navController = navController) { paddingValues ->
+                StatisticsScreen(
+                    navController = navController,
+                    modifier = Modifier.padding(paddingValues)
+                )
             }
         }
     }
@@ -145,10 +178,10 @@ fun AppNavigation() {
 
 /**
  * Componente temporal para las pantallas que aún no tienen contenido.
+ * Se deja privado para ser usado solo si es necesario, pero ya no se usa para COMPARAR.
  */
 @Composable
 private fun PlaceholderScreen(title: String, paddingValues: PaddingValues) {
-    // Este Box es para usar el padding del Scaffold externo
     Box(modifier = Modifier.padding(paddingValues).fillMaxSize(), contentAlignment = Alignment.Center) {
         Text(text = "Contenido de $title (PENDIENTE)")
     }
