@@ -38,6 +38,7 @@ class Denuncia(models.Model):
     expediente = models.CharField(max_length=100)
     delito = models.CharField(max_length=100)
     fecha_denuncia = models.DateField()
+    fecha_denuncia = models.DateField()
     estado = models.CharField(max_length=100)
     fuente_url = models.URLField()
 
