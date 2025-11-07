@@ -1,4 +1,4 @@
-package com.proyecto.app_electoral.data.model
+package com.proyecto.app_electoral.data.network.model
 
 data class Denuncia(
     val id: Int, // ID Primario

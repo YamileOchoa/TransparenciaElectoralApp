@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.proyecto.app_electoral.R
-import com.proyecto.app_electoral.data.model.Candidato
+import com.proyecto.app_electoral.data.network.model.Candidato
 
 @Composable
 fun ProfileCard(candidato: Candidato) {
@@ -38,7 +38,6 @@ fun ProfileCard(candidato: Candidato) {
             modifier = Modifier.padding(24.dp)
         ) {
             val imageRequest = ImageRequest.Builder(LocalContext.current)
-                .data(candidato.fotoUrl)
                 .size(512)
                 .crossfade(true)
                 .placeholder(R.drawable.ic_profile_placeholder)
@@ -72,12 +71,7 @@ fun ProfileCard(candidato: Candidato) {
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(2.dp))
-            Text(
-                text = "Candidato a ${candidato.historial?.firstOrNull()?.cargo ?: "Sin cargo"}",
-                fontSize = 14.sp,
-                color = Color(0xFF9E9E9E),
-                textAlign = TextAlign.Center
-            )
+
         }
     }
 }

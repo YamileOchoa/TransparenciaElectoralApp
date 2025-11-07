@@ -2,6 +2,11 @@ package com.proyecto.app_electoral.data.repository
 
 import com.proyecto.app_electoral.data.model.*
 import com.proyecto.app_electoral.data.network.ApiService
+import com.proyecto.app_electoral.data.network.model.Candidato
+import com.proyecto.app_electoral.data.network.model.Denuncia
+import com.proyecto.app_electoral.data.network.model.HistorialCargo
+import com.proyecto.app_electoral.data.network.model.Propuesta
+import com.proyecto.app_electoral.data.network.model.Proyecto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

@@ -1,6 +1,6 @@
 package com.proyecto.app_electoral.data.repository
 
-import com.proyecto.app_electoral.data.model.Candidato
+import com.proyecto.app_electoral.data.network.model.Candidato
 import com.proyecto.app_electoral.data.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
